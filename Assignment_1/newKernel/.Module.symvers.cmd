@@ -1,0 +1,1 @@
+savedcmd_/home/scythemenace/Downloads/CS3SH3/Assignment_1/newKernel/Module.symvers :=  scripts/mod/modpost -M -m -a      -o /home/scythemenace/Downloads/CS3SH3/Assignment_1/newKernel/Module.symvers -T /home/scythemenace/Downloads/CS3SH3/Assignment_1/newKernel/modules.order -i Module.symvers -e 
