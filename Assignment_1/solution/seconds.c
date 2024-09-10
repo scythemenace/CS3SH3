@@ -89,9 +89,9 @@ ssize_t proc_read(struct file *file, char __user *usr_buf, size_t count, loff_t 
         unsigned long difference_in_jiffies = later_jiffies - start_jiffies;
         unsigned long elapsed_time = difference_in_jiffies/HZ;
         char elapsed_time_in_char[BUFFER_SIZE]; 
-        int len = snprintf(elapsed_time_in_char, sizeof(elapsed_time_in_char), "%lu", elapsed_time);
+        snprintf(elapsed_time_in_char, sizeof(elapsed_time_in_char), "%lu", elapsed_time);
 
-        rv = sprintf(buffer, elapsed_time_in_char);
+        rv = sprintf(buffer, "%s\n", elapsed_time_in_char);
 
         // copies the contents of buffer to userspace usr_buf
         copy_to_user(usr_buf, buffer, rv); //This shows a warning as copy_to_user retrns 0 for success and we aren't allocating it,
