@@ -1,1 +1,0 @@
-savedcmd_/home/scythemenace/Downloads/CS3SH3/Assignment_1/solution/Module.symvers :=  scripts/mod/modpost -M -m -a      -o /home/scythemenace/Downloads/CS3SH3/Assignment_1/solution/Module.symvers -T /home/scythemenace/Downloads/CS3SH3/Assignment_1/solution/modules.order -i Module.symvers -e 
