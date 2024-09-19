@@ -1,4 +1,6 @@
-## Work allocated:
+## Group 12: Ankur Pandey (pandea23), Karanveer Sandhu (sandhk20)
+
+### Work allocated:
 
 Me and my lab partner worked on this assignment together so there is no way to quantify what work we did since we did it simultaneously.
 We deduced explanations for the sample file that was provided together on our own and wrote the code side by side. Therefore, according
