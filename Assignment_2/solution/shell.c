@@ -5,143 +5,215 @@
 #include <string.h>
 #include <sys/wait.h>
 
-#define ARGUMENT_SIZE 16
-#define COMMAND_READ_SIZE 100
-#define HISTORY_SIZE 5
+#define ARGUMENT_SIZE 16      // Maximum number of arguments per command
+#define COMMAND_READ_SIZE 100 // Maximum length of a command string
+#define HISTORY_SIZE 5        // Maximum number of commands to store in history
 
-int should_run = 1;
-char *args[ARGUMENT_SIZE];
-char commands[COMMAND_READ_SIZE];
-bool has_ampersand = false;
-int position;
-pid_t pid;
-int status;
+/*NOTE:- Just for reference, wherever we have written, if(!strcmp(string1, string2)), the reason we do this is because,
+ * strcmp() returns 0 if the string matches, but in C boolean terms, 0 represents false. In order to tell our program, that
+ * we have found the string, we use not 0*/
 
-// Circular buffer for history
-char history[HISTORY_SIZE][COMMAND_READ_SIZE];
+int should_run = 1;               // Variable to determine if the program should run
+char *args[ARGUMENT_SIZE];        // Array for storing the string tokens
+char commands[COMMAND_READ_SIZE]; // variable for storing the command string
+bool has_ampersand = false;       // To determine if there's an ampersand in the command string
+int position;                     // Initializing a variable to keep track of the latest position of the args array
+pid_t pid;                        // Global variable for getting the value of the process id
+int status;                       // Global variable for getting the state of the child process
+
+/*We had thought of using a circular buffer like orientation (not exactly a circular buffer but an inspiration) for creation our functions for the history command due
+to the fact that it's the most efficient data structure that automatically updates the value of recently entered values in O(1) time and is perfect for things like history
+commands given the fact we don't have to shift each value up if we overwrite one, which is the case in normal arrays.*/
+
+char history[HISTORY_SIZE][COMMAND_READ_SIZE]; // An array to store up to HISTORY_SIZE commands and [COMMAND_READ_SIZE] would be the max length of each stored command
+
+/* The history_count while not explicitly, but if coupled with the print_function() we have created acts as the read pointer in normal circular buffer.
+The main reason we couldn't have just used the total_commond_count is that the circular buffer only has 0-4 indices. Even though we might be printing them
+based on the total number of commands we have entered, the index in the main circular buffer won't change. In order to access elements from the circular buffer
+while printing we cannot use the total_command_count because in the case it becomes larger than 4, we will get an out of bounds error. Therefore, it's crucial
+we track the history_count differently. */
 int history_count = 0;
-int history_next = 0;  // Changed from history_start to history_next
-int total_command_count = 0;
+int history_next = 0;        // Tracks the index where we have to overwrite/write the values (for reference, it's analogous to the write pointer in an actual circular buffer)
+int total_command_count = 0; // Total number of commands entered by the user; just for the sake of printing aesthetics as written in the assignment
 
-void start_shell();
-void get_args();
-void fetch_commands();
-void cleanup_zombie_processes();
-void add_to_history(const char *command);
-void print_history();
-void execute_last_command();
-void execute_command(const char *cmd);
+// Below are prototypes for the function defined after int main()
+void start_shell();                       // Function to start the shell process
+void get_args();                          // Function to get the string tokens and fill them in the args array
+void fetch_commands();                    // Function to get the input command string from the user
+void cleanup_zombie_processes();          // Function to clean up terminated child processes
+void add_to_history(const char *command); // Function to add a command to history
+void print_history();                     // Function to print the command history
+void execute_last_command();              // Function to execute the most recent command (using !!)
+void execute_command(const char *cmd);    // Function to execute a given command
 
-int main() {
-    start_shell();
+int main()
+{
+    start_shell(); // Starting the shell loop (the primary function)
     return 0;
 }
 
-void cleanup_zombie_processes() {
+/*Since any command using ampersand runs concurrently, we aren't waiting for it when running the command. Therefore, we need a function which loops and waits to
+collect all zombie processes after they've exited (they do automatically since execvp() basically kills the c code image). Additionally, our shell should work
+seamlessly, i.e. if we enter multiple ampersand commands, the parent process shouldn't even remotely stop working, thus we enter the WNOHANG option in our
+waitpid(). That makes sure that if no child process has exited "yet", the parent doesn't sit there waiting for it and is free to execute commands. In the case
+they've exited, we can reap the child since it's the first function being run*/
+void cleanup_zombie_processes()
+{
     pid_t wpid;
     int status;
-    while ((wpid = waitpid(-1, &status, WNOHANG)) > 0);
+    while ((wpid = waitpid(-1, &status, WNOHANG)) > 0)
+        ;
 }
 
-void start_shell() {
-    while (should_run) {
-        cleanup_zombie_processes();
-        fetch_commands();
+void start_shell()
+{
+    while (should_run)
+    {
+        cleanup_zombie_processes(); // First clean up any residue child processes we may have started concurrently using the ampersand
+        fetch_commands();           // Secondly we have to get the command written by the user
 
-        if (!strcmp("", commands)) {
+        // Checking if the string is empty
+        if (!strcmp("", commands))
+        {
             continue;
         }
 
-        if (!strcmp("exit", commands)) {
+        // Break if the user writes "exit"
+        if (!strcmp("exit", commands))
+        {
             should_run = 0;
             continue;
         }
 
-        if (!strcmp("history", commands)) {
+        // If the user entered 'history', print the command history and skip adding to history
+        if (!strcmp("history", commands))
+        {
             print_history();
             continue;
         }
 
-        if (!strcmp("!!", commands)) {
+        // Similarly, if the user entered '!!', execute the most recent command from history
+        if (!strcmp("!!", commands))
+        {
             execute_last_command();
             continue;
         }
 
+        // Otherwise:
+        // Add the current command to the history buffer
         add_to_history(commands);
+        // Execute the current command
         execute_command(commands);
     }
 }
 
-void fetch_commands() {
-    printf("osh> ");
-    fflush(stdout);
-    if (fgets(commands, COMMAND_READ_SIZE, stdin) == NULL) {
-        if (feof(stdin)) {
+void fetch_commands()
+{
+    printf("osh> ");                                       // Indicating the user that our dummy shell is accepting inputs
+    fflush(stdout);                                        // Sometimes our output can delay, but the user should get the UI signal that the prompt he has entered is received, thus we flush the prompt to display it immediately
+    if (fgets(commands, COMMAND_READ_SIZE, stdin) == NULL) // Reads the input string. Useful because only reads till the maximum length given.
+    {
+        if (feof(stdin))
+        {
             printf("\n");
             exit(EXIT_SUCCESS);
-        } else {
+        }
+        else
+        {
             perror("fgets");
             exit(EXIT_FAILURE);
         }
     }
-    size_t len = strlen(commands);
-    if (len > 0 && commands[len - 1] == '\n') {
+
+    size_t len = strlen(commands); // Get the length of the input string
+    if (len > 0 && commands[len - 1] == '\n')
+    {
+        /*The reason we do this is because, our get_args function terminates when it sees a NULL character, so instead of having
+        the default endline terminator when we press enter, we replace it with the \0 NULL character so that our get_args() function knows
+        the command has been successfully read till the end.*/
         commands[len - 1] = '\0';
     }
 }
 
-void get_args() {
-    char *token;
-    position = 0;
-    has_ampersand = false;
+/* We will use the get_args to parse the raw command string stored in 'commands' into individual arguments by basically tokenizes the string based on spaces
+and filling the 'args' array with each token*/
+void get_args()
+{
+    char *token;           // Each token in the string will be stored in this pointer
+    position = 0;          // Reinitializing the position to the first element i.e. 0 so that it doesn't get
+    has_ampersand = false; // Reinitializing the has_ampersand boolean to false so that it doesn't get affected by it's prev val
 
-    token = strtok(commands, " ");
-    while (token != NULL && position < ARGUMENT_SIZE - 1) {
-        args[position++] = token;
-        token = strtok(NULL, " ");
+    token = strtok(commands, " ");                        // Getting the first word, i.e. initializing the pointer to the first token
+    while (token != NULL && position < ARGUMENT_SIZE - 1) // Exit condition is if we encounter a null pointer (we replaced \n with \0)
+    {
+        args[position++] = token;  // Fills each position with individual token from the string and increments the position value
+        token = strtok(NULL, " "); // Shifts the pointer to the next word
     }
 
-    if (position > 0 && !strcmp("&", args[position - 1])) {
-        has_ampersand = true;
-        args[--position] = NULL;
-    } else {
-        args[position] = NULL;
+    // Checking if the last token was an ampersand
+    if (position > 0 && !strcmp("&", args[position - 1]))
+    {
+        has_ampersand = true;    // Recorded the boolean to be true which will indicate the execute_command() function if there's an ampersand
+        args[--position] = NULL; // Settings the index before the ampersand to be NULL since we don't really need the '&' when executing
+    }
+    else
+    {
+        args[position] = NULL; // Settings the next index after the last string related to the command to be NULL due to how execvp() works.
     }
 }
 
-void add_to_history(const char *command) {
-    if (strlen(command) == 0 || !strcmp(command, "history") || !strcmp(command, "!!")) {
-        return;  // Don't add empty commands, "history", or "!!" to history
+void add_to_history(const char *command)
+{
+    // To make sure no commands like 'history', or '!!' are added to the history buffer by any chance
+    if (strlen(command) == 0 || !strcmp(command, "history") || !strcmp(command, "!!"))
+    {
+        return;
     }
-    
-    strcpy(history[history_next], command);
-    history_next = (history_next + 1) % HISTORY_SIZE;
-    if (history_count < HISTORY_SIZE) {
+
+    strcpy(history[history_next], command);           // Copy the command string into the history circular buffer at the 'history_next' index
+    history_next = (history_next + 1) % HISTORY_SIZE; // Update the 'history_next' index. In the case the buffer is full, it's set to 0 in order to update elements from there
+
+    // If the history buffer isn't full yet, increment the history_count, if it's full, we won't need to increment it since it basically acts as the read pointer of the buffer
+    if (history_count < HISTORY_SIZE)
+    {
         history_count++;
     }
 
+    // Increment the total number of commands entered in order to print them since history_count is being used for a different purpose and won't increment after 4 (max index)
     total_command_count++;
 }
 
-void print_history() {
-    if (history_count == 0) {
+void print_history()
+{
+    // If the history buffer is empty, inform the user and exit the function
+    if (history_count == 0)
+    {
         printf("No commands in history.\n");
         return;
     }
 
+    /*Using the history count to print the commands in order. By that we mean, let's say we filled the array completely [a, b, c, d, e] and in the case
+    we rewrite the oldest element 'a' as 'f', the new array will be [f, b, c, d, e] but we don't want to start printing with f as the first element we print
+    because unlike normal array printing, in this case we know the oldest command entered is b. Therefore, we use the start variable for that*/
     int start = (history_next - history_count + HISTORY_SIZE) % HISTORY_SIZE;
-    for (int i = history_count - 1; i >= 0; i--) {
+    for (int i = history_count - 1; i >= 0; i--)
+    {
         int index = (start + i) % HISTORY_SIZE;
-        if (total_command_count > 5) {
-          printf("%d %s\n", total_command_count + (i - 4), history[index]);
-        } else {
-          printf("%d %s\n", i + 1, history[index]);
+        if (total_command_count > 5)
+        {
+            printf("%d %s\n", total_command_count + (i - 4), history[index]);
+        }
+        else
+        {
+            printf("%d %s\n", i + 1, history[index]);
         }
     }
 }
 
-void execute_last_command() {
-    if (history_count == 0) {
+void execute_last_command()
+{
+    if (history_count == 0)
+    {
         printf("No commands in history.\n");
         return;
     }
@@ -152,22 +224,36 @@ void execute_last_command() {
     execute_command(history[last_index]);
 }
 
-void execute_command(const char *cmd) {
+void execute_command(const char *cmd)
+{
     strcpy(commands, cmd);
-    get_args();
+    get_args(); // Convert the input string to an array of individual tokens
 
-    pid = fork();
+    /*NOTE: We are going to execute the command using execvp(), the thing is execvp() hands over the whole control of the program
+     to the command that has to be executed, which basically means anything we write after that will become null and void
+     since our shell.c file won't have the control. We don't want that, we want to keep executing commands. Therefore, we
+     execute the command in a child process*/
 
-    if (pid == -1) {
+    pid = fork(); // Create a child process
+
+    if (pid == -1)
+    {
         perror("fork");
         exit(EXIT_FAILURE);
-    } else if (pid == 0) {
-        if (execvp(args[0], args) == -1) {
+    }
+    else if (pid == 0)
+    {
+        if (execvp(args[0], args) == -1)
+        {
             perror("execvp");
             exit(EXIT_FAILURE);
         }
-    } else {
-        if (!has_ampersand) {
+    }
+    else
+    {
+        if (!has_ampersand)
+        {
+            // If doesn't have ampersand, waits for the child process to finish
             waitpid(pid, &status, 0);
         }
     }
