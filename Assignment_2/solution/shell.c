@@ -36,15 +36,22 @@ int history_count = 0;
 int history_next = 0;        // Tracks the index where we have to overwrite/write the values (for reference, it's analogous to the write pointer in an actual circular buffer)
 int total_command_count = 0; // Total number of commands entered by the user; just for the sake of printing aesthetics as written in the assignment
 
-// Below are prototypes for the function defined after int main()
-void start_shell();                       // Function to start the shell process
-void get_args();                          // Function to get the string tokens and fill them in the args array
-void fetch_commands();                    // Function to get the input command string from the user
-void cleanup_zombie_processes();          // Function to clean up terminated child processes
-void add_to_history(const char *command); // Function to add a command to history
-void print_history();                     // Function to print the command history
-void execute_last_command();              // Function to execute the most recent command (using !!)
-void execute_command(const char *cmd);    // Function to execute a given command
+// Function to start the shell process
+void start_shell();
+// Function to get the string tokens and fill them in the args array
+void get_args();
+// Function to get the input command string from the user
+void fetch_commands();
+// Function to clean up terminated child processes
+void cleanup_zombie_processes();
+// Function to add a command to history
+void add_to_history(const char *command);
+// Function to print the command history
+void print_history();
+// Function to execute the most recent command (using !!)
+void execute_last_command();
+// Function to execute a given command
+void execute_command(const char *cmd);
 
 int main()
 {
@@ -65,6 +72,7 @@ void cleanup_zombie_processes()
         ;
 }
 
+// Starts our dummy shell
 void start_shell()
 {
     while (should_run)
@@ -107,6 +115,7 @@ void start_shell()
     }
 }
 
+// Gets the command entered by the user in the terminal
 void fetch_commands()
 {
     printf("osh> ");                                       // Indicating the user that our dummy shell is accepting inputs
@@ -135,8 +144,8 @@ void fetch_commands()
     }
 }
 
-/* We will use the get_args to parse the raw command string stored in 'commands' into individual arguments by basically tokenizes the string based on spaces
-and filling the 'args' array with each token*/
+/* We will use the get_args to parse the raw command string stored in 'commands' into individual arguments by basically tokenizing the string
+based on spaces and filling the 'args' array with each token*/
 void get_args()
 {
     char *token;           // Each token in the string will be stored in this pointer
@@ -162,6 +171,7 @@ void get_args()
     }
 }
 
+// Adds any command except for history and !! to the buffer
 void add_to_history(const char *command)
 {
     // To make sure no commands like 'history', or '!!' are added to the history buffer by any chance
@@ -183,6 +193,7 @@ void add_to_history(const char *command)
     total_command_count++;
 }
 
+// Prints up to 5 recent commands (with their arguments) that have been invoked.
 void print_history()
 {
     // If the history buffer is empty, inform the user and exit the function
@@ -193,33 +204,46 @@ void print_history()
     }
 
     /*Using the history count to print the commands in order. By that we mean, let's say we filled the array completely [a, b, c, d, e] and in the case
-    we rewrite the oldest element 'a' as 'f', the new array will be [f, b, c, d, e] but we don't want to start printing with f as the first element we print
-    because unlike normal array printing, in this case we know the oldest command entered is b. Therefore, we use the start variable for that*/
+    we rewrite the oldest element 'a' as 'f', the new array will be [f, b, c, d, e] but we don't want to start printing with f as it is the most recent element
+    which we print first because unlike normal array printing, in this case we know the oldest command entered is b not f even though it's the first index.
+    Therefore, we use the start variable for that*/
     int start = (history_next - history_count + HISTORY_SIZE) % HISTORY_SIZE;
     for (int i = history_count - 1; i >= 0; i--)
     {
+        /*Since what we have is basically a circular data structure, the printing order of certain elements can get messy, therefore we use the index pointer
+        instead of the iterator i to fetch the elements we have to print from the history array buffer.*/
         int index = (start + i) % HISTORY_SIZE;
         if (total_command_count > 5)
         {
+            /*The assignment mentioned that we could exceed 5 commands entered and may have a large number of entered commands. Although we are only displaying
+            the most recent 5 elements, it was mentioned we need to give it the value based on the order in which it exists. Therefore we have the total_command_count
+            variable. AAdditionally, the reason we add it to (i - 4) is because the assignment specifies that the most recent element should be displayed at the top.*/
             printf("%d %s\n", total_command_count + (i - 4), history[index]);
         }
         else
         {
+            /*Uf the total number of commands in the history doesn't exceed 5, we don't even need to use the total_command_count*/
             printf("%d %s\n", i + 1, history[index]);
         }
     }
 }
 
+// The function helps execute the last entered command in history and add it again to the history buffer
 void execute_last_command()
 {
+    // Basic checks to ensure the user knows there are no recent command that can be invoked again
     if (history_count == 0)
     {
         printf("No commands in history.\n");
         return;
     }
 
+    /* We calculate the actual last_index based on what we either overwrote or placed in the array
+    because getting the most recent command is not as simple as getting the last index of an array
+    in the case of a circular buffer.
+    */
     int last_index = (history_next - 1 + HISTORY_SIZE) % HISTORY_SIZE;
-    printf("%s\n", history[last_index]);
+    printf("%s\n", history[last_index]); // As mentioned in the assignment, we echo it before executing it
     add_to_history(history[last_index]);
     execute_command(history[last_index]);
 }
