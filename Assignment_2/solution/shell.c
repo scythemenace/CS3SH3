@@ -120,19 +120,7 @@ void fetch_commands()
 {
     printf("osh> ");                                       // Indicating the user that our dummy shell is accepting inputs
     fflush(stdout);                                        // Sometimes our output can delay, but the user should get the UI signal that the prompt he has entered is received, thus we flush the prompt to display it immediately
-    if (fgets(commands, COMMAND_READ_SIZE, stdin) == NULL) // Reads the input string. Useful because only reads till the maximum length given.
-    {
-        if (feof(stdin))
-        {
-            printf("\n");
-            exit(EXIT_SUCCESS);
-        }
-        else
-        {
-            perror("fgets");
-            exit(EXIT_FAILURE);
-        }
-    }
+    fgets(commands, COMMAND_READ_SIZE, stdin);            // Reads the input string. Useful because only reads till the maximum length given.
 
     size_t len = strlen(commands); // Get the length of the input string
     if (len > 0 && commands[len - 1] == '\n')
@@ -262,16 +250,11 @@ void execute_command(const char *cmd)
 
     if (pid == -1)
     {
-        perror("fork");
-        exit(EXIT_FAILURE);
+        printf("Child not created successfully");
     }
     else if (pid == 0)
     {
-        if (execvp(args[0], args) == -1)
-        {
-            perror("execvp");
-            exit(EXIT_FAILURE);
-        }
+        execvp(args[0], args);
     }
     else
     {
