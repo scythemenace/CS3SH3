@@ -21,9 +21,9 @@ int position;                     // Initializing a variable to keep track of th
 pid_t pid;                        // Global variable for getting the value of the process id
 int status;                       // Global variable for getting the state of the child process
 
-/*We had thought of using a circular buffer like orientation (not exactly a circular buffer but an inspiration) for creation our functions for the history command due
-to the fact that it's the most efficient data structure that automatically updates the value of recently entered values in O(1) time and is perfect for things like history
-commands given the fact we don't have to shift each value up if we overwrite one, which is the case in normal arrays.*/
+/*We had thought of using a circular buffer like orientation (not exactly the template implementation of a circular buffer, but a tweaked one for our usecase) for creation
+our functions for the history command due to the fact that it's the most efficient data structure that automatically updates the value of recently entered values in O(1)
+time and is perfect for things like history commands given the fact we don't have to shift each value up if we overwrite one, which is the case in normal arrays.*/
 
 char history[HISTORY_SIZE][COMMAND_READ_SIZE]; // An array to store up to HISTORY_SIZE commands and [COMMAND_READ_SIZE] would be the max length of each stored command
 
