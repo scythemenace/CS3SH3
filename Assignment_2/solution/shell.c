@@ -137,7 +137,7 @@ based on spaces and filling the 'args' array with each token*/
 void get_args()
 {
     char *token;           // Each token in the string will be stored in this pointer
-    position = 0;          // Reinitializing the position to the first element i.e. 0 so that it doesn't get
+    position = 0;          // Reinitializing the position to the first element i.e. 0 so that it doesn't get affected by it's prev val
     has_ampersand = false; // Reinitializing the has_ampersand boolean to false so that it doesn't get affected by it's prev val
 
     token = strtok(commands, " ");                        // Getting the first word, i.e. initializing the pointer to the first token
