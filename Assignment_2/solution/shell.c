@@ -151,7 +151,7 @@ void get_args()
     if (position > 0 && !strcmp("&", args[position - 1]))
     {
         has_ampersand = true;    // Recorded the boolean to be true which will indicate the execute_command() function if there's an ampersand
-        args[--position] = NULL; // Settings the index before the ampersand to be NULL since we don't really need the '&' when executing
+        args[--position] = NULL; // Setting the index before the ampersand to be NULL since we don't really need the '&' when executing
     }
     else
     {
