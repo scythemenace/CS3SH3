@@ -30,7 +30,7 @@ char history[HISTORY_SIZE][COMMAND_READ_SIZE]; // An array to store up to HISTOR
 /* The history_count while not explicitly, but if coupled with the print_function() we have created acts as the read pointer in normal circular buffer.
 The main reason we couldn't have just used the total_commond_count is that the circular buffer only has 0-4 indices. Even though we might be printing them
 based on the total number of commands we have entered, the index in the main circular buffer won't change. In order to access elements from the circular buffer
-while printing we cannot use the total_command_count because in the case it becomes larger than 4, we will get an out of bounds error. Therefore, it's crucial
+while printing we cannot use the total_command_count because in the case it becomes very large, we will get an out of bounds error. Therefore, it's crucial
 we track the history_count differently. */
 int history_count = 0;
 int history_next = 0;        // Tracks the index where we have to overwrite/write the values (for reference, it's analogous to the write pointer in an actual circular buffer)
