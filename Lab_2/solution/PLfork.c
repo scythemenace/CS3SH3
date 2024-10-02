@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <sys/types.h>
 
-int main () {
+int main() {
   // P1
   pid_t pid;
   printf("%d\n", getpid());
@@ -13,14 +13,14 @@ int main () {
     printf("%d\n", getpid());
     pid_t pid1;
     pid1 = fork();
-
     if (pid1 < 0) {
       printf("Fork failed");
     } else if (pid1 == 0) {
       // P9
       printf("%d\n", getpid());
     } else {
-      while(waitpid(-1, NULL, 0) > 0);
+      while (waitpid(-1, NULL, 0) > 0)
+        ;
       pid_t pid2;
       pid2 = fork();
       if (pid2 < 0) {
@@ -37,7 +37,8 @@ int main () {
           printf("%d\n", getpid());
         } else {
           // P3
-          while(waitpid(-1, NULL, 0) > 0);
+          while (waitpid(-1, NULL, 0) > 0)
+            ;
           pid_t pid4;
           pid4 = fork();
           if (pid4 < 0) {
@@ -53,15 +54,18 @@ int main () {
               // P6
               printf("%d\n", getpid());
             } else {
-              while(waitpid(-1, NULL, 0) > 0);
+              while (waitpid(-1, NULL, 0) > 0)
+                ;
             }
           } else {
-            while(waitpid(-1, NULL, 0) > 0);
+            while (waitpid(-1, NULL, 0) > 0)
+              ;
           }
         }
       } else {
         //  P2
-        while(waitpid(-1, NULL, 0) > 0);
+        while (waitpid(-1, NULL, 0) > 0)
+          ;
         pid_t pid6;
         pid6 = fork();
         if (pid6 < 0) {
@@ -77,17 +81,20 @@ int main () {
             // P8
             printf("%d\n", getpid());
           } else {
-            while(waitpid(-1, NULL, 0) > 0);
+            while (waitpid(-1, NULL, 0) > 0)
+              ;
           }
         } else {
-          while(waitpid(-1, NULL, 0) > 0);
+          while (waitpid(-1, NULL, 0) > 0)
+            ;
         }
-      } 
+      }
     }
 
   } else {
-    while(waitpid(-1, NULL, 0) > 0);
+    while (waitpid(-1, NULL, 0) > 0)
+      ;
   }
- 
+
   return 0;
 }

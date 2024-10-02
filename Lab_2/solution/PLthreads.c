@@ -5,23 +5,25 @@
 #define NUM_THREADS 2
 #define SIZE 20
 
-typedef struct {
+typedef struct
+{
   int from_index;
   int to_index;
 } parameters;
 
 int list[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20};
 int total_sum = 0;
+pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
 void *summing1(void *param);
 void *summing2(void *param);
 
 int main()
 {
-  parameters *data1 = (parameters *) malloc (sizeof(parameters));
-  parameters *data2 = (parameters *) malloc (sizeof(parameters));
+  parameters *data1 = (parameters *)malloc(sizeof(parameters));
+  parameters *data2 = (parameters *)malloc(sizeof(parameters));
   data1->from_index = 0;
   data1->to_index = (SIZE / 2);
-  data2->from_index = (SIZE / 2); 
+  data2->from_index = (SIZE / 2);
   data2->to_index = SIZE;
 
   pthread_t workers[NUM_THREADS];
@@ -32,7 +34,8 @@ int main()
   pthread_create(&workers[0], &attr, summing1, data1);
   pthread_create(&workers[1], &attr, summing2, data2);
 
-  for (int i = 0; i < NUM_THREADS; i++) {
+  for (int i = 0; i < NUM_THREADS; i++)
+  {
     pthread_join(workers[i], NULL);
   }
 
@@ -43,24 +46,38 @@ int main()
   return 0;
 }
 
-void *summing1 (void *param) {
+void *summing1(void *param)
+{
   parameters *data = (parameters *)param;
+  int local_1 = 0;
 
-  for (int i = data->from_index; i < data->to_index; i++) {
-    total_sum += list[i];
+  for (int i = data->from_index; i < data->to_index; i++)
+  {
+    local_1 += list[i];
   }
+
+  pthread_mutex_lock(&mutex);
+  total_sum += local_1;
+  pthread_mutex_unlock(&mutex);
 
   free(data);
 
   pthread_exit(0);
 }
 
-void *summing2 (void *param) {
+void *summing2(void *param)
+{
   parameters *data = (parameters *)param;
+  int local_2 = 0;
 
-  for (int i = data->from_index; i < data->to_index; i++) {
-    total_sum += list[i];
+  for (int i = data->from_index; i < data->to_index; i++)
+  {
+    local_2 += list[i];
   }
+
+  pthread_mutex_lock(&mutex);
+  total_sum += local_2;
+  pthread_mutex_unlock(&mutex);
 
   free(data);
 
