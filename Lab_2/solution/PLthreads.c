@@ -42,6 +42,7 @@ int main()
   printf("%d\n", total_sum);
 
   pthread_attr_destroy(&attr);
+  pthread_mutex_init(&mutex, NULL);
 
   return 0;
 }
