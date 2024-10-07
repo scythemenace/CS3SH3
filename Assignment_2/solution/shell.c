@@ -254,9 +254,11 @@ void execute_command(const char *cmd)
     {
         printf("Child not created successfully");
     }
-    else if (pid == 0)
-    {
-        execvp(args[0], args);
+    else if (pid == 0) {
+        if (execvp(args[0], args) == -1) {
+            perror("Error executing command");  
+            exit(EXIT_FAILURE);  
+        }
     }
     else
     {
