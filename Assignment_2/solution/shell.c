@@ -253,7 +253,7 @@ void execute_command(const char *cmd)
         printf("Child not created successfully");
     }
     else if (pid == 0) {
-        /*Edge case: in case we enter some gibberish, which is not even a command, execvp() return -1 and doesn't even kill the
+        /*Edge case: in case we enter some gibberish, which is not even a command, execvp() returns -1 and doesn't even kill the
          * C image of the child process and it doesn't even exit. Thus, we have to manually exit the child process so that it we
          * can return to our parent process.*/
         if (execvp(args[0], args) == -1) {
