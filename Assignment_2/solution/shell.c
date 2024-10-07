@@ -244,9 +244,9 @@ void execute_command(const char *cmd)
     get_args(); // Convert the input string to an array of individual tokens
 
     /*NOTE: We are going to execute the command using execvp(), the thing is execvp() hands over the whole control of the program
-     to the command that has to be executed, which basically means anything we write after that will become null and void
-     since our shell.c file won't have the control. We don't want that, we want to keep executing commands. Therefore, we
-     execute the command in a child process*/
+      to the command that has to be executed, which basically means anything we write after that will become null and void
+      since our shell.c file won't have the control. We don't want that, we want to keep executing commands. Therefore, we
+      execute the command in a child process*/
 
     pid = fork(); // Create a child process
 
@@ -255,9 +255,11 @@ void execute_command(const char *cmd)
         printf("Child not created successfully");
     }
     else if (pid == 0) {
+        /*Edge case: in case we enter some gibberish, which is not even a command, execvp() return -1 and doesn't even kill the
+         * C image of the child process and it doesn't even exit. Thus, we have to manually exit the child process so that it we
+         * can return to our parent process.*/
         if (execvp(args[0], args) == -1) {
-            perror("Error executing command");  
-            exit(EXIT_FAILURE);  
+            exit(EXIT_FAILURE);
         }
     }
     else
