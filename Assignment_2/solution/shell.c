@@ -89,9 +89,7 @@ void start_shell()
         // Break if the user writes "exit"
         if (!strcmp("exit", commands))
         {
-            printf("reached, the exit line\n");
             should_run = 0;
-            printf("value of should_run %d\n", should_run);
             continue;
         }
 
