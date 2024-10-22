@@ -5,14 +5,6 @@
 #define NUM_THREADS 2
 #define SIZE 20
 
-typedef struct
-{
-  int from_index;
-  int to_index;
-} parameters;
-
-int list[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20};
-int total_sum = 0;
 pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
 void *summing1(void *param);
 void *summing2(void *param);
