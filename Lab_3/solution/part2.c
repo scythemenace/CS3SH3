@@ -163,10 +163,17 @@ int main(int argc, char *argv[])
 
 void *deposit(void *param)
 {
-  printf("Executing deposit function\n");
+  // printf("Executing deposit function\n");
 
   int deposit_amount = atoi(param);
   int ret;
+
+  ret = sem_wait(&above_limit);
+  if (ret != 0)
+  {
+    printf("sem_wait on above_limit failed in deposit");
+    pthread_exit(NULL);
+  }
 
   ret = pthread_mutex_lock(&mutex);
   if (ret != 0)
@@ -207,21 +214,21 @@ void *deposit(void *param)
     pthread_exit(NULL);
   }
 
-  ret = sem_wait(&above_limit);
-  if (ret != 0)
-  {
-    printf("sem_wait on above_limit failed in deposit");
-    pthread_exit(NULL);
-  }
-
   pthread_exit(0);
 }
 
 void *withdraw(void *param)
 {
-  printf("Executing withdraw function\n");
+  // printf("Executing withdraw function\n");
   int withdraw_amount = atoi(param);
   int ret;
+
+  ret = sem_wait(&below_zero);
+  if (ret != 0)
+  {
+    printf("sem_wait on below_zero failed in withdraw");
+    pthread_exit(NULL);
+  }
 
   ret = pthread_mutex_lock(&mutex);
   if (ret != 0)
@@ -259,13 +266,6 @@ void *withdraw(void *param)
   if (ret != 0)
   {
     printf("pthread_mutex_unlock failed in withdraw: %s\n", strerror(ret));
-    pthread_exit(NULL);
-  }
-
-  ret = sem_wait(&below_zero);
-  if (ret != 0)
-  {
-    printf("sem_wait on below_zero failed in withdraw");
     pthread_exit(NULL);
   }
 
