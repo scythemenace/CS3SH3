@@ -163,6 +163,8 @@ int main(int argc, char *argv[])
 
 void *deposit(void *param)
 {
+  printf("Executing deposit function\n");
+
   int deposit_amount = atoi(param);
   int ret;
 
@@ -180,28 +182,19 @@ void *deposit(void *param)
     pthread_exit(NULL);
   }
 
-  if (amount + deposit_amount <= 400)
+  if (amount >= 400)
   {
-    amount += deposit_amount;
+
+    if (pthread_mutex_unlock(&mutex) != 0)
+    {
+      printf("Error in pthread_mutex_unlock (deposit)");
+      pthread_exit(NULL);
+    }
+    sem_post(&above_limit);
+    pthread_exit(NULL);
   }
 
-  if (amount > 0)
-  {
-    ret = sem_post(&below_zero);
-    if (ret != 0)
-    {
-      printf("sem_post on below_zero failed in deposit");
-    }
-  }
-
-  if (amount < 400)
-  {
-    ret = sem_post(&above_limit);
-    if (ret != 0)
-    {
-      printf("sem_post on above_limit failed in deposit");
-    }
-  }
+  amount += deposit_amount;
 
   printf("Deposit Amount = %d\n", amount);
 
@@ -212,11 +205,18 @@ void *deposit(void *param)
     pthread_exit(NULL);
   }
 
+  if (sem_post(&below_zero) != 0)
+  {
+    printf("Error in sem_post (deposit)");
+    pthread_exit(NULL);
+  }
+
   pthread_exit(0);
 }
 
 void *withdraw(void *param)
 {
+  printf("Executing withdraw function\n");
   int withdraw_amount = atoi(param);
   int ret;
 
@@ -234,28 +234,19 @@ void *withdraw(void *param)
     pthread_exit(NULL);
   }
 
-  if (amount - withdraw_amount >= 0)
+  if (amount <= 0)
   {
-    amount -= withdraw_amount;
+
+    if (pthread_mutex_unlock(&mutex) != 0)
+    {
+      printf("Error in pthread_mutex_unlock (withdraw)");
+      pthread_exit(NULL);
+    }
+    sem_post(&below_zero);
+    pthread_exit(NULL);
   }
 
-  if (amount > 0)
-  {
-    ret = sem_post(&below_zero);
-    if (ret != 0)
-    {
-      printf("sem_post on below_zero failed in withdraw");
-    }
-  }
-
-  if (amount < 400)
-  {
-    ret = sem_post(&above_limit);
-    if (ret != 0)
-    {
-      printf("sem_post on above_limit failed in withdraw");
-    }
-  }
+  amount -= withdraw_amount;
 
   printf("Withdraw Amount = %d\n", amount);
 
@@ -263,6 +254,12 @@ void *withdraw(void *param)
   if (ret != 0)
   {
     printf("pthread_mutex_unlock failed in withdraw: %s\n", strerror(ret));
+    pthread_exit(NULL);
+  }
+
+  if (sem_post(&above_limit) != 0)
+  {
+    printf("Error in sem_post (withdraw)");
     pthread_exit(NULL);
   }
 
