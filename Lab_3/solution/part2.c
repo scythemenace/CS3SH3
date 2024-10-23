@@ -163,28 +163,12 @@ int main(int argc, char *argv[])
 
 void *deposit(void *param)
 {
-  printf("Executing deposit function\n");
-
+  printf("Executing deposit function");
   int deposit_amount = atoi(param);
   int ret;
 
-  ret = pthread_mutex_lock(&mutex);
-  if (ret != 0)
+  while (1)
   {
-    printf("pthread_mutex_lock failed in deposit: %s\n", strerror(ret));
-    pthread_exit(NULL);
-  }
-
-  while (amount + deposit_amount > 400)
-  {
-
-    ret = pthread_mutex_unlock(&mutex);
-    if (ret != 0)
-    {
-      printf("pthread_mutex_unlock failed in deposit: %s\n", strerror(ret));
-      pthread_exit(NULL);
-    }
-
     ret = sem_wait(&above_limit);
     if (ret != 0)
     {
@@ -198,36 +182,31 @@ void *deposit(void *param)
       printf("pthread_mutex_lock failed in deposit: %s\n", strerror(ret));
       pthread_exit(NULL);
     }
-  }
 
-  // Perform the deposit
-  amount += deposit_amount;
-
-  if (amount > 0)
-  {
-    ret = sem_post(&below_zero);
-    if (ret != 0)
+    if (amount >= 400)
     {
-      printf("sem_post on below_zero failed in deposit");
+      pthread_mutex_unlock(&mutex);
+      sem_post(&above_limit);
+      break; // Exit the loop when the amount reaches 400
     }
-  }
 
-  if (amount < 400)
-  {
-    ret = sem_post(&above_limit);
-    if (ret != 0)
+    if (amount + deposit_amount <= 400)
     {
-      printf("sem_post on above_limit failed in deposit");
+      amount += deposit_amount;
+      printf("Deposit Amount = %d\n", amount);
     }
-  }
 
-  printf("Deposit Amount = %d\n", amount);
+    if (amount > 0)
+    {
+      sem_post(&below_zero);
+    }
 
-  ret = pthread_mutex_unlock(&mutex);
-  if (ret != 0)
-  {
-    printf("pthread_mutex_unlock failed in deposit: %s\n", strerror(ret));
-    pthread_exit(NULL);
+    if (amount < 400)
+    {
+      sem_post(&above_limit);
+    }
+
+    pthread_mutex_unlock(&mutex);
   }
 
   pthread_exit(0);
