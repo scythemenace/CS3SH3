@@ -223,7 +223,8 @@ The request **will only be granted** if converting the request edge to an assign
   - $\text{Available}_1$ = (3 3 2) - (1 0 2) = (2 3 0)
   - $\text{Allocation}_1$ = (2 0 0) + (1 0 2) = (3 0 2)
   - $\text{Need}_1$ = (1 2 2) - (1 0 2) = (0 2 0)
-    ![Example for resource allocation in Banker's Algorithm](example-resource-allocation.png)
+
+![Example for resource allocation in Banker's Algorithm](example-resource-allocation.png)
 
 ## 9. Deadlock Detection Algorithm
 
