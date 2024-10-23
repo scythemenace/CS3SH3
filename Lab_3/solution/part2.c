@@ -12,6 +12,9 @@ pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
 sem_t below_zero;
 sem_t above_limit;
 
+int above_limit_posted = 1;
+int below_zero_posted = 0;
+
 void *deposit(void *param);
 void *withdraw(void *param);
 
@@ -169,11 +172,10 @@ void *deposit(void *param)
   ret = sem_wait(&above_limit);
   if (ret != 0)
   {
-    printf("sem_wait on above_limit failed in deposit");
+    printf("sem_wait on above_limit failed in deposit\n");
     pthread_exit(NULL);
   }
 
-  printf("Executing deposit function\n");
   ret = pthread_mutex_lock(&mutex);
   if (ret != 0)
   {
@@ -184,27 +186,44 @@ void *deposit(void *param)
   if (amount + deposit_amount <= 400)
   {
     amount += deposit_amount;
-  }
+    printf("Executing deposit function\n");
+    printf("Amount after deposit = %d\n", amount);
 
-  if (amount > 0)
-  {
-    ret = sem_post(&below_zero);
-    if (ret != 0)
+    if (amount > 0 && below_zero_posted == 0)
     {
-      printf("sem_post on below_zero failed in deposit");
+      ret = sem_post(&below_zero);
+      if (ret != 0)
+      {
+        printf("sem_post on below_zero failed in deposit\n");
+      }
+      else
+      {
+        below_zero_posted = 1;
+      }
     }
   }
+  else
+  {
 
-  if (amount < 400)
+    printf("Deposit skipped: amount would exceed 400\n");
+  }
+
+  if (amount >= 400)
+  {
+    above_limit_posted = 0;
+  }
+  else if (above_limit_posted == 0)
   {
     ret = sem_post(&above_limit);
     if (ret != 0)
     {
-      printf("sem_post on above_limit failed in deposit");
+      printf("sem_post on above_limit failed in deposit\n");
+    }
+    else
+    {
+      above_limit_posted = 1;
     }
   }
-
-  printf("Deposit Amount = %d\n", amount);
 
   ret = pthread_mutex_unlock(&mutex);
   if (ret != 0)
@@ -224,11 +243,10 @@ void *withdraw(void *param)
   ret = sem_wait(&below_zero);
   if (ret != 0)
   {
-    printf("sem_wait on below_zero failed in withdraw");
+    printf("sem_wait on below_zero failed in withdraw\n");
     pthread_exit(NULL);
   }
 
-  printf("Executing withdraw function\n");
   ret = pthread_mutex_lock(&mutex);
   if (ret != 0)
   {
@@ -239,27 +257,44 @@ void *withdraw(void *param)
   if (amount - withdraw_amount >= 0)
   {
     amount -= withdraw_amount;
+    printf("Executing withdraw function\n");
+    printf("Amount after Withdrawal = %d\n", amount);
+
+    if (amount < 400 && above_limit_posted == 0)
+    {
+      ret = sem_post(&above_limit);
+      if (ret != 0)
+      {
+        printf("sem_post on above_limit failed in withdraw\n");
+      }
+      else
+      {
+        above_limit_posted = 1;
+      }
+    }
+  }
+  else
+  {
+
+    printf("Withdrawal skipped: amount would go below 0\n");
   }
 
-  if (amount > 0)
+  if (amount <= 0)
+  {
+    below_zero_posted = 0;
+  }
+  else if (below_zero_posted == 0)
   {
     ret = sem_post(&below_zero);
     if (ret != 0)
     {
-      printf("sem_post on below_zero failed in withdraw");
+      printf("sem_post on below_zero failed in withdraw\n");
     }
-  }
-
-  if (amount < 400)
-  {
-    ret = sem_post(&above_limit);
-    if (ret != 0)
+    else
     {
-      printf("sem_post on above_limit failed in withdraw");
+      below_zero_posted = 1;
     }
   }
-
-  printf("Withdraw Amount = %d\n", amount);
 
   ret = pthread_mutex_unlock(&mutex);
   if (ret != 0)
