@@ -338,6 +338,6 @@ Two main recovery strategies:
 2. **Resource Preemption**:
    - **Victim Selection**: Minimize cost when preempting resources.
    - **Rollback**: Return to a safe state and restart the process.
-   - **Starvation**: Ensure the same process is not repeatedly chosen as the victim.
+   - **Starvation**: Sometimes the same process may be repeatedly chosen as the victim. Ensure the same process is not repeatedly chosen as the victim. One method to do so is by creating a variable age and whenever a process gets victimized, its age increases. Thus, next time whenever a process is being chosen as the victim, its age is also checked in order to make sure it's not repeatedly being victimized.
 
 ---
