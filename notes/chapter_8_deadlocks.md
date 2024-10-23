@@ -150,6 +150,8 @@ The OS checks each time a process requests resources to determine whether granti
 
 ## 8 Methods of Avoiding Deadlock
 
+Unlike avoidance, detection allows the system to enter a deadlock state and uses an algorithm to identify and recover from deadlock.
+
 **Note:** There is also something as preventing deadlock. Essentially, preventing deadlock means that the computer takes extra measures to ensure that atleast one of the necessary conditions for a deadlock to happen [(mentioned here)](#5-methods-for-handling-deadlocks) never occurs.
 
 For practical purposes, prevention of **circular-wait** is the only useful application here.
@@ -285,7 +287,7 @@ In the case where we have a single instance for a resource type, we can simply u
 
 ### Overview:
 
-- Unlike avoidance, detection allows the system to enter a deadlock state and uses an algorithm to identify and recover from deadlock.
+- In a system where multiple instances of each resource type exist, deadlock detection algorithm compares the request from each process with the available resources and computes if the acquired resources from the process which has done its work is able to provide resources to the requests made by other processes.
 
 ### Data Structures for Detection Algorithm:
 
