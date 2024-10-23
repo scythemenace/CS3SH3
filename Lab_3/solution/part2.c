@@ -173,6 +173,7 @@ void *deposit(void *param)
     pthread_exit(NULL);
   }
 
+  printf("Executing deposit function\n");
   ret = pthread_mutex_lock(&mutex);
   if (ret != 0)
   {
@@ -227,6 +228,7 @@ void *withdraw(void *param)
     pthread_exit(NULL);
   }
 
+  printf("Executing withdraw function\n");
   ret = pthread_mutex_lock(&mutex);
   if (ret != 0)
   {
