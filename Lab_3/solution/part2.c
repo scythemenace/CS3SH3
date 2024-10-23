@@ -219,7 +219,7 @@ void *deposit(void *param)
 
 void *withdraw(void *param)
 {
-  printf("Executing withdraw function");
+  printf("Executing withdraw function\n");
   int withdraw_amount = atoi(param);
   int ret;
 
