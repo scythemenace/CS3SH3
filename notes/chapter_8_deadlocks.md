@@ -20,7 +20,8 @@
     - [Part 1: Safety Algorithm](#part-1-safety-algorithm)
     - [Part 2: Resource-Request Algorithm](#part-2-resource-request-algorithm)
     - [Example for Resource-Request in Banker's Algorithm](#example-for-resource-request-in-bankers-algorithm)
-  - [9. Deadlock Detection Algorithm](#9-deadlock-detection-algorithm)
+  - [9.1 Deadlock Detection for a Single Instance of a Resource Type](#91-deadlock-detection-for-a-single-instance-of-a-resource-type)
+  - [9.2 Deadlock Detection Algorithm](#92-deadlock-detection-algorithm-for-multiple-instances-of-a-resource-type)
     - [Overview:](#overview)
     - [Data Structures for Detection Algorithm:](#data-structures-for-detection-algorithm)
     - [Algorithm Steps:](#algorithm-steps)
@@ -226,7 +227,21 @@ The request **will only be granted** if converting the request edge to an assign
 
 ![Example for resource allocation in Banker's Algorithm](example-resource-allocation.png)
 
-## 9. Deadlock Detection Algorithm
+---
+
+## 9.1 Deadlock Detection for a Single Instance of a Resource Type
+
+In the case where we have a single instance for a resource type, we can simply use a **wait-for graph**.
+
+- It's a variant of the resource-allocation graph if all resources have only a **single instance** used for deadlock detection
+- By abstracting the resource block from a resource-allocation graph, we get a **wait-for graph**.
+- Each node is a process, and an edge from $P_i \rightarrow P_j$ in the **wait-for graph** implies that $P_i$ is waiting for $P_j$ to release that resource since it needs it.
+
+![Wait-for Graph](wait-for-graph.png)
+
+---
+
+## 9.2 Deadlock Detection Algorithm (For Multiple Instances of a Resource Type)
 
 ### Overview:
 
