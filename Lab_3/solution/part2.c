@@ -93,28 +93,28 @@ int main(int argc, char *argv[])
   ret = pthread_create(&runners[6], &attr, deposit, argv[1]);
   if (ret != 0)
   {
-    printf("pthread_create failed for thread 5: %s\n", strerror(ret));
+    printf("pthread_create failed for thread 6: %s\n", strerror(ret));
     exit(EXIT_FAILURE);
   }
 
   ret = pthread_create(&runners[7], &attr, deposit, argv[1]);
   if (ret != 0)
   {
-    printf("pthread_create failed for thread 5: %s\n", strerror(ret));
+    printf("pthread_create failed for thread 7: %s\n", strerror(ret));
     exit(EXIT_FAILURE);
   }
 
   ret = pthread_create(&runners[8], &attr, deposit, argv[1]);
   if (ret != 0)
   {
-    printf("pthread_create failed for thread 5: %s\n", strerror(ret));
+    printf("pthread_create failed for thread 8: %s\n", strerror(ret));
     exit(EXIT_FAILURE);
   }
 
   ret = pthread_create(&runners[9], &attr, deposit, argv[1]);
   if (ret != 0)
   {
-    printf("pthread_create failed for thread 5: %s\n", strerror(ret));
+    printf("pthread_create failed for thread 9: %s\n", strerror(ret));
     exit(EXIT_FAILURE);
   }
 
@@ -209,13 +209,6 @@ void *deposit(void *param)
   if (ret != 0)
   {
     printf("pthread_mutex_unlock failed in deposit: %s\n", strerror(ret));
-    pthread_exit(NULL);
-  }
-
-  ret = sem_post(&above_limit);
-  if (ret != 0)
-  {
-    printf("sem_post on above_limit failed in deposit");
     pthread_exit(NULL);
   }
 
