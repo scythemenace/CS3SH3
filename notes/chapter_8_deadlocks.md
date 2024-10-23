@@ -258,7 +258,7 @@ In the case where we have a single instance for a resource type, we can simply u
 
 1. **Initialize**:
    - $\text{Work} = \text{Available}$
-   - $\text{Finish}[i] = \text{false}$ for all processes where $\text{Allocation}_i \neq 0$. Otherwise $\text{Finish}_i$ = true.
+   - $\text{Finish}[i] = \text{false}$ for all processes where $\text{Allocation}_i \neq 0$. Otherwise Finish[i] = true.
 2. Find an index $i$ such that:
    - $\text{Finish}[i] = \text{false}$
    - $\text{Request}_i \leq \text{Work}$
