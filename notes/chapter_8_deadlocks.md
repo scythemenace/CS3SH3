@@ -9,6 +9,7 @@
   - [4. Resource Allocation in Systems](#4-resource-allocation-in-systems)
     - [Example of a Resource Allocation Graph](#example-of-a-resource-allocation-graph)
     - [Example of a Resource Allocation Graph which has a cycle but No Deadlock](#example-of-a-resource-allocation-graph-which-has-a-cycle-but-no-deadlock)
+    - [Example of a Resource Allocation Graph with a Deadlock](#example-of-a-resource-allocation-graph-with-a-deadlock)
   - [5. Methods for Handling Deadlocks](#5-methods-for-handling-deadlocks)
   - [6. Deadlock Avoidance Strategy](#6-deadlock-avoidance-strategy)
     - [Example for Deadlock Avoidance Strategy:](#example-for-deadlock-avoidance-strategy)
