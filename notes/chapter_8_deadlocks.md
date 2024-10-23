@@ -8,6 +8,7 @@
   - [3. Deadlock Characterization](#3-deadlock-characterization)
   - [4. Resource Allocation in Systems](#4-resource-allocation-in-systems)
     - [Example of a Resource Allocation Graph](#example-of-a-resource-allocation-graph)
+    - [Example of a Resource Allocation Graph which has a cycle but No Deadlock](#example-of-a-resource-allocation-graph-which-has-a-cycle-but-no-deadlock)
   - [5. Methods for Handling Deadlocks](#5-methods-for-handling-deadlocks)
   - [6. Deadlock Avoidance Strategy](#6-deadlock-avoidance-strategy)
     - [Example for Deadlock Avoidance Strategy:](#example-for-deadlock-avoidance-strategy)
@@ -77,13 +78,29 @@ Deadlock occurs when all of the following conditions hold simultaneously:
       - **Request edge**: $P_i \to R_j$ indicates that process $P_i$ has requested resource $R_j$.
       - **Assignment edge**: $R_j \to P_i$ indicates that resource $R_j$ is assigned to process $P_i$.
 
+- **Basic facts**:
+  - If the graph contains no cycles, **no deadlock** is present.
+  - If the graph contains a cycle, deadlock is possible, depending on whether there is one or multiple instances per resource type.
+
 ### Example of a Resource Allocation Graph
 
 ![Resource Allocation Graph](resource-allocation-graph.png)
 
-- **Basic facts**:
-  - If the graph contains no cycles, **no deadlock** is present.
-  - If the graph contains a cycle, deadlock is possible, depending on whether there is one or multiple instances per resource type.
+### Example of a Resource Allocation Graph which has a cycle but No Deadlock
+
+![Resource Allocation Graph with Cycle but No Deadlock](resource-cycle-no-dead.png)
+
+A cycle exists $P_1 \rightarrow R_1 \rightarrow P_3 \rightarrow R_2 \rightarrow P_1$. The reason we don't have any deadlock is that $P_2$ isn't dependent on any resource so we can assume it has finished its execution.
+
+$P_1$ requires the resource that was held by $P_2$ so we will grant it the resource. Therefore, $P_1$ will leave the resource $R_2$ it was holding on to which is required by $P_3$ and obtain the resource $R_1$ which was held by $P_2$.
+
+Therefore, there is no deadlock in this system.
+
+### Example of a Resource Allocation Graph with a Deadlock
+
+![Resource Allocation Graph with Cycle and Deadlock](resource-cycle-dead.png)
+
+In this case a cycle exists and each process is requesting a resource held by the other. Therefore, this system is in a deadlock.
 
 ---
 
