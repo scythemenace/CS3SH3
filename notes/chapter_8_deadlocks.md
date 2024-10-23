@@ -25,7 +25,7 @@
     - [Overview:](#overview)
     - [Data Structures for Detection Algorithm:](#data-structures-for-detection-algorithm)
     - [Algorithm Steps:](#algorithm-steps)
-    - [Example:](#example)
+    - [Example for Deadlock Detection Algorithm:](#example-for-deadlock-detection-algorithm)
   - [10. Recovery from Deadlock](#10-recovery-from-deadlock)
   <!--toc:end-->
 
@@ -270,7 +270,7 @@ In the case where we have a single instance for a resource type, we can simply u
 
 ---
 
-### Example:
+### Example for Deadlock Detection Algorithm:
 
 - **System**: 5 processes $P_0$ to $P_4$, with 3 resource types: A (7 instances), B (2 instances), C (6 instances).
 - **Initial State**:
