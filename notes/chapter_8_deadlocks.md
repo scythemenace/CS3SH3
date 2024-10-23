@@ -194,6 +194,9 @@ The request **will only be granted** if converting the request edge to an assign
     Example:
     ![Safety Set True](safety-set-true.png)
 - **Step 4**: If all processes are finished, the system is in a **safe state**.
+  We can see that process $P_3$, $P_4$, $P_2$, and $P_0$, all satisfy the conditions in step 2.
+
+  In short, our goal with safety algorithm is to "go all the way" and find out whether our decision of allocating resources to a certain process will lead to a deadlock. Therefore, instead of allocating some resources we straight away allocate the max need of a process (simulating the worst-case scenario where the process decides to access its max need immediately) and then check if this could lead to a deadlock in the future or not.
 
 ---
 
