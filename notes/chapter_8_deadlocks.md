@@ -359,7 +359,7 @@ Suppose $P_2$ requests another additional instance of type C.
 
 In this case we can see for Process $P_0$, $\text{Request}_0$ $\leq$ Work and Finish[i] = false $\implies$ Work(Available) = (0 0 0) + (0 1 0) = (0 1 0). So Finish[0] becomes true, since $P_0$ finishes.
 
-But, we find that there is no remaining $\text{Request}_i$ which is less than or equal to 0.
+But, we find that there is no remaining $\text{Request}_i$ which is less than or equal to Available(Work).
 
 Therefore, the deadlock exists consisting of processes, $P_1$, $P_2$, $P_3$ and $P_4$.
 
