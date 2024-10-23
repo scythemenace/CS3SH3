@@ -197,14 +197,6 @@ void *deposit(void *param)
       }
     }
   }
-  else
-  {
-    ret = sem_post(&above_limit);
-    if (ret != 0)
-    {
-      printf("sem_post on above_limit failed in deposit");
-    }
-  }
 
   printf("Deposit Amount = %d\n", amount);
 
