@@ -1,28 +1,56 @@
 # Chapter 8: Deadlocks
 
+<!--toc:start-->
+
+- [Chapter 8: Deadlocks](#chapter-8-deadlocks)
+  - [1. System Model](#1-system-model)
+  - [2. How Deadlock Occurs](#2-how-deadlock-occurs)
+  - [3. Deadlock Characterization](#3-deadlock-characterization)
+  - [4. Resource Allocation in Systems](#4-resource-allocation-in-systems)
+  - [5. Methods for Handling Deadlocks](#5-methods-for-handling-deadlocks)
+  - [6. Deadlock Avoidance Strategy](#6-deadlock-avoidance-strategy)
+    - [Example:](#example)
+  - [7. Safe and Unsafe States](#7-safe-and-unsafe-states)
+  - [8. Banker's Algorithm (For Multiple Instances of a Resource Type)](#8-bankers-algorithm-for-multiple-instances-of-a-resource-type)
+    - [Overview:](#overview)
+    - [Key Concepts:](#key-concepts)
+    - [Data Structures Used in the Banker’s Algorithm:](#data-structures-used-in-the-bankers-algorithm)
+    - [Example:](#example)
+    - [Part 1: Safety Algorithm](#part-1-safety-algorithm)
+    - [Part 2: Resource-Request Algorithm](#part-2-resource-request-algorithm)
+  - [9. Deadlock Detection Algorithm](#9-deadlock-detection-algorithm)
+    - [Overview:](#overview)
+    - [Data Structures for Detection Algorithm:](#data-structures-for-detection-algorithm)
+    - [Algorithm Steps:](#algorithm-steps)
+    - [Example:](#example)
+  - [10. Recovery from Deadlock](#10-recovery-from-deadlock)
+  <!--toc:end-->
+
 ## 1. System Model
+
 - **Resources in a system**:
   - A system consists of various **resources**, which can be CPU cycles, memory space, or I/O devices.
   - **Resource types**: $R_1, R_2, \dots, R_m$, where each type $R_i$ has $W_i$ instances.
   - Example: A system may have two instances of a printer.
-  
 - **Process utilization of resources**:
   1. **Request**: A process requests a resource.
   2. **Use**: The process uses the resource.
   3. **Release**: The process releases the resource after usage.
-  
 - If resources are unavailable, the process enters a **waiting state**.
 
 ---
 
 ## 2. How Deadlock Occurs
+
 - **Definition**: A deadlock occurs when a process is waiting for a resource that is held by another waiting process.
 - In a deadlock, processes never finish executing, and system resources are tied up, preventing other processes from starting.
 
 ---
 
 ## 3. Deadlock Characterization
+
 Deadlock occurs when all of the following conditions hold simultaneously:
+
 1. **Mutual Exclusion**: Only one process can use a resource at a time.
 2. **Hold and Wait**: A process holding at least one resource is waiting to acquire additional resources held by other processes.
 3. **No Preemption**: Resources can only be released voluntarily by the process holding them.
@@ -31,9 +59,11 @@ Deadlock occurs when all of the following conditions hold simultaneously:
 ---
 
 ## 4. Resource Allocation in Systems
+
 - **Graph representation**:
+
   - **Resource-Allocation Graph**: A directed graph $G = (V, E)$, where:
-    - $V = P \cup R$: 
+    - $V = P \cup R$:
       - $P = \{P_1, P_2, \dots, P_n\}$ are processes.
       - $R = \{R_1, R_2, \dots, R_m\}$ are resource types.
     - **Edges**:
@@ -47,13 +77,15 @@ Deadlock occurs when all of the following conditions hold simultaneously:
 ---
 
 ## 5. Methods for Handling Deadlocks
+
 Three primary methods are used to handle deadlocks:
+
 1. **Deadlock Prevention**: Ensures that at least one of the four necessary conditions (from Section 3) cannot hold.
    - Practically, only the **circular wait condition** can be prevented effectively.
-2. **Deadlock Avoidance**: 
+2. **Deadlock Avoidance**:
    - The OS is given additional information about the resources a process will request in advance.
    - The OS uses this information to determine if it can allocate resources without entering a deadlock.
-3. **Deadlock Detection**: 
+3. **Deadlock Detection**:
    - The system is allowed to enter a deadlock state, and mechanisms are used to detect and recover from it.
 
 Most modern operating systems (e.g., UNIX, Linux, Windows) **ignore deadlocks** and let them occur, using other strategies to recover.
@@ -61,11 +93,14 @@ Most modern operating systems (e.g., UNIX, Linux, Windows) **ignore deadlocks** 
 ---
 
 ## 6. Deadlock Avoidance Strategy
+
 - The **OS requires additional information** about the resources a process may need, including the **maximum number** of resources.
 - The **resource-allocation state** is continually examined to ensure no circular-wait condition occurs.
 
 ### Example:
+
 Consider a system with a single resource type (e.g., magnetic tapes) and 12 total instances:
+
 - **Process P0** has a maximum need of 10 tapes, and currently holds 5.
 - **Process P1** has a maximum need of 4 tapes, and currently holds 2.
 - **Process P2** has a maximum need of 9 tapes, and currently holds 2.
@@ -75,6 +110,7 @@ If the system is in a **safe state**, it means that the processes can finish in 
 ---
 
 ## 7. Safe and Unsafe States
+
 - **Safe State**: The system is safe if there exists a sequence of processes such that each process can be allocated its required resources without entering a deadlock.
 - **Unsafe State**: If the system is not safe, deadlock may occur.
 
@@ -85,17 +121,20 @@ The OS checks each time a process requests resources to determine whether granti
 ## 8. Banker's Algorithm (For Multiple Instances of a Resource Type)
 
 ### Overview:
+
 - The **Banker’s Algorithm** ensures safe resource allocation for systems with multiple instances of each resource type.
 - The algorithm works in two parts:
   1. **Safety Algorithm**: Checks if the system is in a safe state.
   2. **Resource-Request Algorithm**: Checks if a process's request for resources can be satisfied without leading to an unsafe state.
 
 ### Key Concepts:
+
 - **Maximum Use**: Each process declares its maximum resource needs upfront.
 - **Finite Duration**: When a process acquires all its resources, it must return them in a finite amount of time.
 - **Request Waiting**: If a process requests resources, it may need to wait if the system cannot safely allocate them.
 
 ### Data Structures Used in the Banker’s Algorithm:
+
 - **Available**: A vector of length $m$, where $\text{Available}[j]$ is the number of available instances of resource type $R_j$.
 - **Max**: An $n \times m$ matrix, where $\text{Max}[i,j]$ represents the maximum number of instances of resource $R_j$ that process $P_i$ may request.
 - **Allocation**: An $n \times m$ matrix, where $\text{Allocation}[i,j]$ is the number of instances of resource $R_j$ currently allocated to process $P_i$.
@@ -106,21 +145,22 @@ The OS checks each time a process requests resources to determine whether granti
   \]$
 
 ### Example:
+
 - **System**: 5 processes $P_0$ to $P_4$, with 3 resource types: A (10 instances), B (5 instances), C (7 instances).
 - **Initial State**:
 
 | Process | Max Need (A B C) | Allocation (A B C) | Available (A B C) |
-|---------|------------------|-------------------|-------------------|
-| P0      | 7 5 3            | 0 1 0             | 3 3 2             |
-| P1      | 3 2 2            | 2 0 0             |                   |
-| P2      | 9 0 2            | 3 0 2             |                   |
-| P3      | 2 2 2            | 2 1 1             |                   |
-| P4      | 4 3 3            | 0 0 2             |                   |
+| ------- | ---------------- | ------------------ | ----------------- |
+| P0      | 7 5 3            | 0 1 0              | 3 3 2             |
+| P1      | 3 2 2            | 2 0 0              |                   |
+| P2      | 9 0 2            | 3 0 2              |                   |
+| P3      | 2 2 2            | 2 1 1              |                   |
+| P4      | 4 3 3            | 0 0 2              |                   |
 
 - **Need Matrix** (calculated as Max Need - Allocation):
 
 | Process | Need (A B C) |
-|---------|--------------|
+| ------- | ------------ |
 | P0      | 7 4 3        |
 | P1      | 1 2 2        |
 | P2      | 6 0 0        |
@@ -130,6 +170,7 @@ The OS checks each time a process requests resources to determine whether granti
 ---
 
 ### Part 1: Safety Algorithm
+
 - **Step 1**: Initialize **Work** = Available, **Finish** = false for all processes.
 - **Step 2**: Find a process $P_i$ such that:
   - $\text{Finish}[i] = \text{false}$
@@ -143,11 +184,12 @@ The OS checks each time a process requests resources to determine whether granti
 ---
 
 ### Part 2: Resource-Request Algorithm
+
 - **Step 1**: If $\text{Request}_i \leq \text{Need}_i$, proceed; otherwise, raise an error.
 - **Step 2**: If $\text{Request}_i \leq \text{Available}$, proceed; otherwise, $P_i$ must wait.
 - **Step 3**: Pretend to allocate requested resources and update the system state:
-  - $\text{Available} = \text{Available} - \text{Request}_i$
 
+  - $\text{Available} = \text{Available} - \text{Request}_i$
 
   - $\text{Allocation}_i = \text{Allocation}_i + \text{Request}_i$
   - $\text{Need}_i = \text{Need}_i - \text{Request}_i$
@@ -158,14 +200,17 @@ The OS checks each time a process requests resources to determine whether granti
 ## 9. Deadlock Detection Algorithm
 
 ### Overview:
+
 - Unlike avoidance, detection allows the system to enter a deadlock state and uses an algorithm to identify and recover from deadlock.
 
 ### Data Structures for Detection Algorithm:
+
 - **Available**: A vector of available resources for each type.
 - **Allocation**: An $n \times m$ matrix of currently allocated resources.
 - **Request**: An $n \times m$ matrix where $\text{Request}[i,j]$ indicates how many resources process $P_i$ is currently requesting.
 
 ### Algorithm Steps:
+
 1. **Initialize**:
    - $\text{Work} = \text{Available}$
    - $\text{Finish}[i] = \text{false}$ for all processes where $\text{Allocation}_i \neq 0$.
@@ -181,11 +226,12 @@ The OS checks each time a process requests resources to determine whether granti
 ---
 
 ### Example:
+
 - **System**: 5 processes $P_0$ to $P_4$, with 3 resource types: A (7 instances), B (2 instances), C (6 instances).
 - **Initial State**:
 
 | Process | Allocation (A B C) | Request (A B C) | Available (A B C) |
-|---------|--------------------|-----------------|-------------------|
+| ------- | ------------------ | --------------- | ----------------- |
 | P0      | 0 1 0              | 0 0 0           | 0 0 0             |
 | P1      | 2 0 0              | 2 0 2           |                   |
 | P2      | 3 0 3              | 0 0 0           |                   |
@@ -199,7 +245,9 @@ The OS checks each time a process requests resources to determine whether granti
 ---
 
 ## 10. Recovery from Deadlock
+
 Two main recovery strategies:
+
 1. **Process Termination**:
    - Abort all deadlocked processes.
    - Abort one process at a time until the deadlock is resolved.
