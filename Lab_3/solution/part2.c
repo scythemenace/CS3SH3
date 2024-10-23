@@ -196,7 +196,6 @@ void *deposit(void *param)
     }
   }
   
-  amount < 400 ? printf("true\n") : printf("false\n");
   if (amount < 400)
   {
     ret = sem_post(&above_limit);
