@@ -14,15 +14,16 @@
   - [6. Deadlock Avoidance Strategy](#6-deadlock-avoidance-strategy)
     - [Example for Deadlock Avoidance Strategy:](#example-for-deadlock-avoidance-strategy)
   - [7. Safe and Unsafe States](#7-safe-and-unsafe-states)
-  - [8.1 Single Instance of a Resource Type](#81-single-instance-of-a-resource-type)
-  - [8.2 Banker's Algorithm (For Multiple Instances of a Resource Type)](#82-bankers-algorithm-for-multiple-instances-of-a-resource-type)
-    - [Overview:](#overview)
-    - [Key Concepts:](#key-concepts)
-    - [Data Structures Used in the Banker’s Algorithm:](#data-structures-used-in-the-bankers-algorithm)
-    - [Example for Banker's Algorithm:](#example-for-bankers-algorithm)
-    - [Part 1: Safety Algorithm](#part-1-safety-algorithm)
-    - [Part 2: Resource-Request Algorithm](#part-2-resource-request-algorithm)
-    - [Example for Resource-Request in Banker's Algorithm](#example-for-resource-request-in-bankers-algorithm)
+  - [8. Methods of Avoiding Deadlock](#8-methods-of-avoiding-deadlock)
+    - [8.1 Single Instance of a Resource Type](#81-single-instance-of-a-resource-type)
+    - [8.2 Banker's Algorithm (For Multiple Instances of a Resource Type)](#82-bankers-algorithm-for-multiple-instances-of-a-resource-type)
+      - [Overview:](#overview)
+      - [Key Concepts:](#key-concepts)
+      - [Data Structures Used in the Banker’s Algorithm:](#data-structures-used-in-the-bankers-algorithm)
+      - [Example for Banker's Algorithm:](#example-for-bankers-algorithm)
+      - [Part 1: Safety Algorithm](#part-1-safety-algorithm)
+      - [Part 2: Resource-Request Algorithm](#part-2-resource-request-algorithm)
+      - [Example for Resource-Request in Banker's Algorithm](#example-for-resource-request-in-bankers-algorithm)
   - [9.1 Deadlock Detection for a Single Instance of a Resource Type](#91-deadlock-detection-for-a-single-instance-of-a-resource-type)
   - [9.2 Deadlock Detection Algorithm](#92-deadlock-detection-algorithm-for-multiple-instances-of-a-resource-type)
     - [Overview:](#overview)
@@ -147,7 +148,15 @@ The OS checks each time a process requests resources to determine whether granti
 
 ---
 
-## 8.1 Single Instance of a Resource Type
+## 8 Methods of Avoiding Deadlock
+
+**Note:** There is also something as preventing deadlock. Essentially, preventing deadlock means that the computer takes extra measures to ensure that atleast one of the necessary conditions for a deadlock to happen [(mentioned here)](#5-methods-for-handling-deadlocks) never occurs.
+
+For practical purposes, prevention of **circular-wait** is the only useful application here.
+
+Below we talk about how to **avoid** deadlock.
+
+### 8.1 Single Instance of a Resource Type
 
 Use a Resource-Allocation Graph where claim edges are added (represented by dashed lines) to an existing resource allocation graph
 
@@ -159,7 +168,7 @@ The request **will only be granted** if converting the request edge to an assign
 
 ---
 
-## 8.2 Banker's Algorithm (For Multiple Instances of a Resource Type)
+### 8.2 Banker's Algorithm (For Multiple Instances of a Resource Type)
 
 ### Overview:
 
@@ -255,7 +264,11 @@ The request **will only be granted** if converting the request edge to an assign
 
 ---
 
-## 9.1 Deadlock Detection for a Single Instance of a Resource Type
+## Method of Deadlock Detection
+
+Unlike avoidance, detection allows the system to enter a deadlock state and uses an algorithm to identify and recover from deadlock.
+
+### 9.1 Deadlock Detection for a Single Instance of a Resource Type
 
 In the case where we have a single instance for a resource type, we can simply use a **wait-for graph**.
 
@@ -268,7 +281,7 @@ In the case where we have a single instance for a resource type, we can simply u
 
 ---
 
-## 9.2 Deadlock Detection Algorithm (For Multiple Instances of a Resource Type)
+### 9.2 Deadlock Detection Algorithm (For Multiple Instances of a Resource Type)
 
 ### Overview:
 
