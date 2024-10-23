@@ -60,6 +60,8 @@ Deadlock occurs when all of the following conditions hold simultaneously:
 3. **No Preemption**: Resources can only be released voluntarily by the process holding them.
 4. **Circular Wait**: There exists a set of waiting processes $\{P_0, P_1, \dots, P_n\}$ such that $P_0$ is waiting for a resource held by $P_1$, $P_1$ is waiting for a resource held by $P_2$, ..., and $P_n$ is waiting for a resource held by $P_0$.
 
+![Circular Wait](circular-wait.png)
+
 ---
 
 ## 4. Resource Allocation in Systems
