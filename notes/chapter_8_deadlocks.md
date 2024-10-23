@@ -283,9 +283,24 @@ In the case where we have a single instance for a resource type, we can simply u
 | P3      | 2 1 1              | 1 0 0           |                   |
 | P4      | 0 0 2              | 0 0 2           |                   |
 
-- **Detection**:
-  - $P_0$ satisfies $\text{Request}_i \leq \text{Work}$, so resources are allocated, and $\text{Finish}[0] = \text{true}$.
-  - The system is not in deadlock, as the sequence $<P_0, P_2, P_3, P_1, P_4>$ satisfies the safety condition.
+**Step 1** Work = Available = (0 0 0)
+Since $\text{Allocation}_1$ $\neq$ 0, for all i $\in$ [1, n]
+Finish = [false, false, false, false, false]
+**Step 2** Find an index i such that both:
+
+1. Finish[i] = false
+2. Request $\leq$ Work
+
+If no such i exists, go to step 4
+
+If the above two conditions are satisfied, we assume that the work has been done and the allocated resources can now be freed.
+
+Therefore, if we find a case where Finish[i] = false and Request $\leq$ Work, then we assume we had granted those resources and can proceed to freeing them.
+
+Thus we find that
+
+- $P_0$ satisfies the aforementioned two conditions i.e. $\text{Request}_i \leq \text{Work}$ and Finish[i] = false, so resources are allocated, and $\text{Finish}[0] = \text{true}$.
+- The system is not in deadlock, as the sequence <$P_0, P_2, P_3, P_1, P_4$> satisfies the safety condition.
 
 ---
 
