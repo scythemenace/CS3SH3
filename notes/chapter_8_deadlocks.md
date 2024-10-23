@@ -305,7 +305,7 @@ Therefore, if we find a case where Finish[i] = false and Request $\leq$ Work, th
 Thus we find that
 
 - $P_0$ satisfies the aforementioned two conditions i.e. $\text{Request}_i \leq \text{Work}$ and Finish[i] = false, so resources are allocated, and $\text{Finish}[0] = \text{true}$.
-- The system is not in deadlock, as the sequence <$P_0, P_2, P_3, P_1, P_4$> satisfies the safety condition.
+- The system is not in deadlock, as the sequence $<P_0, P_2, P_3, P_1, P_4>$ satisfies the safety condition.
 
 ---
 
