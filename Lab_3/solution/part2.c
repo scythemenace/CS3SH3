@@ -5,7 +5,7 @@
 #include <errno.h>
 #include <string.h>
 
-#define NUM_THREADS 6
+#define NUM_THREADS 10
 
 int amount = 0;
 pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
@@ -17,9 +17,9 @@ void *withdraw(void *param);
 
 int main(int argc, char *argv[])
 {
-  if (argc < 3)
+  if (argc < 2)
   {
-    fprintf(stderr, "Usage: %s deposit_amount withdraw_amount\n", argv[0]);
+    printf("Usage: %s amount\n", argv[0]);
     exit(EXIT_FAILURE);
   }
 
@@ -48,21 +48,21 @@ int main(int argc, char *argv[])
     exit(EXIT_FAILURE);
   }
 
-  ret = pthread_create(&runners[0], &attr, withdraw, argv[2]);
+  ret = pthread_create(&runners[0], &attr, withdraw, argv[1]);
   if (ret != 0)
   {
     printf("pthread_create failed for thread 0: %s\n", strerror(ret));
     exit(EXIT_FAILURE);
   }
 
-  ret = pthread_create(&runners[1], &attr, withdraw, argv[2]);
+  ret = pthread_create(&runners[1], &attr, withdraw, argv[1]);
   if (ret != 0)
   {
     printf("pthread_create failed for thread 1: %s\n", strerror(ret));
     exit(EXIT_FAILURE);
   }
 
-  ret = pthread_create(&runners[2], &attr, withdraw, argv[2]);
+  ret = pthread_create(&runners[2], &attr, withdraw, argv[1]);
   if (ret != 0)
   {
     printf("pthread_create failed for thread 2: %s\n", strerror(ret));
@@ -84,6 +84,34 @@ int main(int argc, char *argv[])
   }
 
   ret = pthread_create(&runners[5], &attr, deposit, argv[1]);
+  if (ret != 0)
+  {
+    printf("pthread_create failed for thread 5: %s\n", strerror(ret));
+    exit(EXIT_FAILURE);
+  }
+
+  ret = pthread_create(&runners[6], &attr, deposit, argv[1]);
+  if (ret != 0)
+  {
+    printf("pthread_create failed for thread 5: %s\n", strerror(ret));
+    exit(EXIT_FAILURE);
+  }
+
+  ret = pthread_create(&runners[7], &attr, deposit, argv[1]);
+  if (ret != 0)
+  {
+    printf("pthread_create failed for thread 5: %s\n", strerror(ret));
+    exit(EXIT_FAILURE);
+  }
+
+  ret = pthread_create(&runners[8], &attr, deposit, argv[1]);
+  if (ret != 0)
+  {
+    printf("pthread_create failed for thread 5: %s\n", strerror(ret));
+    exit(EXIT_FAILURE);
+  }
+
+  ret = pthread_create(&runners[9], &attr, deposit, argv[1]);
   if (ret != 0)
   {
     printf("pthread_create failed for thread 5: %s\n", strerror(ret));
