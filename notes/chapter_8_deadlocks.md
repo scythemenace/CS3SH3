@@ -11,7 +11,8 @@
   - [6. Deadlock Avoidance Strategy](#6-deadlock-avoidance-strategy)
     - [Example:](#example)
   - [7. Safe and Unsafe States](#7-safe-and-unsafe-states)
-  - [8. Banker's Algorithm (For Multiple Instances of a Resource Type)](#8-bankers-algorithm-for-multiple-instances-of-a-resource-type)
+  - [8.1 Single Instance of a Resource Type](#81-single-instance-of-a-resource-type)
+  - [8.2 Banker's Algorithm (For Multiple Instances of a Resource Type)](#82-bankers-algorithm-for-multiple-instances-of-a-resource-type)
     - [Overview:](#overview)
     - [Key Concepts:](#key-concepts)
     - [Data Structures Used in the Banker’s Algorithm:](#data-structures-used-in-the-bankers-algorithm)
@@ -118,7 +119,7 @@ The OS checks each time a process requests resources to determine whether granti
 
 ---
 
-## Single Instance of a Resource Type
+## 8.1 Single Instance of a Resource Type
 
 Use a Resource-Allocation Graph where claim edges are added (represented by dashed lines) to an existing resource allocation graph
 
@@ -128,7 +129,9 @@ The request **will only be granted** if converting the request edge to an assign
 
 ![Unsafe Resource-Allocation Graph](single-resource2.png)
 
-## 8. Banker's Algorithm (For Multiple Instances of a Resource Type)
+---
+
+## 8.2 Banker's Algorithm (For Multiple Instances of a Resource Type)
 
 ### Overview:
 
