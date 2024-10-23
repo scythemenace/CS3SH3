@@ -186,15 +186,6 @@ void *deposit(void *param)
   {
     amount += deposit_amount;
   }
-  else
-  {
-    ret = sem_post(&above_limit);
-    if (ret != 0)
-    {
-      printf("sem_post failed");
-    }
-    pthread_exit(NULL);
-  }
 
   if (amount > 0)
   {
