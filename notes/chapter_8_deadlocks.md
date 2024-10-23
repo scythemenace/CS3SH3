@@ -283,15 +283,20 @@ In the case where we have a single instance for a resource type, we can simply u
 | P3      | 2 1 1              | 1 0 0           |                   |
 | P4      | 0 0 2              | 0 0 2           |                   |
 
-**Step 1** Work = Available = (0 0 0)
-Since $\text{Allocation}_1$ $\neq$ 0, for all i $\in$ [1, n]
-Finish = [false, false, false, false, false]
-**Step 2** Find an index i such that both:
+**Step 1:**
 
-1. Finish[i] = false
-2. Request $\leq$ Work
+- Work = Available = (0 0 0)
+  Since $\text{Allocation}_1$ $\neq$ 0, for all i $\in$ [1, n]
+  Finish = [false, false, false, false, false]
 
-If no such i exists, go to step 4
+**Step 2:**
+
+- Find an index i such that both:
+
+  1. Finish[i] = false
+  2. Request $\leq$ Work
+
+  If no such i exists, go to step 4
 
 If the above two conditions are satisfied, we assume that the work has been done and the allocated resources can now be freed.
 
