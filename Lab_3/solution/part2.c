@@ -200,17 +200,17 @@ void *deposit(void *param)
 
   printf("Deposit Amount = %d\n", amount);
 
-  ret = pthread_mutex_unlock(&mutex);
-  if (ret != 0)
-  {
-    printf("pthread_mutex_unlock failed in deposit: %s\n", strerror(ret));
-    pthread_exit(NULL);
-  }
-
   ret = sem_wait(&above_limit);
   if (ret != 0)
   {
     printf("sem_wait on above_limit failed in deposit");
+    pthread_exit(NULL);
+  }
+
+  ret = pthread_mutex_unlock(&mutex);
+  if (ret != 0)
+  {
+    printf("pthread_mutex_unlock failed in deposit: %s\n", strerror(ret));
     pthread_exit(NULL);
   }
 
@@ -255,17 +255,17 @@ void *withdraw(void *param)
 
   printf("Withdraw Amount = %d\n", amount);
 
-  ret = pthread_mutex_unlock(&mutex);
-  if (ret != 0)
-  {
-    printf("pthread_mutex_unlock failed in withdraw: %s\n", strerror(ret));
-    pthread_exit(NULL);
-  }
-
   ret = sem_wait(&below_zero);
   if (ret != 0)
   {
     printf("sem_wait on below_zero failed in withdraw");
+    pthread_exit(NULL);
+  }
+
+  ret = pthread_mutex_unlock(&mutex);
+  if (ret != 0)
+  {
+    printf("pthread_mutex_unlock failed in withdraw: %s\n", strerror(ret));
     pthread_exit(NULL);
   }
 
