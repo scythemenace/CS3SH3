@@ -202,7 +202,7 @@ The request **will only be granted** if converting the request edge to an assign
 
 ### Part 2: Resource-Request Algorithm
 
-- **Step 1**: If $\text{Request}_i \leq \text{Need}_i$, proceed; otherwise, raise an error.
+- **Step 1**: If $\text{Request}_i \leq \text{Need}_i$, proceed; otherwise, raise an error since a process' need can't exceed the maximum claim.
 - **Step 2**: If $\text{Request}_i \leq \text{Available}$, proceed; otherwise, $P_i$ must wait.
 - **Step 3**: Pretend to allocate requested resources and update the system state:
 
