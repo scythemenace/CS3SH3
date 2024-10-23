@@ -7,6 +7,7 @@
   - [2. How Deadlock Occurs](#2-how-deadlock-occurs)
   - [3. Deadlock Characterization](#3-deadlock-characterization)
   - [4. Resource Allocation in Systems](#4-resource-allocation-in-systems)
+    - [Example of a Resource Allocation Graph](#example-of-a-resource-allocation-graph)
   - [5. Methods for Handling Deadlocks](#5-methods-for-handling-deadlocks)
   - [6. Deadlock Avoidance Strategy](#6-deadlock-avoidance-strategy)
     - [Example for Deadlock Avoidance Strategy:](#example-for-deadlock-avoidance-strategy)
@@ -75,6 +76,10 @@ Deadlock occurs when all of the following conditions hold simultaneously:
     - **Edges**:
       - **Request edge**: $P_i \to R_j$ indicates that process $P_i$ has requested resource $R_j$.
       - **Assignment edge**: $R_j \to P_i$ indicates that resource $R_j$ is assigned to process $P_i$.
+
+### Example of a Resource Allocation Graph
+
+![Resource Allocation Graph](resource-allocation-graph.png)
 
 - **Basic facts**:
   - If the graph contains no cycles, **no deadlock** is present.
