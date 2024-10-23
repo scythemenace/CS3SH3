@@ -183,6 +183,7 @@ The request **will only be granted** if converting the request edge to an assign
 ### Part 1: Safety Algorithm
 
 - **Step 1**: Initialize **Work** = Available, **Finish** = false for all processes.
+  ![Finish Vectors](finish-vectors.png)
 - **Step 2**: Find a process $P_i$ such that:
   - $\text{Finish}[i] = \text{false}$
   - $\text{Need}_i \leq \text{Work}$
