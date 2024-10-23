@@ -163,7 +163,7 @@ int main(int argc, char *argv[])
 
 void *deposit(void *param)
 {
-  printf("Executing deposit function\n");
+  //printf("Executing deposit function\n");
 
   int deposit_amount = atoi(param);
   int ret;
@@ -195,7 +195,8 @@ void *deposit(void *param)
       printf("sem_post on below_zero failed in deposit");
     }
   }
-
+  
+  amount < 400 ? printf("true\n") : printf("false\n");
   if (amount < 400)
   {
     ret = sem_post(&above_limit);
@@ -219,7 +220,7 @@ void *deposit(void *param)
 
 void *withdraw(void *param)
 {
-  printf("Executing withdraw function\n");
+  //printf("Executing withdraw function\n");
   int withdraw_amount = atoi(param);
   int ret;
 
