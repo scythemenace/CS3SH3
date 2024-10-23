@@ -238,6 +238,7 @@ In the case where we have a single instance for a resource type, we can simply u
 - Each node is a process, and an edge from $P_i \rightarrow P_j$ in the **wait-for graph** implies that $P_i$ is waiting for $P_j$ to release that resource since it needs it.
 
 ![Wait-for Graph](wait-for-graph.png)
+![Wait-for Graph Cycle](wait-for-graph-cycle.png)
 
 ---
 
