@@ -9,14 +9,14 @@
   - [4. Resource Allocation in Systems](#4-resource-allocation-in-systems)
   - [5. Methods for Handling Deadlocks](#5-methods-for-handling-deadlocks)
   - [6. Deadlock Avoidance Strategy](#6-deadlock-avoidance-strategy)
-    - [Example:](#example)
+    - [Example for Deadlock Avoidance Strategy:](#example-for-deadlock-avoidance-strategy)
   - [7. Safe and Unsafe States](#7-safe-and-unsafe-states)
   - [8.1 Single Instance of a Resource Type](#81-single-instance-of-a-resource-type)
   - [8.2 Banker's Algorithm (For Multiple Instances of a Resource Type)](#82-bankers-algorithm-for-multiple-instances-of-a-resource-type)
     - [Overview:](#overview)
     - [Key Concepts:](#key-concepts)
     - [Data Structures Used in the Banker’s Algorithm:](#data-structures-used-in-the-bankers-algorithm)
-    - [Example:](#example)
+    - [Example for Banker's Algorithm:](#example-for-bankers-algorithm)
     - [Part 1: Safety Algorithm](#part-1-safety-algorithm)
     - [Part 2: Resource-Request Algorithm](#part-2-resource-request-algorithm)
   - [9. Deadlock Detection Algorithm](#9-deadlock-detection-algorithm)
@@ -98,7 +98,7 @@ Most modern operating systems (e.g., UNIX, Linux, Windows) **ignore deadlocks** 
 - The **OS requires additional information** about the resources a process may need, including the **maximum number** of resources.
 - The **resource-allocation state** is continually examined to ensure no circular-wait condition occurs.
 
-### Example:
+### Example for deadlock avoidance strategy:
 
 Consider a system with a single resource type (e.g., magnetic tapes) and 12 total instances:
 
@@ -155,7 +155,7 @@ The request **will only be granted** if converting the request edge to an assign
 
   $\text{Need}[i,j] = \text{Max}[i,j] - \text{Allocation}[i,j]$
 
-### Example:
+### Example for Banker's Algorithm:
 
 - **System**: 5 processes $P_0$ to $P_4$, with 3 resource types: A (10 instances), B (5 instances), C (7 instances).
 - **Initial State**:
