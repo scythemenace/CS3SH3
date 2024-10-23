@@ -26,6 +26,7 @@
     - [Data Structures for Detection Algorithm:](#data-structures-for-detection-algorithm)
     - [Algorithm Steps:](#algorithm-steps)
     - [Example for Deadlock Detection Algorithm:](#example-for-deadlock-detection-algorithm)
+    - [Example for Deadlock Detection: Case of Additional Request](#example-for-deadlock-detection-case-of-additional-request)
   - [10. Recovery from Deadlock](#10-recovery-from-deadlock)
   <!--toc:end-->
 
@@ -218,7 +219,7 @@ The request **will only be granted** if converting the request edge to an assign
 
 - $P_1$ requests resources (1 0 2)
 - Check if $\text{Request}_1$ $\leq$ $\text{Need}_1$:
-  $\newline$ (1 0 2) $\leq$ (3 3 2) $=>$ true
+  $\newline$ (1 0 2) $\leq$ (3 3 2) $\implies$ true
 - Pretend resources requested get granted
 - Update the $\text{Max}_1$, $\text{Allocation}_1$ and $\text{Need}_1$
   - $\text{Available}_1$ = (3 3 2) - (1 0 2) = (2 3 0)
@@ -306,6 +307,24 @@ Thus we find that
 
 - $P_0$ satisfies the aforementioned two conditions i.e. $\text{Request}_i \leq \text{Work}$ and Finish[i] = false, so resources are allocated, and $\text{Finish}[0] = \text{true}$.
 - The system is not in deadlock, as the sequence $<P_0, P_2, P_3, P_1, P_4>$ satisfies the safety condition.
+
+### Example for Deadlock Detection: Case of Additional Request
+
+Suppose $P_2$ requests another additional instance of type C.
+
+| Process | Allocation (A B C) | Request (A B C) | Available (A B C) |
+| ------- | ------------------ | --------------- | ----------------- |
+| P0      | 0 1 0              | 0 0 0           | 0 0 0             |
+| P1      | 2 0 0              | 2 0 2           |                   |
+| P2      | 3 0 3              | 0 0 1           |                   |
+| P3      | 2 1 1              | 1 0 0           |                   |
+| P4      | 0 0 2              | 0 0 2           |                   |
+
+In this case we can see for Process $P_0$, $\text{Request}_0$ $\leq$ Work and Finish[i] = false $\implies$ Work(Available) = (0 0 0) + (0 1 0) = (0 1 0). So Finish[0] becomes true, since $P_0$ finishes.
+
+But, we find that there is no remaining $\text{Request}_i$ which is less than or equal to 0.
+
+Therefore, the deadlock exists consisting of processes, $P_1$, $P_2$, $P_3$ and $P_4$.
 
 ---
 
