@@ -4,7 +4,7 @@
 git add .
 
 # Commit the changes with a message
-git commit -m "Updating chapter 8 notes"
+git commit -m "Updating potential q notes"
 
 # Push the changes to the remote repository
 git push
