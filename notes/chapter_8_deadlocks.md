@@ -118,6 +118,16 @@ The OS checks each time a process requests resources to determine whether granti
 
 ---
 
+## Single Instance of a Resource Type
+
+Use a Resource-Allocation Graph where claim edges are added (represented by dashed lines) to an existing resource allocation graph
+
+![Resource-Allocation Graph](single-resource1.png)
+
+The request **will only be granted** if converting the request edge to an assignment edge does not result in a formation of a cycle (deadlock).
+
+![Unsafe Resource-Allocation Graph](single-resource2.png)
+
 ## 8. Banker's Algorithm (For Multiple Instances of a Resource Type)
 
 ### Overview:
