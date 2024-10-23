@@ -65,9 +65,7 @@ Deadlock occurs when all of the following conditions hold simultaneously:
 3. **No Preemption**: Resources can only be released voluntarily by the process holding them.
 4. **Circular Wait**: There exists a set of waiting processes $\{P_0, P_1, \dots, P_n\}$ such that $P_0$ is waiting for a resource held by $P_1$, $P_1$ is waiting for a resource held by $P_2$, ..., and $P_n$ is waiting for a resource held by $P_0$.
 
-![Circular Wait](circular-wait.png)
-
----
+## ![Circular Wait](./chapter8_images/circular-wait.png)
 
 ## 4. Resource Allocation in Systems
 
@@ -87,11 +85,11 @@ Deadlock occurs when all of the following conditions hold simultaneously:
 
 ### Example of a Resource Allocation Graph
 
-![Resource Allocation Graph](resource-allocation-graph.png)
+![Resource Allocation Graph](./chapter8_images/resource-allocation-graph.png)
 
 ### Example of a Resource Allocation Graph which has a cycle but No Deadlock
 
-![Resource Allocation Graph with Cycle but No Deadlock](resource-cycle-no-dead.png)
+![Resource Allocation Graph with Cycle but No Deadlock](./chapter8_images/resource-cycle-no-dead.png)
 
 A cycle exists $P_1 \rightarrow R_1 \rightarrow P_3 \rightarrow R_2 \rightarrow P_1$. The reason we don't have any deadlock is that $P_2$ isn't dependent on any resource so we can assume it has finished its execution.
 
@@ -101,7 +99,7 @@ Therefore, there is no deadlock in this system.
 
 ### Example of a Resource Allocation Graph with a Deadlock
 
-![Resource Allocation Graph with Cycle and Deadlock](resource-cycle-dead.png)
+![Resource Allocation Graph with Cycle and Deadlock](./chapter8_images/resource-cycle-dead.png)
 
 In this case a cycle exists and each process is requesting a resource held by the other. Therefore, this system is in a deadlock.
 
@@ -161,11 +159,11 @@ Below we talk about how to **avoid** deadlock.
 
 Use a Resource-Allocation Graph where claim edges are added (represented by dashed lines) to an existing resource allocation graph
 
-![Resource-Allocation Graph](single-resource1.png)
+![Resource-Allocation Graph](./chapter8_images/single-resource1.png)
 
 The request **will only be granted** if converting the request edge to an assignment edge does not result in a formation of a cycle (deadlock).
 
-![Unsafe Resource-Allocation Graph](single-resource2.png)
+![Unsafe Resource-Allocation Graph](./chapter8_images/single-resource2.png)
 
 ---
 
@@ -221,7 +219,7 @@ The request **will only be granted** if converting the request edge to an assign
 ### Part 1: Safety Algorithm
 
 - **Step 1**: Initialize **Work** = Available, **Finish** = false for all processes.
-  ![Finish Vectors](finish-vectors.png)
+  ![Finish Vectors](./chapter8_images/finish-vectors.png)
 - **Step 2**: Find a process $P_i$ such that:
   - $\text{Finish}[i] = \text{false}$
   - $\text{Need}_i \leq \text{Work}$
@@ -230,7 +228,7 @@ The request **will only be granted** if converting the request edge to an assign
   - $\text{Work} = \text{Work} + \text{Allocation}_i$
   - Set $\text{Finish}[i] = \text{true}$, and repeat from Step 2.
     Example:
-    ![Safety Set True](safety-set-true.png)
+    ![Safety Set True](./chapter8_images/safety-set-true.png)
 - **Step 4**: If all processes are finished, the system is in a **safe state**.
   We can see that process $P_3$, $P_4$, $P_2$, and $P_0$, all satisfy the conditions in step 2.
 
@@ -261,7 +259,7 @@ The request **will only be granted** if converting the request edge to an assign
   - $\text{Allocation}_1$ = (2 0 0) + (1 0 2) = (3 0 2)
   - $\text{Need}_1$ = (1 2 2) - (1 0 2) = (0 2 0)
 
-![Example for resource allocation in Banker's Algorithm](example-resource-allocation.png)
+![Example for resource allocation in Banker's Algorithm](./chapter8_images/example-resource-allocation.png)
 
 ---
 
@@ -277,8 +275,8 @@ In the case where we have a single instance for a resource type, we can simply u
 - By abstracting the resource block from a resource-allocation graph, we get a **wait-for graph**.
 - Each node is a process, and an edge from $P_i \rightarrow P_j$ in the **wait-for graph** implies that $P_i$ is waiting for $P_j$ to release that resource since it needs it.
 
-![Wait-for Graph](wait-for-graph.png)
-![Wait-for Graph Cycle](wait-for-graph-cycle.png)
+![Wait-for Graph](./chapter8_images/wait-for-graph.png)
+![Wait-for Graph Cycle](./chapter8_images/wait-for-graph-cycle.png)
 
 ---
 
