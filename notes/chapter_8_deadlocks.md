@@ -19,6 +19,7 @@
     - [Example for Banker's Algorithm:](#example-for-bankers-algorithm)
     - [Part 1: Safety Algorithm](#part-1-safety-algorithm)
     - [Part 2: Resource-Request Algorithm](#part-2-resource-request-algorithm)
+    - [Example for Resource-Request in Banker's Algorithm](#example-for-resource-request-in-bankers-algorithm)
   - [9. Deadlock Detection Algorithm](#9-deadlock-detection-algorithm)
     - [Overview:](#overview)
     - [Data Structures for Detection Algorithm:](#data-structures-for-detection-algorithm)
@@ -212,7 +213,17 @@ The request **will only be granted** if converting the request edge to an assign
   - $\text{Need}_i = \text{Need}_i - \text{Request}_i$
   - Run the **safety algorithm** to check if the system is still in a safe state. If yes, allocate the resources; if no, revert to the previous state, and $P_i$ must wait.
 
----
+### Example for Resource-Request in Banker's Algorithm:
+
+- $P_1$ requests resources (1 0 2)
+- Check if $\text{Request}_1$ $\leq$ $\text{Need}_1$:
+  $\newline$ (1 0 2) $\leq$ (3 3 2) $=>$ true
+- Pretend resources requested get granted
+- Update the $\text{Max}_1$, $\text{Allocation}_1$ and $\text{Need}_1$
+  - $\text{Available}_1$ = (3 3 2) - (1 0 2) = (2 3 0)
+  - $\text{Allocation}_1$ = (2 0 0) + (1 0 2) = (3 0 2)
+  - $\text{Need}_1$ = (1 2 2) - (1 0 2) = (0 2 0)
+    ![Example for resource allocation in Banker's Algorithm](example-resource-allocation.png)
 
 ## 9. Deadlock Detection Algorithm
 
