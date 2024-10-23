@@ -191,6 +191,8 @@ The request **will only be granted** if converting the request edge to an assign
 - **Step 3**: Allocate resources to $P_i$:
   - $\text{Work} = \text{Work} + \text{Allocation}_i$
   - Set $\text{Finish}[i] = \text{true}$, and repeat from Step 2.
+    Example:
+    ![Safety Set True](safety-set-true.png)
 - **Step 4**: If all processes are finished, the system is in a **safe state**.
 
 ---
