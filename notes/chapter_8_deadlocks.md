@@ -101,9 +101,9 @@ The OS checks each time a process requests resources to determine whether granti
 - **Allocation**: An $n \times m$ matrix, where $\text{Allocation}[i,j]$ is the number of instances of resource $R_j$ currently allocated to process $P_i$.
 - **Need**: An $n \times m$ matrix, where $\text{Need}[i,j]$ is the number of additional instances of resource $R_j$ process $P_i$ needs to complete its task.
 
-  \[
+  $\[
   \text{Need}[i,j] = \text{Max}[i,j] - \text{Allocation}[i,j]
-  \]
+  \]$
 
 ### Example:
 - **System**: 5 processes $P_0$ to $P_4$, with 3 resource types: A (10 instances), B (5 instances), C (7 instances).
