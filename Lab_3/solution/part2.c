@@ -9,152 +9,67 @@
 
 int amount = 0;
 pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
-sem_t below_zero;
-sem_t above_limit;
+sem_t deposits_allowed;
+sem_t withdrawals_allowed;
 
 void *deposit(void *param);
 void *withdraw(void *param);
 
 int main(int argc, char *argv[])
 {
-  if (argc < 2)
+  if (argc != 2)
   {
-    printf("Usage: %s amount\n", argv[0]);
+    fprintf(stderr, "Usage: %s transaction_amount\n", argv[0]);
     exit(EXIT_FAILURE);
   }
 
-  pthread_t runners[NUM_THREADS];
-  int ret;
+  int transaction_amount = atoi(argv[1]);
+  pthread_t threads[NUM_THREADS];
 
-  ret = sem_init(&below_zero, 0, 0);
-  if (ret != 0)
-  {
-    printf("sem_init for below_zero failed");
-    exit(EXIT_FAILURE);
-  }
+  int num_deposit_threads = 7;
+  int num_withdraw_threads = 3;
 
-  ret = sem_init(&above_limit, 0, 1);
-  if (ret != 0)
-  {
-    printf("sem_init for above_limit failed");
-    exit(EXIT_FAILURE);
-  }
+  // Initialize semaphores
+  int initial_deposits_allowed = (400 - amount) / transaction_amount;
+  int initial_withdrawals_allowed = amount / transaction_amount;
 
-  pthread_attr_t attr;
-  ret = pthread_attr_init(&attr);
-  if (ret != 0)
-  {
-    printf("pthread_attr_init failed: %s\n", strerror(ret));
-    exit(EXIT_FAILURE);
-  }
+  sem_init(&deposits_allowed, 0, initial_deposits_allowed);
+  sem_init(&withdrawals_allowed, 0, initial_withdrawals_allowed);
 
-  ret = pthread_create(&runners[0], &attr, withdraw, argv[1]);
-  if (ret != 0)
+  // Create deposit threads
+  for (int i = 0; i < num_deposit_threads; i++)
   {
-    printf("pthread_create failed for thread 0: %s\n", strerror(ret));
-    exit(EXIT_FAILURE);
-  }
-
-  ret = pthread_create(&runners[1], &attr, withdraw, argv[1]);
-  if (ret != 0)
-  {
-    printf("pthread_create failed for thread 1: %s\n", strerror(ret));
-    exit(EXIT_FAILURE);
-  }
-
-  ret = pthread_create(&runners[2], &attr, withdraw, argv[1]);
-  if (ret != 0)
-  {
-    printf("pthread_create failed for thread 2: %s\n", strerror(ret));
-    exit(EXIT_FAILURE);
-  }
-
-  ret = pthread_create(&runners[3], &attr, deposit, argv[1]);
-  if (ret != 0)
-  {
-    printf("pthread_create failed for thread 3: %s\n", strerror(ret));
-    exit(EXIT_FAILURE);
-  }
-
-  ret = pthread_create(&runners[4], &attr, deposit, argv[1]);
-  if (ret != 0)
-  {
-    printf("pthread_create failed for thread 4: %s\n", strerror(ret));
-    exit(EXIT_FAILURE);
-  }
-
-  ret = pthread_create(&runners[5], &attr, deposit, argv[1]);
-  if (ret != 0)
-  {
-    printf("pthread_create failed for thread 5: %s\n", strerror(ret));
-    exit(EXIT_FAILURE);
-  }
-
-  ret = pthread_create(&runners[6], &attr, deposit, argv[1]);
-  if (ret != 0)
-  {
-    printf("pthread_create failed for thread 6: %s\n", strerror(ret));
-    exit(EXIT_FAILURE);
-  }
-
-  ret = pthread_create(&runners[7], &attr, deposit, argv[1]);
-  if (ret != 0)
-  {
-    printf("pthread_create failed for thread 7: %s\n", strerror(ret));
-    exit(EXIT_FAILURE);
-  }
-
-  ret = pthread_create(&runners[8], &attr, deposit, argv[1]);
-  if (ret != 0)
-  {
-    printf("pthread_create failed for thread 8: %s\n", strerror(ret));
-    exit(EXIT_FAILURE);
-  }
-
-  ret = pthread_create(&runners[9], &attr, deposit, argv[1]);
-  if (ret != 0)
-  {
-    printf("pthread_create failed for thread 9: %s\n", strerror(ret));
-    exit(EXIT_FAILURE);
-  }
-
-  for (int i = 0; i < NUM_THREADS; i++)
-  {
-    ret = pthread_join(runners[i], NULL);
-    if (ret != 0)
+    if (pthread_create(&threads[i], NULL, deposit, argv[1]) != 0)
     {
-      printf("pthread_join failed for thread %d: %s\n", i, strerror(ret));
+      perror("Failed to create deposit thread");
       exit(EXIT_FAILURE);
     }
   }
 
-  ret = pthread_attr_destroy(&attr);
-  if (ret != 0)
+  // Create withdrawal threads
+  for (int i = 0; i < num_withdraw_threads; i++)
   {
-    printf("pthread_attr_destroy failed: %s\n", strerror(ret));
-    exit(EXIT_FAILURE);
+    if (pthread_create(&threads[num_deposit_threads + i], NULL, withdraw, argv[1]) != 0)
+    {
+      perror("Failed to create withdrawal thread");
+      exit(EXIT_FAILURE);
+    }
   }
 
-  ret = pthread_mutex_destroy(&mutex);
-  if (ret != 0)
+  // Wait for all threads to finish
+  for (int i = 0; i < NUM_THREADS; i++)
   {
-    printf("pthread_mutex_destroy failed: %s\n", strerror(ret));
-    exit(EXIT_FAILURE);
+    if (pthread_join(threads[i], NULL) != 0)
+    {
+      perror("Failed to join thread");
+      exit(EXIT_FAILURE);
+    }
   }
 
-  ret = sem_destroy(&below_zero);
-  if (ret != 0)
-  {
-    printf("sem_destroy for below_zero failed");
-    exit(EXIT_FAILURE);
-  }
-
-  ret = sem_destroy(&above_limit);
-  if (ret != 0)
-  {
-    printf("sem_destroy for above_limit failed");
-    exit(EXIT_FAILURE);
-  }
+  // Destroy semaphores and mutex
+  sem_destroy(&deposits_allowed);
+  sem_destroy(&withdrawals_allowed);
+  pthread_mutex_destroy(&mutex);
 
   printf("Final Amount = %d\n", amount);
 
@@ -163,50 +78,25 @@ int main(int argc, char *argv[])
 
 void *deposit(void *param)
 {
-  printf("Executing deposit function");
   int deposit_amount = atoi(param);
-  int ret;
 
-  while (1)
+  if (sem_wait(&deposits_allowed) != 0)
   {
-    ret = sem_wait(&above_limit);
-    if (ret != 0)
-    {
-      printf("sem_wait on above_limit failed in deposit");
-      pthread_exit(NULL);
-    }
+    perror("sem_wait deposits_allowed");
+    pthread_exit(NULL);
+  }
 
-    ret = pthread_mutex_lock(&mutex);
-    if (ret != 0)
-    {
-      printf("pthread_mutex_lock failed in deposit: %s\n", strerror(ret));
-      pthread_exit(NULL);
-    }
+  pthread_mutex_lock(&mutex);
 
-    if (amount >= 400)
-    {
-      pthread_mutex_unlock(&mutex);
-      sem_post(&above_limit);
-      break; // Exit the loop when the amount reaches 400
-    }
+  amount += deposit_amount;
+  printf("Deposit: Amount = %d\n", amount);
 
-    if (amount + deposit_amount <= 400)
-    {
-      amount += deposit_amount;
-      printf("Deposit Amount = %d\n", amount);
-    }
+  pthread_mutex_unlock(&mutex);
 
-    if (amount > 0)
-    {
-      sem_post(&below_zero);
-    }
-
-    if (amount < 400)
-    {
-      sem_post(&above_limit);
-    }
-
-    pthread_mutex_unlock(&mutex);
+  if (sem_post(&withdrawals_allowed) != 0)
+  {
+    perror("sem_post withdrawals_allowed");
+    pthread_exit(NULL);
   }
 
   pthread_exit(0);
@@ -214,53 +104,24 @@ void *deposit(void *param)
 
 void *withdraw(void *param)
 {
-  printf("Executing withdraw function\n");
   int withdraw_amount = atoi(param);
-  int ret;
 
-  ret = sem_wait(&below_zero);
-  if (ret != 0)
+  if (sem_wait(&withdrawals_allowed) != 0)
   {
-    printf("sem_wait on below_zero failed in withdraw");
+    perror("sem_wait withdrawals_allowed");
     pthread_exit(NULL);
   }
 
-  ret = pthread_mutex_lock(&mutex);
-  if (ret != 0)
-  {
-    printf("pthread_mutex_lock failed in withdraw: %s\n", strerror(ret));
-    pthread_exit(NULL);
-  }
+  pthread_mutex_lock(&mutex);
 
-  if (amount - withdraw_amount >= 0)
-  {
-    amount -= withdraw_amount;
-  }
+  amount -= withdraw_amount;
+  printf("Withdraw: Amount = %d\n", amount);
 
-  if (amount > 0)
-  {
-    ret = sem_post(&below_zero);
-    if (ret != 0)
-    {
-      printf("sem_post on below_zero failed in withdraw");
-    }
-  }
+  pthread_mutex_unlock(&mutex);
 
-  if (amount < 400)
+  if (sem_post(&deposits_allowed) != 0)
   {
-    ret = sem_post(&above_limit);
-    if (ret != 0)
-    {
-      printf("sem_post on above_limit failed in withdraw");
-    }
-  }
-
-  printf("Withdraw Amount = %d\n", amount);
-
-  ret = pthread_mutex_unlock(&mutex);
-  if (ret != 0)
-  {
-    printf("pthread_mutex_unlock failed in withdraw: %s\n", strerror(ret));
+    perror("sem_post deposits_allowed");
     pthread_exit(NULL);
   }
 
