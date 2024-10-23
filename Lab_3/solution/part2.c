@@ -163,7 +163,7 @@ int main(int argc, char *argv[])
 
 void *deposit(void *param)
 {
-  // printf("Executing deposit function\n");
+  printf("Executing deposit function\n");
 
   int deposit_amount = atoi(param);
   int ret;
@@ -219,7 +219,7 @@ void *deposit(void *param)
 
 void *withdraw(void *param)
 {
-  // printf("Executing withdraw function\n");
+  printf("Executing withdraw function\n");
   int withdraw_amount = atoi(param);
   int ret;
 
