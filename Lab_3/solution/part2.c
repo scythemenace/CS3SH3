@@ -78,6 +78,8 @@ int main(int argc, char *argv[])
 
 void *deposit(void *param)
 {
+  printf("Executing deposit function\n");
+
   int deposit_amount = atoi(param);
 
   if (sem_wait(&deposits_allowed) != 0)
@@ -104,6 +106,7 @@ void *deposit(void *param)
 
 void *withdraw(void *param)
 {
+  printf("Executing withdraw function\n");
   int withdraw_amount = atoi(param);
 
   if (sem_wait(&withdrawals_allowed) != 0)
