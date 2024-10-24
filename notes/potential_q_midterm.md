@@ -101,3 +101,52 @@ There are three potential solutions for solving this problem:-
 - Monitors allow only process to run at a time. If let's say process Q was waiting on a condition (x.wait() where x is a conditional variable) and another process P released the wait by invoking x.signal(), since only one process can run at a time, based on the implementation of monitors, either P **signals and waits** i.e. it removes the wait from process Q and let's Q run until it leaves the monitor or waits on another conditional variable (let's say y - y.wait()). Another choice could be P **signals and continues** meaning it uplifts the wait on Q but makes it wait until it leaves the monitor or waits on another conditional variable (opposite of signal and wait). Don't get confused by the fact that they have to wait even though signaling has been done. Signaling uplifts a wait imposed by a conditional variable's wait() call. Whereas **signal and wait** and **signal and continue** is done in other to ensure no two processes can be executed at the same time.
 - This is the key difference between Semaphores and Conditional Variables. Semaphores, don't necessarily always block the processes which call them since sometimes wait() can just reduce the value of a semaphore counter whereas conditional variables always block the processes that call them (.wait() and .signal() -> makes the decision either **signal and wait** or **signal and continue** ). You can think of semaphores being a counter for synchronization tasks whereas conditional variables operate solely based on certain conditions.
 - If several processes are waiting on the same conditional variable x by invoking x.wait(), x.signal() wakes up a process based on First Come First Serve basis. Another option is to **conditional-wait** where we give a wait call with a priority. The lower the priority, the earlier the wakeup.
+
+### Bounded Buffer Hypothetical Deadlock
+
+The code of producer is as follows:-
+
+```c
+do {
+...
+/* produce an item in next_produced */
+...
+wait(empty);
+wait(mutex);
+...
+/* add next produced to the buffer */
+...
+signal(mutex);
+signal(full);
+} while (true);
+```
+
+The code of consumer is as follows:-
+
+```c
+do {
+wait(full);
+wait(mutex);
+/* remove an item from buffer to next_consumed */
+signal(mutex);
+signal(empty);
+/* consume the item in next consumed */
+} while (true);
+```
+
+**Question that can be asked**: What if we switch signal(empty) and signal(mutex) with each other? How will it impact the code?
+If we switch the line signal(mutex) and signal(empty), it could potentially lead to a deadlock.
+Switched code will be:-
+
+```c
+do {
+/* produce an item in next_produced */
+wait(mutex);
+wait(empty);
+/* add next produced to the buffer */
+signal(mutex);
+signal(full);
+} while (true);
+```
+
+Imagine a scenario where the buffer is full i.e. empty = 0. In this case if our code acquires the mutex lock first, it will run into wait(empty). Since empty is 0, it just waits there and never releases the lock. The consumer process also can't do anything since it's waiting for the lock to be released in order to consume the buffer and due to the lock never releasing, it gets stuck in a deadlock.
