@@ -269,3 +269,24 @@ void release(lock *mutex) {
   &mutex->held == false;
 }
 ```
+
+## Chapter 3
+
+### Give three examples of data parallelism and task parallelism each
+
+Data Parallelism:
+
+- Matrix Multiplication: When multiplying two matrices, different rows or blocks of the matrices can be multiplied independently, as the operations on different rows do not depend on each other. Each processor handles a chunk of the matrix data.
+
+- Image Processing: Applying a filter (e.g., blur, edge detection) to an image can be divided by splitting the image into smaller regions. Each region is processed independently by different processors.
+
+- Adding values in an Array: In an array of size N, if we have to add all the values inside it, we can distribute them into the number of cores.
+
+Task Parallelism:
+
+- Web Server: A web server handling multiple client requests can assign different tasks (such as reading from a database, processing logic, or sending responses) to different threads or processors. Each task operates independently and can be processed in parallel.
+
+- Video Game Rendering: Different aspects of rendering a video game, such as calculating physics, AI decision-making, and rendering the graphics, can be handled by separate threads, as these tasks do not need to be done sequentially.
+
+- Editing word document: Different threads to interpret the keystrokes, display images, spelling and grammar, and perform automatic backups
+  periodically.
