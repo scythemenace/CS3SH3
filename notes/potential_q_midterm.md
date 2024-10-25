@@ -2,23 +2,28 @@
 
 <!--toc:start-->
 
-- [Chapter 6](#chapter-6)
-  - [Dining philosopher](#dining-philosopher)
-  - [Conditions for a solution to satisfy a CS Problem](#conditions-for-a-solution-to-satisfy-a-cs-problem)
-  - [Explain that Peterson's solution is correct](#explain-that-petersons-solution-is-correct)
-  - [Conditional Variables](#conditional-variables)
-  - [Bounded Buffer Hypothetical Deadlock](#bounded-buffer-hypothetical-deadlock)
-  - [Explain why interrupts are not appropriate for implementing synchronization primitives in multiprocessor systems.](#explain-why-interrupts-are-not-appropriate-for-implementing-synchronization-primitives-in-multiprocessor-systems)
-  - [Memory Barrier Usage](#memory-barrier-usage)
-  - [test_and_set(\*target) and compare_and_swap(\*value, expected, new_value)](#testandsettarget-and-compareandswapvalue-expected-newvalue)
-- [Chapter 3](#chapter-3)
-  - [IPC, Two Models and Where To Use One](#ipc-two-models-and-where-to-use-one)
-  - [Draw the process tree](#draw-the-process-tree)
-- [Chapter 4](#chapter-4)
-  - [Give three examples of data parallelism and task parallelism each](#give-three-examples-of-data-parallelism-and-task-parallelism-each)
-  - [Ahmdal's Law](#ahmdals-law)
-  - [Performance Implications of different scenarios in a many-to-many Model](#performance-implications-of-different-scenarios-in-a-many-to-many-model)
-  - [What is the output of the Line "xyz" - Thread based](#what-is-the-output-of-the-line-xyz-thread-based)
+- [Potential Questions for CS3SH3 Midterm 1](#potential-questions-for-cs3sh3-midterm-1)
+
+  - [Chapter 6](#chapter-6)
+    - [Dining philosopher](#dining-philosopher)
+    - [Conditions for a solution to satisfy a CS Problem](#conditions-for-a-solution-to-satisfy-a-cs-problem)
+    - [Explain that Peterson's solution is correct](#explain-that-petersons-solution-is-correct)
+    - [Conditional Variables](#conditional-variables)
+    - [Bounded Buffer Hypothetical Deadlock](#bounded-buffer-hypothetical-deadlock)
+    - [Explain why interrupts are not appropriate for implementing synchronization primitives in multiprocessor systems.](#explain-why-interrupts-are-not-appropriate-for-implementing-synchronization-primitives-in-multiprocessor-systems)
+    - [Memory Barrier Usage](#memory-barrier-usage)
+    - [test_and_set(\*target) and compare_and_swap(\*value, expected, new_value)](#testandsettarget-and-compareandswapvalue-expected-newvalue)
+  - [Chapter 3](#chapter-3)
+    - [IPC, Two Models and Where To Use One](#ipc-two-models-and-where-to-use-one)
+    - [Draw the process tree](#draw-the-process-tree)
+  - [Chapter 4](#chapter-4)
+
+    - [Give three examples of data parallelism and task parallelism each](#give-three-examples-of-data-parallelism-and-task-parallelism-each)
+    - [Ahmdal's Law](#ahmdals-law)
+    - [Performance Implications of different scenarios in a many-to-many Model](#performance-implications-of-different-scenarios-in-a-many-to-many-model)
+    - [What is the output of the Line "xyz" - Thread based](#what-is-the-output-of-the-line-xyz-thread-based)
+
+  - [Chapter 5](#chapter-5) - [What is the difference between dispatch latency and context switching](#what-is-the-difference-between-dispatch-latency-and-context-switching) - [What is the difference between IO Bound program and CPU bound program](#what-is-the-difference-between-io-bound-program-and-cpu-bound-program) - [What are the different scheduling queues that an operating system has? Which queue is accessible by the CPU scheduler?](#what-are-the-different-scheduling-queues-that-an-operating-system-has-which-queue-is-accessible-by-the-cpu-scheduler)
   <!--toc:end-->
 
 ## Chapter 6
@@ -392,3 +397,39 @@ Output of Line C would be **CHILD: value = 5** and Line P would be **PARENT: val
 - Initially the child has the value set as 0 which gets changed when the thread function is called by the thread created in the child process.
 - The thread can only access the memory space of the process it was created in which is the child process' memory space. The value gets changed to 5 in the child process and gets printed since the thread gets collected using `pthread_join()` before the print statement.
 - In the parent process code the value gets printed as 0 since previously the value was changed only in the child process' memory space. As we said before, the parent process has a different memory space, therefore, the value remains unchanged i.e. 0.
+
+## Chapter 5
+
+### What is the difference between IO Bound program and CPU bound program
+
+An IO Bound program has **many** but **short** CPU bursts whereas a CPU bound has **few** but **longer** CPU bursts.
+
+### What are the different scheduling queues that an operating system has? Which queue is accessible by the CPU scheduler?
+
+An operating system has access to three queues:-
+
+- Job Queue: Set of all processes in the system.
+- Ready Queue: Set of all processes residing in the main memory waiting to be executed.
+- Device Queue: Set of all processes waiting for an IO Device. There is a **separate device queue** for each device (for the most part).
+
+Only the Ready Queue is accessibly by the CPU scheduler.
+
+### What is the use of a CPU scheduler?
+
+The CPU scheduler allocates the CPU to one of the processes in the ready queue. It doesn't follow any proper protocol for doing so since it's invoked frequently (milliseconds).
+
+### What could be a reason to have Preemptive scheduling (stopping a running process)?
+
+Preemptive scheduling interrupts a process and moves it back to the ready queue. A reason for this could be **time slicing approach**, where we give each process access to the CPU for a certain period of time in order to give the illusion that CPU belongs to all process (parallelism).
+
+### What's the use of a Dispatcher Module
+
+Dispatcher module gives control of the CPU to the process selected by the short term scheduler. It does this in three steps:-
+
+- Switches context between the processes
+- Switches to User Mode
+- Jumps to proper location in the user program to restart that program.
+
+### What is the difference between dispatch latency and context switching
+
+Dispatch latency measures the time it takes for the dispatcher to stop one process and start another process whereas context switching is a **process** which saves the state of old process and restores the state of the new process.
