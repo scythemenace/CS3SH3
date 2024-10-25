@@ -290,3 +290,13 @@ Task Parallelism:
 
 - Editing word document: Different threads to interpret the keystrokes, display images, spelling and grammar, and perform automatic backups
   periodically.
+
+### Ahmdal's Law
+
+According to Amhdal's law, performance gain from increasing number of cores and making your application parallel is given by:-
+$\cfrac{1}{S + \cfrac{1 - S}{N}}$
+
+**An example question is**: Assume we have an application that is 70 percent parallel and 30 percent serial. If we
+run this application on a system with 4 processing cores, what is the speed-up?
+
+Answer would be $\cfrac{1}{0.3 + \cfrac{1 - 0.3}{4}}$ = $\cfrac{1 \times 4}{1.9}$ ~ 2.1 times faster
