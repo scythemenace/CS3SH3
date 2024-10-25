@@ -5,7 +5,7 @@
 - [Chapter 6](#chapter-6)
   - [Dining philosopher](#dining-philosopher)
   - [Conditions for a solution to satisfy a CS Problem](#conditions-for-a-solution-to-satisfy-a-cs-problem)
-  - [Explain by Peterson's solution is correct](#explain-by-petersons-solution-is-correct)
+  - [Explain that Peterson's solution is correct](#explain-that-petersons-solution-is-correct)
   - [Conditional Variables](#conditional-variables)
   - [Bounded Buffer Hypothetical Deadlock](#bounded-buffer-hypothetical-deadlock)
   - [Explain why interrupts are not appropriate for implementing synchronization primitives in multiprocessor systems.](#explain-why-interrupts-are-not-appropriate-for-implementing-synchronization-primitives-in-multiprocessor-systems)
@@ -59,7 +59,7 @@ There are three potential solutions for solving this problem:-
 - **Progress**: Only those processes which is not executing in its remainder section must have an equal chance of entering its CS. The selection of process cannot arbitrarily be delayed indefinitely.
 - **Bounded Waiting**: If a particular process is waiting to enter its CS, there must be a finite limit which allows other processes to enter their CS before the processes' request is granted.
 
-### Explain by Peterson's solution is correct
+### Explain that Peterson's solution is correct
 
 - **Mutual Exclusion**: Even if both flags[0] and flags[1] are true at the same time, the turn variable is allocated the value of either 0 or 1 based on the order of execution. Since the while loop condition in the code is dependant on the latest value of turn, only one processes is allowed to enter it's critical section.
 - **Progress**: Both processes have an equal chance of getting into their critical section. Even though both flags can be true at the same time, there is a random chance of turn to be 0 or 1 based on the order of execution. Additionally, the remainder section doesn't interfere with the selection of a process to go into its critical section. The selection of a process to go into its CS is done in finite time.
