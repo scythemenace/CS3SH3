@@ -83,14 +83,10 @@ The code of producer is as follows:-
 
 ```c
 do {
-...
 /* produce an item in next_produced */
-...
 wait(empty);
 wait(mutex);
-...
 /* add next produced to the buffer */
-...
 signal(mutex);
 signal(full);
 } while (true);
