@@ -300,3 +300,62 @@ $\cfrac{1}{S + \cfrac{1 - S}{N}}$
 run this application on a system with 4 processing cores, what is the speed-up?
 
 Answer would be $\cfrac{1}{0.3 + \cfrac{1 - 0.3}{4}}$ = $\cfrac{1 \times 4}{1.9}$ ~ 2.1 times faster
+
+### Performance Implications of different scenarios in a many-to-many Model
+
+Consider a multicore system and a multithreaded program written using the many-to-many threading model. Let the number of user-level threads in the program be greater than the number of processing cores in the system. Discuss the performance implications of the
+following scenarios:
+
+- The number of kernel threads allocated to the program is less than the number of processing cores.
+- The number of kernel threads allocated to the program is equal to the number of processors.
+- The number of kernel threads allocated to the program is greater than the number of processors.
+
+**Answer**
+
+- In the first case if the number of threads allocated are less than the number of processing cores, overall efficiency of the program will be worse due to the fact that core(s) will be underutilized. This may cause bottlenecks if the processing times are higher for some tasks which is unnecessary given the fact that few cores might be idle.
+- In this case, each kernel thread can be scheduled on a separate processor which leads to full utilization of resources and maximizes parallel execution. Performance gains might be the highest in this case.
+- The last case might be problematic due to the fact that the operating system has to context switch between the kernel threads to share processor time. Context switches come with a lot of overhead and no useful work is done which leads to poor performance and potential delays.
+
+### What is the output of the Line "xyz" - Thread based
+
+The program shown in Figure 4.16 (page 194 of the textbook) uses the Pthreads API. What would be the output from the program at LINE C and LINE P?
+
+```c
+#include <pthread.h>
+#include <stdio.h>
+
+int value = 0;
+void *runner(void *param); /* the thread */
+
+int main(int argc, char *argv[])
+{
+    pid_t pid;
+    pthread_t tid;
+    pthread_attr_t attr;
+
+    pid = fork();
+
+    if (pid == 0) { /* child process */
+        pthread_attr_init(&attr);
+        pthread_create(&tid, &attr, runner, NULL);
+        pthread_join(tid, NULL);
+        printf("CHILD: value = %d\n", value); /* LINE C */
+    }
+    else if (pid > 0) { /* parent process */
+        wait(NULL);
+        printf("PARENT: value = %d\n", value); /* LINE P */
+    }
+}
+
+void *runner(void *param) {
+    value = 5;
+    pthread_exit(0);
+}
+```
+
+Output of Line C would be **CHILD: value = 5** and Line P would be **PARENT: value = 0**. The reason is as follows:-
+
+- When a child process is created, it gets its own memory space and all data from the parent is copied to the memory space.
+- Initially the child has the value set as 0 which gets changed when the thread function is called by the thread created in the child process.
+- The thread can only access the memory space of the process it was created in which is the child process' memory space. The value gets changed to 5 in the child process and gets printed since the thread gets collected using `pthread_join()` before the print statement.
+- In the parent process code the value gets printed as 0 since previously the value was changed only in the child process' memory space. As we said before, the parent process has a different memory space, therefore, the value remains unchanged i.e. 0.
