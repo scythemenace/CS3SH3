@@ -1,5 +1,22 @@
 # Potential Question for CS3SH3 Midterm 1
 
+<!--toc:start-->
+
+- [Potential Question for CS3SH3 Midterm 1](#potential-question-for-cs3sh3-midterm-1)
+  - [Chapter 3](#chapter-3)
+    - [Draw the process tree](#draw-the-process-tree)
+  - [Chapter 6](#chapter-6)
+    - [Dining philosopher](#dining-philosopher)
+    - [Conditions for a solution to satisfy a CS Problem](#conditions-for-a-solution-to-satisfy-a-cs-problem)
+    - [Explain by Peterson's solution is correct](#explain-by-petersons-solution-is-correct)
+    - [Conditional Variables](#conditional-variables)
+    - [Bounded Buffer Hypothetical Deadlock](#bounded-buffer-hypothetical-deadlock)
+    - [Explain why interrupts are not appropriate for implementing synchronization primitives in multiprocessor systems.](#explain-why-interrupts-are-not-appropriate-for-implementing-synchronization-primitives-in-multiprocessor-systems)
+    - [Memory Barrier Usage](#memory-barrier-usage)
+    - [test_and_set(\*target) and compare_and_swap(\*value, expected, new_value)](#testandsettarget-and-compareandswapvalue-expected-newvalue)
+  - [Chapter 3](#chapter-3) - [Give three examples of data parallelism and task parallelism each](#give-three-examples-of-data-parallelism-and-task-parallelism-each) - [Ahmdal's Law](#ahmdals-law) - [Performance Implications of different scenarios in a many-to-many Model](#performance-implications-of-different-scenarios-in-a-many-to-many-model) - [What is the output of the Line "xyz" - Thread based](#what-is-the-output-of-the-line-xyz-thread-based) - [IPC, Two Models and Where To Use One](#ipc-two-models-and-where-to-use-one)
+  <!--toc:end-->
+
 ## Chapter 3
 
 ### Draw the process tree
