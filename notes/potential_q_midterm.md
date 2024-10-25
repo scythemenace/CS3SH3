@@ -1,72 +1,25 @@
-# Potential Question for CS3SH3 Midterm 1
+# Potential Questions for CS3SH3 Midterm 1
 
 <!--toc:start-->
 
-- [Potential Question for CS3SH3 Midterm 1](#potential-question-for-cs3sh3-midterm-1)
-  - [Chapter 3](#chapter-3)
-    - [Draw the process tree](#draw-the-process-tree)
-  - [Chapter 6](#chapter-6)
-    - [Dining philosopher](#dining-philosopher)
-    - [Conditions for a solution to satisfy a CS Problem](#conditions-for-a-solution-to-satisfy-a-cs-problem)
-    - [Explain by Peterson's solution is correct](#explain-by-petersons-solution-is-correct)
-    - [Conditional Variables](#conditional-variables)
-    - [Bounded Buffer Hypothetical Deadlock](#bounded-buffer-hypothetical-deadlock)
-    - [Explain why interrupts are not appropriate for implementing synchronization primitives in multiprocessor systems.](#explain-why-interrupts-are-not-appropriate-for-implementing-synchronization-primitives-in-multiprocessor-systems)
-    - [Memory Barrier Usage](#memory-barrier-usage)
-    - [test_and_set(\*target) and compare_and_swap(\*value, expected, new_value)](#testandsettarget-and-compareandswapvalue-expected-newvalue)
-  - [Chapter 3](#chapter-3) - [Give three examples of data parallelism and task parallelism each](#give-three-examples-of-data-parallelism-and-task-parallelism-each) - [Ahmdal's Law](#ahmdals-law) - [Performance Implications of different scenarios in a many-to-many Model](#performance-implications-of-different-scenarios-in-a-many-to-many-model) - [What is the output of the Line "xyz" - Thread based](#what-is-the-output-of-the-line-xyz-thread-based) - [IPC, Two Models and Where To Use One](#ipc-two-models-and-where-to-use-one)
+- [Chapter 6](#chapter-6)
+  - [Dining philosopher](#dining-philosopher)
+  - [Conditions for a solution to satisfy a CS Problem](#conditions-for-a-solution-to-satisfy-a-cs-problem)
+  - [Explain by Peterson's solution is correct](#explain-by-petersons-solution-is-correct)
+  - [Conditional Variables](#conditional-variables)
+  - [Bounded Buffer Hypothetical Deadlock](#bounded-buffer-hypothetical-deadlock)
+  - [Explain why interrupts are not appropriate for implementing synchronization primitives in multiprocessor systems.](#explain-why-interrupts-are-not-appropriate-for-implementing-synchronization-primitives-in-multiprocessor-systems)
+  - [Memory Barrier Usage](#memory-barrier-usage)
+  - [test_and_set(\*target) and compare_and_swap(\*value, expected, new_value)](#testandsettarget-and-compareandswapvalue-expected-newvalue)
+- [Chapter 3](#chapter-3)
+  - [IPC, Two Models and Where To Use One](#ipc-two-models-and-where-to-use-one)
+  - [Draw the process tree](#draw-the-process-tree)
+- [Chapter 4](#chapter-4)
+  - [Give three examples of data parallelism and task parallelism each](#give-three-examples-of-data-parallelism-and-task-parallelism-each)
+  - [Ahmdal's Law](#ahmdals-law)
+  - [Performance Implications of different scenarios in a many-to-many Model](#performance-implications-of-different-scenarios-in-a-many-to-many-model)
+  - [What is the output of the Line "xyz" - Thread based](#what-is-the-output-of-the-line-xyz-thread-based)
   <!--toc:end-->
-
-## Chapter 3
-
-### Draw the process tree
-
-**Example question** - Draw the process for the code given below and indicate pid1 and pid2 for each process created.
-
-Code is as follows:-
-
-```c
-int main() {
-    pid_t pid1, pid2;
-    pid1 = fork();  // First fork
-    pid2 = fork();  // Second fork
-
-    if (pid1 == 0) {
-        fork();     // Third fork
-    }
-    if (pid2 == 0) {
-        fork();     // Fourth fork
-    }
-
-    return 0;
-}
-```
-
-The process tree for the code above is as follows:-
-![Process Tree](./potential_q_images/process_tree.png)
-
-Explanation
-
-1. First fork() (pid1):
-   - P1 creates P2.
-   - Now we have two processes: P1 and P2.
-2. Second fork() (pid2):
-   - Both P1 and P2 execute this fork().
-
-- P1 creates P3.
-  - P2 creates P4.
-  - Now we have four processes: P1, P2, P3, and P4.
-
-3.  Third fork() (inside if (pid1 == 0)):
-    - Only processes where pid1 == 0 (P2 and its descendants) execute this.
-    - P2 creates P5.
-    - P4 creates P6.
-    - Now we have six processes: P1, P2, P3, P4, P5, and P6.
-4.  Fourth fork() (inside if (pid2 == 0)):
-    - Only processes where pid2 == 0 (P3 and P4) execute this.
-    - P3 creates P9.
-    - P4 creates P8.
-    - Now we have nine processes: P1, P2, P3, P4, P5, P6, P8, and P9.
 
 ## Chapter 6
 
@@ -289,6 +242,69 @@ void release(lock *mutex) {
 
 ## Chapter 3
 
+### IPC, Two Models and Where To Use One
+
+IPC stands for **Inter-Process Communication**. It refers to the mechanisms used by processes to exchange data and communicate with each other in an operating system. Since processes have separate memory spaces, they need IPC techniques to share information, coordinate their actions, or synchronize their behavior.
+
+It has two models:-
+
+- `Shared Memory`: Two or more processes communicate by accessing a common memory space. Processes can read or write to this memory area to exchange information.
+- `Message Passing`: Processes communicate by sending and receiving messages, typically through the operating system. Difference between shared memory and message passing is that this model is simpler and safer (no need to worry about synchronization issues), but it may be slower than shared memory due to the overhead of message copying and system calls.
+
+Shared memory is used when data has to be frequently transferred between processes without the overhead required for system calls. Typically in these cases a large amount of data is being transferred which is not very efficient using the message passing model.
+Message Passing is useful when processes are loosely-coupled i.e. only need to exchange small messages. Additionally in certain systems where shared-memory isn't applicable (like distributed systems) message passing is the only option.
+
+### Draw the process tree
+
+**Example question** - Draw the process for the code given below and indicate pid1 and pid2 for each process created.
+
+Code is as follows:-
+
+```c
+int main() {
+    pid_t pid1, pid2;
+    pid1 = fork();  // First fork
+    pid2 = fork();  // Second fork
+
+    if (pid1 == 0) {
+        fork();     // Third fork
+    }
+    if (pid2 == 0) {
+        fork();     // Fourth fork
+    }
+
+    return 0;
+}
+```
+
+The process tree for the code above is as follows:-
+![Process Tree](./potential_q_images/process_tree.png)
+
+Explanation
+
+1. First fork() (pid1):
+   - P1 creates P2.
+   - Now we have two processes: P1 and P2.
+2. Second fork() (pid2):
+   - Both P1 and P2 execute this fork().
+
+- P1 creates P3.
+  - P2 creates P4.
+  - Now we have four processes: P1, P2, P3, and P4.
+
+3.  Third fork() (inside if (pid1 == 0)):
+    - Only processes where pid1 == 0 (P2 and its descendants) execute this.
+    - P2 creates P5.
+    - P4 creates P6.
+    - Now we have six processes: P1, P2, P3, P4, P5, and P6.
+4.  Fourth fork() (inside if (pid2 == 0)):
+    - Only processes where pid2 == 0 (P3 and P4) execute this.
+    - P3 creates P9.
+    - P4 creates P8.
+    - Now we have nine processes: P1, P2, P3, P4, P5, P6, P8, and P9.
+
+## Chapter 4
+
 ### Give three examples of data parallelism and task parallelism each
 
 Data Parallelism:
@@ -376,15 +392,3 @@ Output of Line C would be **CHILD: value = 5** and Line P would be **PARENT: val
 - Initially the child has the value set as 0 which gets changed when the thread function is called by the thread created in the child process.
 - The thread can only access the memory space of the process it was created in which is the child process' memory space. The value gets changed to 5 in the child process and gets printed since the thread gets collected using `pthread_join()` before the print statement.
 - In the parent process code the value gets printed as 0 since previously the value was changed only in the child process' memory space. As we said before, the parent process has a different memory space, therefore, the value remains unchanged i.e. 0.
-
-### IPC, Two Models and Where To Use One
-
-IPC stands for **Inter-Process Communication**. It refers to the mechanisms used by processes to exchange data and communicate with each other in an operating system. Since processes have separate memory spaces, they need IPC techniques to share information, coordinate their actions, or synchronize their behavior.
-
-It has two models:-
-
-- `Shared Memory`: Two or more processes communicate by accessing a common memory space. Processes can read or write to this memory area to exchange information.
-- `Message Passing`: Processes communicate by sending and receiving messages, typically through the operating system. Difference between shared memory and message passing is that this model is simpler and safer (no need to worry about synchronization issues), but it may be slower than shared memory due to the overhead of message copying and system calls.
-
-Shared memory is used when data has to be frequently transferred between processes without the overhead required for system calls. Typically in these cases a large amount of data is being transferred which is not very efficient using the message passing model.
-Message Passing is useful when processes are loosely-coupled i.e. only need to exchange small messages. Additionally in certain systems where shared-memory isn't applicable (like distributed systems) message passing is the only option.
