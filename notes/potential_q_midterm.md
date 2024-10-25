@@ -150,3 +150,122 @@ signal(full);
 ```
 
 Imagine a scenario where the buffer is full i.e. empty = 0. In this case if our code acquires the mutex lock first, it will run into wait(empty). Since empty is 0, it just waits there and never releases the lock. The consumer process also can't do anything since it's waiting for the lock to be released in order to consume the buffer and due to the lock never releasing, it gets stuck in a deadlock.
+
+### Explain why interrupts are not appropriate for implementing synchronization primitives in multiprocessor systems.
+
+Interrupts are not atomic and also have a lot of overhead due to which it shouldn't be used to implement synchronization primitives
+
+### Memory Barrier Usage
+
+Memory barries are used because sometimes computers can reorder instructions which can cause discrepencies in our code.
+One such situation is as follows:-
+
+Thread 1:
+
+```c
+// Thread #1 is waiting in a loop until f becomes 1.
+// Once f is set to 1, Thread #1 will exit the loop and print the value of x
+while (f == 0);
+print x;
+```
+
+Thread 2:
+
+```c
+// Thread #2 sets x = 42.
+// Then, Thread #2 sets f = 1, signaling to Thread #1 that the value of x is ready to be read.
+x = 42;
+f = 1;
+```
+
+**Intended Behaviour**
+
+- Thread 2 should first set the value of x and then set the value of f as 1 in order to break the loop in thread 1
+- Thread 1 waits until f equals 1 and then reads the value of x.
+- The expected result is that thread 1 prints 42, once f becomes 1.
+
+**The Problem**
+
+- If the instruction `x = 42` and `f = 1` gets reordered then f might become 1 before x is set to 42. If thread 1 executes immediately after f becomes 1 then it might print an incorrect value of x which was not intended.
+
+Therefore a memory barrier is needed. The corrected code is as follows:-
+
+Thread 1:
+
+```c
+while (f == 0);
+memory_barrier();  // Ensures that f == 1 is fully observed before reading x
+print x;           // Now reads the correct value of x (42)
+```
+
+Thread 2:
+
+```c
+x = 42;
+memory_barrier();  // Ensures x = 42 is committed before f = 1
+f = 1;
+```
+
+Memory barriers force any changes that you want up to the point its called to be forcefully propagated to all systems (like a github commit). So x = 42 will be known before f becomes 1.
+
+### test_and_set(\*target) and compare_and_swap(\*value, expected, new_value)
+
+test_and_set() returns the target's value but replaces it with true. This is useful for scenarios like the bounded buffer.
+
+```c
+bool test_and_set(bool *target) {
+  bool old_val = *target;
+  *target = true;
+  return old_val
+}
+```
+
+This is useful when we have to implement a mutex lock using the test_and_set() atomic hardware instruction. Assume that the following structure is available:-
+
+```c
+typedef struct {
+bool held;
+} lock;
+```
+
+`held == false (true)` indicates that the lock is available (not available) Using the `struct lock`, illustrate how the following functions can be implemented using the test_and_set() instructions:
+
+- a. `void acquire(lock \*mutex)`
+- b. `void release(lock \*mutex)`
+
+```c
+void acquire(lock *mutex) {
+  while(test_and_set(&mutex->held));
+  // Do whatever
+}
+
+void release(lock *mutex) {
+  &mutex->held == false;
+}
+```
+
+compare_and_swap() gives us more flexibility to do that. We don't have to stick to just using true to replace the target, we can be more flexible here.
+
+```c
+int compare_and_swap(int *value, int expected, int new_val) {
+  int old_val = *value;
+  if (*value == expected) {
+    *value = new_val
+  }
+
+  return old_val;
+}
+```
+
+We can simulate the same functionality as test_and_set using compare_and_swap by giving it appropriate values. The code for the same acquire and release is given below using compare_and_swap();
+
+```c
+void acquire(lock *mutex) {
+  while(compare_and_swap(&mutex->held, false, true));
+  // Do whatever
+}
+
+void release(lock *mutex) {
+  &mutex->held == false;
+}
+```
