@@ -236,12 +236,12 @@ We can simulate the same functionality as test_and_set using compare_and_swap by
 
 ```c
 void acquire(lock *mutex) {
-  while(compare_and_swap(&mutex->held, false, true));
+  while(compare_and_swap(&mutex->held, 0, 1));
   // Do whatever
 }
 
 void release(lock *mutex) {
-  &mutex->held == false;
+  &mutex->held == 0;
 }
 ```
 
