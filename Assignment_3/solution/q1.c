@@ -3,7 +3,7 @@
 #include <string.h>
 #include <pthread.h>
 #include <semaphore.h>
-#include <ctype.h>
+#include <time.h>
 
 void* student_actions( void* student_id );
 void* ta_actions();
@@ -24,6 +24,7 @@ int ta_sleeping_flag = 0;
 int main() {
  
 	int student_num = NUM_STUDENTS;
+  srand(time(NULL));
 
 	int student_ids[student_num];
 	pthread_t students[student_num];
