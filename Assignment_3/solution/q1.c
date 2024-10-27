@@ -35,6 +35,8 @@ int main() {
   srand(time(NULL));
 
   // Thread creation
+  /* Reason for creating student id's is that we need to keep track of which student we are working on for our print statements and also 
+   * because our chair array sets each index with the student id of the student which is occupying the chair*/
 	int student_ids[student_num];
 	pthread_t students[student_num];
 	pthread_t ta;
@@ -66,28 +68,36 @@ void* ta_actions() {
 
 	printf("Checking for students.\n");
 
+  // TA continuously checks for students needing help
 	while(1) {
 
 		//if students are waiting
 		if (number_students_waiting > 0) {
 
+      // If there are students waiting then TA will stop sleeping
 			ta_sleeping_flag = 0;
+
+      // Decrements sem_students, possibly blocking if no students have signaled
 			sem_wait(&sem_students);
+      // Lock access to shared variables
 			pthread_mutex_lock(&mutex);
 
+      // Initializing a random time to simulate TA giving help
 			int help_time = rand() % 5;
 
 			//TA helping student.
 			printf("Helping a student(student: %d) for %d seconds. Students waiting = %d.\n", waiting_room_chairs[next_teaching_position], help_time, (number_students_waiting - 1));
 
-			waiting_room_chairs[next_teaching_position]=0;
-			number_students_waiting--;
-			next_teaching_position = ( next_teaching_position + 1 ) % NUM_WAITING_CHAIRS;
+			waiting_room_chairs[next_teaching_position]=0; // Since that student got help, index will be set to 0
+			number_students_waiting--; // Decrement number of students waiting since one of them got help
+      // There are only 3 chairs, ideally we just increment the index so that it moves to the next chair. The modulus is used to increment the chair such that it doesn't surpass the max_chair limit(3)
+			next_teaching_position = (next_teaching_position + 1) % NUM_WAITING_CHAIRS; 
 
+      // Simulating help
 			sleep(help_time);
 
-			pthread_mutex_unlock( &mutex );
-			sem_post( &sem_ta );
+			pthread_mutex_unlock(&mutex);
+			sem_post(&sem_ta); // Giving access TA access to students
 
 		}
 		//if no students are waiting
@@ -99,8 +109,8 @@ void* ta_actions() {
 				ta_sleeping_flag = 1;
 
 			}
+      // To prevent busy waiting, letting the thread briefly sleep
       usleep(100000);
-
 		}
 
 	}
@@ -109,6 +119,7 @@ void* ta_actions() {
 
 void* student_actions(void* student_id) {
 
+  // Since thread function take void inputs, we have to type cast them according to what we want
 	int id_student = *(int*)student_id;
 
 	while(1) {
@@ -118,11 +129,12 @@ void* student_actions(void* student_id) {
       continue; 
     }
 
-		//student is programming.
-		int time = rand() % 5;
+		//simulating that student is programming.
+		int time = rand() % 5; // random time
 		printf("\tStudent %d is programming for %d seconds.\n", id_student, time);
-		sleep(time);
+		sleep(time); // programming starts
 
+    // Protecting shared resources
 		pthread_mutex_lock(&mutex);
 
 		if(number_students_waiting < NUM_WAITING_CHAIRS) {
@@ -132,12 +144,14 @@ void* student_actions(void* student_id) {
 
 			//student takes a seat in the hallway.
 			printf("\t\tStudent %d takes a seat. Students waiting = %d.\n", id_student, number_students_waiting);
+      // There are only 3 chairs, ideally we just increment the index so that it moves to the next chair. The modulus is used to increment the chair such that it doesn't surpass the max_chair limit(3)
 			next_seating_position = (next_seating_position + 1) % NUM_WAITING_CHAIRS;
 
 			pthread_mutex_unlock(&mutex);
 
-			//wake TA if sleeping
+			// wake TA if sleeping (i.e. sem_students = 0 so it might be stuck)
 			sem_post(&sem_students);
+      // wait for TA access (i.e. if TA is currently available)
 			sem_wait(&sem_ta);
 
 		}
