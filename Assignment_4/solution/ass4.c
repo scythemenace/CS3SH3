@@ -2,6 +2,9 @@
 #include <stdlib.h>
 #include <stdint.h>
 #include <string.h>
+#include <fcntl.h>    // For open()
+#include <unistd.h>   // For close()
+#include <sys/mman.h> // For mmap()
 
 // Constants for address masking and shifting
 #define PAGE_MASK 0xFF00       // Mask to extract the page number
@@ -30,6 +33,14 @@ int page_faults = 0;         // Counter for page faults
 int TLB_hits = 0;            // Counter for TLB hits
 int total_addresses = 0;     // Counter for total addresses processed
 
+// Variables for FIFO page replacement
+int page_order[NUM_FRAMES];  // Keeps track of the order of pages in frames
+int frame_index = 0;         // Points to the next frame to replace
+
+// Backing store variables
+int backing_store_fd;        // File descriptor for the backing store
+signed char *backing_store;  // Pointer to the mapped backing store
+
 // Function to search the TLB for a given page number
 int search_TLB(int page_number) {
     for (int i = 0; i < TLB_SIZE; i++) {
@@ -56,13 +67,13 @@ void TLB_Add(int page_number, int frame_number) {
 void TLB_Update(int replaced_page_number, int new_page_number, int frame_number) {
     for (int i = 0; i < TLB_SIZE; i++) {
         if (TLB[i].page_number == replaced_page_number) {
-            // Overwrite the entry with the new page
-            TLB[i].page_number = new_page_number;
-            TLB[i].frame_number = frame_number;
-            return;
+            // Invalidate the TLB entry for the replaced page
+            TLB[i].page_number = -1;
+            TLB[i].frame_number = -1;
+            break;
         }
     }
-    // If the replaced page was not in the TLB, add the new entry
+    // Add the new page-to-frame mapping to the TLB
     TLB_Add(new_page_number, frame_number);
 }
 
@@ -78,10 +89,34 @@ int main() {
         TLB[i].frame_number = -1;
     }
 
+    // Initialize the page_order array
+    for (int i = 0; i < NUM_FRAMES; i++) {
+        page_order[i] = -1;
+    }
+
+    // Open the backing store file
+    backing_store_fd = open("../BACKING_STORE.bin", O_RDONLY);
+    if (backing_store_fd == -1) {
+        perror("Error opening BACKING_STORE.bin");
+        return 1;
+    }
+
+    // Map the backing store into memory
+    backing_store = mmap(0, 65536, PROT_READ, MAP_PRIVATE, backing_store_fd, 0);
+    if (backing_store == MAP_FAILED) {
+        perror("Error mapping BACKING_STORE.bin");
+        close(backing_store_fd);
+        return 1;
+    }
+
+    // Close the backing store file descriptor
+    close(backing_store_fd);
+
     // Open the file containing logical addresses
     FILE *file = fopen("../addresses.txt", "r");
     if (file == NULL) {
         perror("Error opening addresses.txt");
+        munmap(backing_store, 65536);
         return 1;
     }
 
@@ -115,33 +150,36 @@ int main() {
                 // Page fault occurs
                 page_faults++;
 
-                // Handle page fault (load page into memory)
+                // Load the page from the backing store
                 if (next_frame < NUM_FRAMES) {
                     // Free frame available
                     frame_number = next_frame;
                     next_frame++;
                 } else {
-                    // Physical memory is full, need to replace a page using FIFO policy
-                    // For simplification, we replace the page in frame 0
-                    frame_number = 0;
+                    // Physical memory is full, replace the oldest page using FIFO
+                    frame_number = frame_index;
 
-                    // Find the page currently in frame 0 and invalidate it
-                    int replaced_page = -1;
-                    for (int i = 0; i < PAGE_TABLE_SIZE; i++) {
-                        if (page_table[i] == frame_number) {
-                            page_table[i] = -1;
-                            replaced_page = i;
-                            break;
-                        }
-                    }
+                    // Find the page currently in the frame to be replaced
+                    int replaced_page = page_order[frame_index];
 
-                    // Update the TLB to reflect the change
+                    // Update the page table to invalidate the replaced page
+                    page_table[replaced_page] = -1;
+
+                    // Update the TLB to invalidate the replaced page
                     TLB_Update(replaced_page, page_number, frame_number);
                 }
 
-                // Load the page into physical memory (simulated)
+                // Copy the page from backing store to physical memory
+                memcpy(physical_memory[frame_number], backing_store + page_number * FRAME_SIZE, FRAME_SIZE);
+
+                // Update the page table with the new page
                 page_table[page_number] = frame_number;
-                memset(physical_memory[frame_number], page_number, FRAME_SIZE);
+
+                // Update the page_order array with the new page
+                page_order[frame_index] = page_number;
+
+                // Move the frame_index to the next frame (circularly)
+                frame_index = (frame_index + 1) % NUM_FRAMES;
             }
 
             // Step 3: Add the page-to-frame mapping to the TLB
@@ -160,10 +198,16 @@ int main() {
         printf("Value: %d\n", value);
     }
 
-    // Close the file
+    // Close the addresses file
     fclose(file);
 
-    
+    // Unmap the backing store
+    if (munmap(backing_store, 65536) == -1) {
+        perror("Error unmapping BACKING_STORE.bin");
+        return 1;
+    }
+
+    // Output statistics
     printf("Number of Translated Addresses = %d\n", total_addresses);
     printf("Page Faults = %d\n", page_faults);
     printf("TLB Hits = %d\n", TLB_hits);
