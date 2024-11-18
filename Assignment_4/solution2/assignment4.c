@@ -81,10 +81,17 @@ int main()
      * number with the page size (the reason we use offset bits here is in << by multiply by 2^(bits) and in this case 2^(12 - offset bits) = page size)
      * and adding the offset for that particular page in the logical address that we calculated*/
 
-    unsigned int frame_number = page_table[page_number];
-    unsigned int physical_address = (frame_number << OFFSET_BITS) | offset;
+    if (page_table[page_number] != -1) {
+      unsigned int frame_number = page_table[page_number];
+    } else {
+      replace_page(page_number);
+      unsigned int frame_number = page_table[page_number];
+    }
 
-    printf("Virtual addr is %u: Page# = %u & Offset = %u. Physical addr = %u.\n", logical_address, page_number, offset, physical_address);
+    unsigned int physical_address = (frame_number << OFFSET_BITS) | offset;
+    printf("The corresponding physical address is: %u\n", physical_address);
+    signed char value = physical_memory[frame_number][offset];
+    printf("The signed byte value at %u is %c\n", physical_address, value);
   }
 
   fclose(fptr);
