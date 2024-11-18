@@ -223,9 +223,9 @@ int main() {
         signed char value = physical_memory[frame_number][offset];
 
         // Output the results
-        printf("Logical Address: %u\n", logical_address);
-        printf("Physical Address: %d\n", physical_address);
-        printf("Value: %d\n", value);
+        printf("Virtual address: %u ", logical_address);
+        printf("Physical address = %d ", physical_address);
+        printf("Value=%d\n", value);
     }
 
     // Close the addresses file
