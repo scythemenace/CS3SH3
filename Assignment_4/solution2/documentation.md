@@ -99,7 +99,8 @@ It seems to read the file without any issues.
 - **Logical address size**: $2^{16}$ or 65536 bytes.
 - **Physical address size**: $2^{15}$ bytes.
 - **Bits needed to represent addresses in the logical address space**: Logical address space is $2^{16}$ bytes that means 16 bits will be required to indicate all the different addresses or you could say the maximum address space spans to $2^{16}$ - 1 = 65535 which is 1111111111111111 (16 digits) therefore, we need 16 digits to indicate all addresses.
-
 - **Bits needed to represent addresses in the physical address space**: Similarly, we need 15 bits to indicate all the different addresses in the physical space
 - **Page size**: 256 bytes or $2^{8}$ bytes.
-- **Number of pages**: As per the slides, we can deduce the total number of pages in the logical space would be $\cfrac{\text{size of the logical space}}{\text{size of one page}}$ = $\cfrac{2^{16}}{2^{8}}$
+- **Number of pages**: As per the slides, we can deduce the total number of pages in the logical space would be $\cfrac{\text{size of the logical space}}{\text{size of one page}}$ = $\cfrac{2^{16}}{2^{8}}$ = $2^{16 - 8}$ = $2^8$
+- **Number of bits required to represent the page number**: 8 bits due to the fact that there are $2^8$ different pages.
+- **Number of bits required to represent the offset**: 8 bits because logically think about this, a single page is of size 256 bytes or $2^8$ bytes. That means we need 8 bits to represent each different location in one page, therefore we need 8 bits for the offset since that's literally what the offset does.
