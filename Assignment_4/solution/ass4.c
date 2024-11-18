@@ -41,6 +41,8 @@ int frame_index = 0;         // Points to the next frame to replace
 int backing_store_fd;        // File descriptor for the backing store
 signed char *backing_store;  // Pointer to the mapped backing store
 
+
+
 // Function to search the TLB for a given page number
 int search_TLB(int page_number) {
     for (int i = 0; i < TLB_SIZE; i++) {
@@ -67,15 +69,22 @@ void TLB_Add(int page_number, int frame_number) {
 void TLB_Update(int replaced_page_number, int new_page_number, int frame_number) {
     for (int i = 0; i < TLB_SIZE; i++) {
         if (TLB[i].page_number == replaced_page_number) {
-            // Invalidate the TLB entry for the replaced page
-            TLB[i].page_number = -1;
-            TLB[i].frame_number = -1;
+            // // Invalidate the TLB entry for the replaced page
+            // TLB[i].page_number = -1;
+            // TLB[i].frame_number = -1;
+
+
+            // Overwrite the TLB entry with the new page
+            TLB[i].page_number = new_page_number;
+            TLB[i].frame_number = frame_number;
             break;
         }
     }
     // Add the new page-to-frame mapping to the TLB
     TLB_Add(new_page_number, frame_number);
 }
+
+
 
 int main() {
     // Initialize the page table with all entries set to -1
@@ -94,6 +103,8 @@ int main() {
         page_order[i] = -1;
     }
 
+
+
     // Open the backing store file
     backing_store_fd = open("../BACKING_STORE.bin", O_RDONLY);
     if (backing_store_fd == -1) {
@@ -108,9 +119,10 @@ int main() {
         close(backing_store_fd);
         return 1;
     }
-
     // Close the backing store file descriptor
     close(backing_store_fd);
+
+
 
     // Open the file containing logical addresses
     FILE *file = fopen("../addresses.txt", "r");
@@ -123,10 +135,10 @@ int main() {
     char line[20];  // Buffer to hold each line from the file
 
     // Read each logical address from the file
-    while (fgets(line, sizeof(line), file)) {
+    while (fgets(line, 20, file)) { // 20 is the size of the line
         total_addresses++;
 
-        // Convert the logical address to an unsigned 16-bit integer
+        // Convert the logical address to an unsigned 16-bit integer. Using uint16_t here to store 16 bit values
         uint16_t logical_address = (uint16_t)atoi(line);
 
         // Extract the page number and offset
@@ -146,6 +158,10 @@ int main() {
             if (page_table[page_number] != -1) {
                 // Page is in memory
                 frame_number = page_table[page_number];
+
+                // Since we had a TLB miss but the page is in memory, we add it to the TLB
+                TLB_Add(page_number, frame_number);
+                
             } else {
                 // Page fault occurs
                 page_faults++;
@@ -155,6 +171,18 @@ int main() {
                     // Free frame available
                     frame_number = next_frame;
                     next_frame++;
+
+                    // Copy the page from backing store to physical memory
+                    memcpy(physical_memory[frame_number], backing_store + page_number * FRAME_SIZE, FRAME_SIZE);
+
+                    // Update the page table with the new page
+                    page_table[page_number] = frame_number;
+
+                    // Add the page to the page_order array
+                    page_order[next_frame - 1] = page_number;
+
+                    // Since we have loaded a new page into memory, add it to the TLB
+                    TLB_Add(page_number, frame_number);
                 } else {
                     // Physical memory is full, replace the oldest page using FIFO
                     frame_number = frame_index;
@@ -165,25 +193,27 @@ int main() {
                     // Update the page table to invalidate the replaced page
                     page_table[replaced_page] = -1;
 
-                    // Update the TLB to invalidate the replaced page
+                    // Copy the page from backing store to physical memory
+                    memcpy(physical_memory[frame_number], backing_store + page_number * FRAME_SIZE, FRAME_SIZE);
+
+                    // Update the page table with the new page
+                    page_table[page_number] = frame_number;
+
+                    // Update the page_order array with the new page
+                    page_order[frame_index] = page_number;
+
+                    // Update the TLB
                     TLB_Update(replaced_page, page_number, frame_number);
+
+                    // Move the frame_index to the next frame (circularly)
+                    frame_index = (frame_index + 1) % NUM_FRAMES;
                 }
-
-                // Copy the page from backing store to physical memory
-                memcpy(physical_memory[frame_number], backing_store + page_number * FRAME_SIZE, FRAME_SIZE);
-
-                // Update the page table with the new page
-                page_table[page_number] = frame_number;
-
-                // Update the page_order array with the new page
-                page_order[frame_index] = page_number;
-
-                // Move the frame_index to the next frame (circularly)
-                frame_index = (frame_index + 1) % NUM_FRAMES;
             }
 
-            // Step 3: Add the page-to-frame mapping to the TLB
-            TLB_Add(page_number, frame_number);
+
+            // // Step 3: Add the page-to-frame mapping to the TLB
+            // Do not call TLB_Add here since TLB_Update already handles adding the new page. // Fixed in second edit
+            // TLB_Add(page_number, frame_number);
         }
 
         // Compute the physical address
