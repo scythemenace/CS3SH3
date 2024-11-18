@@ -6,6 +6,7 @@
 #include <stdlib.h>
 
 #define BUFFER_SIZE 10
+#define LOGICAL_ADDRESS_SIZE 65536
 #define OFFSET_BITS 8
 #define PAGE_SIZE 256          // 2^8
 #define OFFSET_MASK 0xFFFFFFFF // Offset is the remainder and in this case the lower 12 bits. Each hex 'F' represent 8 bits
@@ -29,7 +30,7 @@ int main()
         exit(EXIT_FAILURE);
   }
 
-  mmapfptr = mmap(NULL, MEMORY_SIZE, PROT_READ, MAP_PRIVATE, mmapfile_fd, 0);
+  mmapfptr = mmap(NULL, LOGICAL_ADDRESS_SIZE, PROT_READ, MAP_PRIVATE, mmapfile_fd, 0);
   // END
 
   // Creating a phyiscal memory using circular array
@@ -81,11 +82,13 @@ int main()
      * number with the page size (the reason we use offset bits here is in << by multiply by 2^(bits) and in this case 2^(12 - offset bits) = page size)
      * and adding the offset for that particular page in the logical address that we calculated*/
 
+    unsigned int frame_number;
+
     if (page_table[page_number] != -1) {
-      unsigned int frame_number = page_table[page_number];
+      frame_number = page_table[page_number];
     } else {
       replace_page(page_number);
-      unsigned int frame_number = page_table[page_number];
+      frame_number = page_table[page_number];
     }
 
     unsigned int physical_address = (frame_number << OFFSET_BITS) | offset;
