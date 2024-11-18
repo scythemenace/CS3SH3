@@ -1,14 +1,16 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <sys/mman.h>
+#include <string.h>
+#include <fcntl.h>
+#include <stdlib.h>
 
-// As stated, the logical addresses are no more than size 10
 #define BUFFER_SIZE 10
 #define OFFSET_BITS 8
 #define PAGE_SIZE 256          // 2^8
 #define OFFSET_MASK 0xFFFFFFFF // Offset is the remainder and in this case the lower 12 bits. Each hex 'F' represent 8 bits
 #define PAGES 256              // 2^8
 #define FRAME_COUNT 128
-#define FRAME_SIZE 256
 
 int main()
 {
@@ -18,8 +20,20 @@ int main()
     page_table[i] = -1;
   }
 
+
+  // Writing .bin file to memory
+  signed char *mmapfptr; // To store the starting address of the memory mapped file
+  int mmapfile_fd = open("BACKING_STORE.bin", O_RDONLY);
+  if (mmapfile_fd == -1) {
+        perror("Error opening file");
+        exit(EXIT_FAILURE);
+  }
+
+  mmapfptr = mmap(NULL, MEMORY_SIZE, PROT_READ, MAP_PRIVATE, mmapfile_fd, 0);
+  // END
+
   // Creating a phyiscal memory using circular array
-  signed char physical_memory[FRAME_COUNT][FRAME_SIZE];
+  signed char physical_memory[FRAME_COUNT][PAGE_SIZE];
   int current_frame_index = 0;
 
   signed char read_frames(int frame_index, int offset)
@@ -27,17 +41,14 @@ int main()
     return physical_memory[frame_index][offset];
   }
 
-  void write_frame(int frame_index, signed char *data)
+  void write_frame(int page_number, int frame_index)
   {
-    for (int i = 0; i < FRAME_SIZE; i++)
-    {
-      physical_memory[frame_index][i] = data[i]
-    }
+    memcpy(physical_memory[frame_index], mmapfptr + page_number * PAGE_SIZE, PAGE_SIZE);
   }
 
-  void replace_page(int page_number, signed char *new_page_data)
+  void replace_page(int page_number)
   {
-    write_frame(current_frame_index, new_page_data);
+    write_frame(page_number, current_frame_index);
     page_table[page_number] = current_frame_index;
     current_frame_index = (current_frame_index + 1) % FRAME_COUNT;
   }
@@ -55,7 +66,7 @@ int main()
   {
 
     unsigned int logical_address = (unsigned int)atoi(buff);
-    printf("%u\n", logical_address);
+    printf("Logical address being translated %u\n", logical_address);
 
     unsigned int page_number = logical_address >> OFFSET_BITS; // essentially logical_address / offset_bits
     unsigned offset = logical_address & OFFSET_MASK;           // Getting the remainder i.e. the lower 12 bits

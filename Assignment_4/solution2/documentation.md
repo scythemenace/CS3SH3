@@ -125,9 +125,9 @@ It seems to read the file without any issues.
 
 ```c
 int page_table[PAGES];
-  for (int i = 0; i < PAGES; i++) {
-    page_table[i] = -1;
-  }
+for (int i = 0; i < PAGES; i++) {
+  page_table[i] = -1;
+}
 ```
 
 We need a circular array of type `signed char` and size 128 since we have 128 different pages. This can be a 2-D array where each index is of size 256 representing the page size. This is perfect due to the fact that `signed char` takes up 1 byte and our mmap() function also usually uses the `signed char` type to map values.
@@ -157,18 +157,19 @@ current_frame_index = (current_frame_index + 1) % FRAME_COUNT
 
 ```c
 signed char read_frames(int frame_index, int offset) {
-    return physical_memory[frame_index][offset];
-  }
+  return physical_memory[frame_index][offset];
+}
 ```
 
 4. Handling page replacements by using the current_frame_index to identify which frame to replace next
 
 ```c
-void replace_page(int page_number, signed char *new_page_data) {
-    write_frame(current_frame_index, new_page_data);
-    page_table[page_number] = current_frame_index;
-    current_frame_index = (current_frame_index + 1) % FRAME_COUNT;
-  }
+void replace_page(int page_number)
+{
+  write_frame(page_number, current_frame_index);
+  page_table[page_number] = current_frame_index;
+  current_frame_index = (current_frame_index + 1) % FRAME_COUNT;
+}
 ```
 
 To do this, we use another helper function called `write_frame` written below.
@@ -176,9 +177,44 @@ To do this, we use another helper function called `write_frame` written below.
 5. We use write frame for replacing the contents of the frame in case of a page fault
 
 ```c
-void write_frame(int frame_index, signed char *data) {
-    for (int i = 0; i < FRAME_SIZE; i++) {
-      physical_memory[frame_index][i] = data[i]
-    }
-  }
+void write_frame(int page_number, int frame_index)
+{
+  memcpy(physical_memory[frame_index], mmapfptr + page_number * PAGE_SIZE, PAGE_SIZE);
+}
 ```
+
+At the beginning section of the code, we should probably first copy the .bin file to memory since in the initial phases everything will be a page fault since the page_table is intialized to -1. Therefore, it is crucial that we have the bin file in the memory
+
+We first write the .bin file to memory
+
+```c
+signed char *mmapfptr; // To store the starting address of the memory mapped file
+int mmapfile_fd = open("BACKING_STORE.bin", O_RDONLY);
+if (mmapfile_fd == -1) {
+      perror("Error opening file");
+      exit(EXIT_FAILURE);
+}
+
+mmapfptr = mmap(NULL, MEMORY_SIZE, PROT_READ, MAP_PRIVATE, mmapfile_fd, 0);
+```
+
+The catch here is how will memcpy() work in our write_frame() function
+
+So basically, memcpy's first argument is the destination file, which is the physical_memory's nested array based on the page number
+
+For the second argument, which is important in this case, I was able to deduce something from the lab assignments
+
+In the lab assignments we were copying from a memory mapped file to an array and the code line is as follows:
+
+```c
+
+memcpy(&intArray[i], mmapfptr + 4 * i, 4);
+```
+
+So the second argument here is `mmapfptr + 4 * i` which essentially means mmapfptr's current location + (where the next integer is located) because each integer takes 4 bytes and based on the iterator we are moving through each integer.
+
+The third argument is 4 because we are copying each integer one by one we only read 4 bytes
+
+In our case each signed char only takes 1 byte so we can leverage that. Whenever we want to copy a page from the mmapped file to the physical memory, we can get the page address by multiplying page number by page size ($page_number * 256$) and use it as the second argument to indicate the point from where we want to start reading (offset).
+
+The third argument can be 256 since each signed char takes up 256 bytes and our nested array size is also 256 due to the fact it's made up of signed chars we can just replace it by copying 256 bytes.
