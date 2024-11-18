@@ -106,3 +106,79 @@ It seems to read the file without any issues.
 - **Number of bits required to represent the offset**: 8 bits because logically think about this, a single page is of size 256 bytes or $2^8$ bytes. That means we need 8 bits to represent each different location in one page, therefore we need 8 bits for the offset since that's literally what the offset does. Alternatively, you can think of this like this: Each address has 16 bits, if 8 were used to denote the page number then 16 - 8 = 8 bits will be used to denote the offset.
 - **Number of frames**: Since frame size = page size, we can calculate number of frames by dividing total physical memory size by the frame size i.e. total number of frames = $\cfrac{\text{size of physical memory}}{\text{size of page}}$ = $\cfrac{2^{15}}{2^8}$ = $2^{15 - 8}$ = $2^7$
 - **Number of bits needed to represent each frame number**: 7 bits due to reasons already explained above for different examples.
+- **Maximum number of entries in the TLB**: 16
+
+## Basic breakdown of MMU simulator excluding the TLB
+
+- We are required to translate logical addresses to physical address.
+- First we test our program by changing the values in our boilerplate code with the new values based on our deduction
+
+```c
+#define BUFFER_SIZE 10
+#define OFFSET_BITS 8
+#define PAGE_SIZE 256 // 2^8
+#define OFFSET_MASK 0xFFFFFFFF // Offset is the remainder and in this case the lower 12 bits. Each hex 'F' represent 8 bits
+#define PAGES 256 // 2^8
+```
+
+- Then we proceed to initalize a page_table of size 256. We do so by iterating through the array and giving each index a value of -1.
+
+```c
+int page_table[PAGES];
+  for (int i = 0; i < PAGES; i++) {
+    page_table[i] = -1;
+  }
+```
+
+We need a circular array of type `signed char` and size 128 since we have 128 different pages. This can be a 2-D array where each index is of size 256 representing the page size. This is perfect due to the fact that `signed char` takes up 1 byte and our mmap() function also usually uses the `signed char` type to map values.
+
+1. We intialize the 2-D array:
+
+```c
+signed char physical_memory[FRAME_COUNT][FRAME_SIZE];
+```
+
+2. We use a pointer to keep track of which page to replace
+
+```c
+int current_frame_index = 0;
+```
+
+When a page needs to be replaced:
+
+- Overwrite the current frame at the current_frame_index
+- Increment the pointer and in case of overflow just use modulo arithmetic to wrap it around
+
+```c
+current_frame_index = (current_frame_index + 1) % FRAME_COUNT
+```
+
+3. For reading an address we access, the required address if given two inputs, 1. Frame Index and 2. Offset
+
+```c
+signed char read_frames(int frame_index, int offset) {
+    return physical_memory[frame_index][offset];
+  }
+```
+
+4. Handling page replacements by using the current_frame_index to identify which frame to replace next
+
+```c
+void replace_page(int page_number, signed char *new_page_data) {
+    write_frame(current_frame_index, new_page_data);
+    page_table[page_number] = current_frame_index;
+    current_frame_index = (current_frame_index + 1) % FRAME_COUNT;
+  }
+```
+
+To do this, we use another helper function called `write_frame` written below.
+
+5. We use write frame for replacing the contents of the frame in case of a page fault
+
+```c
+void write_frame(int frame_index, signed char *data) {
+    for (int i = 0; i < FRAME_SIZE; i++) {
+      physical_memory[frame_index][i] = data[i]
+    }
+  }
+```
