@@ -195,7 +195,7 @@ if (mmapfile_fd == -1) {
       exit(EXIT_FAILURE);
 }
 
-mmapfptr = mmap(NULL, MEMORY_SIZE, PROT_READ, MAP_PRIVATE, mmapfile_fd, 0);
+mmapfptr = mmap(NULL, LOGICAL_ADDRESS_SIZE, PROT_READ, MAP_PRIVATE, mmapfile_fd, 0);
 ```
 
 The catch here is how will memcpy() work in our write_frame() function
@@ -218,3 +218,24 @@ The third argument is 4 because we are copying each integer one by one we only r
 In our case each signed char only takes 1 byte so we can leverage that. Whenever we want to copy a page from the mmapped file to the physical memory, we can get the page address by multiplying page number by page size ($page_number * 256$) and use it as the second argument to indicate the point from where we want to start reading (offset).
 
 The third argument can be 256 since each signed char takes up 256 bytes and our nested array size is also 256 due to the fact it's made up of signed chars we can just replace it by copying 256 bytes.
+
+## Requirement 2: Inclusion of TLB
+
+TLB can be implemented as a circular array, which each value being a custom data type which stores frame_number and page_number.
+
+The custom data type TLBentry is as follows:-
+
+```c
+typedef struct {
+  int page_number;
+  int frame_number;
+} TLBentry;
+```
+
+Similar to physical memory we will create an `int tlb_next_index = 0` to preserve circular buffer logic
+
+We will initialize our array:
+
+```c
+TLBentry tlb[TLB_SIZE]
+```

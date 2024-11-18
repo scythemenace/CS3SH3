@@ -12,6 +12,48 @@
 #define OFFSET_MASK 0xFF // Corrected to mask lower 8 bits
 #define PAGES 256        // 2^8
 #define FRAME_COUNT 128
+#define TLB_SIZE 16
+
+// Creating a custom type to store page_number and frame_number as a pair
+typedef struct {
+  int page_number;
+  int frame_number;
+} TLBentry;
+
+TLBentry tlb[TLB_SIZE];
+
+// Initializing a pointer to keep track of next available index
+int tlb_next_index = 0;
+
+int search_tlb(int page_number) {
+  // Loop through each entry in the tlb to find if we have that page_number
+  for (int i = 0; i < TLB_SIZE; i++) {
+    if (tlb[i].page_number == page_number) {
+      return tlb[i].frame_number;
+    }
+  }
+
+  return -1; // not found
+}
+
+void add_tlb(int page_number, int frame_number) {
+  // updating our values based on the pointer that we explicitly created
+  tlb[tlb_next_index].page_number = page_number;
+  tlb[tlb_next_index].frame_number = frame_number;
+
+  // Logic to update the tlb_next_index in the circular array fashion
+  tlb_next_index = (tlb_next_index + 1) % TLB_SIZE;
+}
+
+void update_tlb(int old_page_number, int new_page_number, int new_frame_number) {
+  for (int i = 0; i < TLB_SIZE; i++) {
+    if (tlb[i].page_number == old_page_number) {
+      tlb[i].page_number = new_page_number;
+      tlb[i].frame_number = new_frame_number;
+      return;
+    }
+  }
+}
 
 int page_table[PAGES];
 signed char physical_memory[FRAME_COUNT][PAGE_SIZE];
