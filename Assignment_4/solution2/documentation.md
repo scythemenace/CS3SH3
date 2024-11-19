@@ -161,16 +161,36 @@ signed char read_frames(int frame_index, int offset) {
 }
 ```
 
-4. Handling page replacements by using the current_frame_index to identify which frame to replace next
+4. Handling page replacements by using the current_frame_index to identify which frame to replace next. Additionally to invalidate old pages, we initialize an inverse mapping of frame to pages
 
 ```c
+int frame_page[FRAME_COUNT]; // For inverse mapping to update page_table
+```
+
+```c
+// Replaces a page in physical memory using FIFO policy
 void replace_page(int page_number)
 {
+  int old_page = frame_page[current_frame_index];
+  if (old_page != -1)
+  {
+    // Invalidate the old page's entry in the page table
+    page_table[old_page] = -1;
+  }
+
+  frame_page[current_frame_index] = page_number;
+
   write_frame(page_number, current_frame_index);
-  page_table[page_number] = current_frame_index;
+  page_table[page_number] = current_frame_index; // Update the page_table as well
+
+  // Update TLB if necessary (if the old page exists and hasn't been replaced in the physical memory, nothing will happen, otherwise new frame will take the position of the existing page number)
+  update_TLB(page_number, current_frame_index);
+
   current_frame_index = (current_frame_index + 1) % FRAME_COUNT;
 }
 ```
+
+We need to invalidate the old page entry at the beginning. Failure to do so resulted in less page faults being counted, since their addresses were being updated but the page_table wasn't correctly being updated. Therefore, whenever a page that doesn't existed came up again, the if condition would consider it to be there still causing less page faults to be detected.
 
 To do this, we use another helper function called `write_frame` written below.
 

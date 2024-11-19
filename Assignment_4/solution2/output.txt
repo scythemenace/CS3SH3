@@ -1,0 +1,3003 @@
+Logical address being translated: 16916
+The corresponding physical address is: 20
+The signed byte value at 20 is 0
+Logical address being translated: 62493
+The corresponding physical address is: 285
+The signed byte value at 285 is 0
+Logical address being translated: 30198
+The corresponding physical address is: 758
+The signed byte value at 758 is 29
+Logical address being translated: 53683
+The corresponding physical address is: 947
+The signed byte value at 947 is 108
+Logical address being translated: 40185
+The corresponding physical address is: 1273
+The signed byte value at 1273 is 0
+Logical address being translated: 28781
+The corresponding physical address is: 1389
+The signed byte value at 1389 is 0
+Logical address being translated: 24462
+The corresponding physical address is: 1678
+The signed byte value at 1678 is 23
+Logical address being translated: 48399
+The corresponding physical address is: 1807
+The signed byte value at 1807 is 67
+Logical address being translated: 64815
+The corresponding physical address is: 2095
+The signed byte value at 2095 is 75
+Logical address being translated: 18295
+The corresponding physical address is: 2423
+The signed byte value at 2423 is -35
+Logical address being translated: 12218
+The corresponding physical address is: 2746
+The signed byte value at 2746 is 11
+Logical address being translated: 22760
+The corresponding physical address is: 3048
+The signed byte value at 3048 is 0
+Logical address being translated: 57982
+The corresponding physical address is: 3198
+The signed byte value at 3198 is 56
+Logical address being translated: 27966
+The corresponding physical address is: 3390
+The signed byte value at 3390 is 27
+Logical address being translated: 54894
+The corresponding physical address is: 3694
+The signed byte value at 3694 is 53
+Logical address being translated: 38929
+The corresponding physical address is: 3857
+The signed byte value at 3857 is 0
+Logical address being translated: 32865
+The corresponding physical address is: 4193
+The signed byte value at 4193 is 0
+Logical address being translated: 64243
+The corresponding physical address is: 4595
+The signed byte value at 4595 is -68
+Logical address being translated: 2315
+The corresponding physical address is: 4619
+The signed byte value at 4619 is 66
+Logical address being translated: 64454
+The corresponding physical address is: 5062
+The signed byte value at 5062 is 62
+Logical address being translated: 55041
+The corresponding physical address is: 5121
+The signed byte value at 5121 is 0
+Logical address being translated: 18633
+The corresponding physical address is: 5577
+The signed byte value at 5577 is 0
+Logical address being translated: 14557
+The corresponding physical address is: 5853
+The signed byte value at 5853 is 0
+Logical address being translated: 61006
+The corresponding physical address is: 5966
+The signed byte value at 5966 is 59
+Logical address being translated: 62615
+The corresponding physical address is: 407
+The signed byte value at 407 is 37
+Logical address being translated: 7591
+The corresponding physical address is: 6311
+The signed byte value at 6311 is 105
+Logical address being translated: 64747
+The corresponding physical address is: 6635
+The signed byte value at 6635 is 58
+Logical address being translated: 6727
+The corresponding physical address is: 6727
+The signed byte value at 6727 is -111
+Logical address being translated: 32315
+The corresponding physical address is: 6971
+The signed byte value at 6971 is -114
+Logical address being translated: 60645
+The corresponding physical address is: 7397
+The signed byte value at 7397 is 0
+Logical address being translated: 6308
+The corresponding physical address is: 7588
+The signed byte value at 7588 is 0
+Logical address being translated: 45688
+The corresponding physical address is: 7800
+The signed byte value at 7800 is 0
+Logical address being translated: 969
+The corresponding physical address is: 8137
+The signed byte value at 8137 is 0
+Logical address being translated: 40891
+The corresponding physical address is: 8379
+The signed byte value at 8379 is -18
+Logical address being translated: 49294
+The corresponding physical address is: 8590
+The signed byte value at 8590 is 48
+Logical address being translated: 41118
+The corresponding physical address is: 8862
+The signed byte value at 8862 is 40
+Logical address being translated: 21395
+The corresponding physical address is: 9107
+The signed byte value at 9107 is -28
+Logical address being translated: 6091
+The corresponding physical address is: 9419
+The signed byte value at 9419 is -14
+Logical address being translated: 32541
+The corresponding physical address is: 9501
+The signed byte value at 9501 is 0
+Logical address being translated: 17665
+The corresponding physical address is: 9729
+The signed byte value at 9729 is 0
+Logical address being translated: 3784
+The corresponding physical address is: 10184
+The signed byte value at 10184 is 0
+Logical address being translated: 28718
+The corresponding physical address is: 1326
+The signed byte value at 1326 is 28
+Logical address being translated: 59240
+The corresponding physical address is: 10344
+The signed byte value at 10344 is 0
+Logical address being translated: 40178
+The corresponding physical address is: 1266
+The signed byte value at 1266 is 39
+Logical address being translated: 60086
+The corresponding physical address is: 10678
+The signed byte value at 10678 is 58
+Logical address being translated: 42252
+The corresponding physical address is: 10764
+The signed byte value at 10764 is 0
+Logical address being translated: 44770
+The corresponding physical address is: 11234
+The signed byte value at 11234 is 43
+Logical address being translated: 22514
+The corresponding physical address is: 11506
+The signed byte value at 11506 is 21
+Logical address being translated: 3067
+The corresponding physical address is: 11771
+The signed byte value at 11771 is -2
+Logical address being translated: 15757
+The corresponding physical address is: 11917
+The signed byte value at 11917 is 0
+Logical address being translated: 31649
+The corresponding physical address is: 12193
+The signed byte value at 12193 is 0
+Logical address being translated: 10842
+The corresponding physical address is: 12378
+The signed byte value at 12378 is 10
+Logical address being translated: 43765
+The corresponding physical address is: 12789
+The signed byte value at 12789 is 0
+Logical address being translated: 33405
+The corresponding physical address is: 12925
+The signed byte value at 12925 is 0
+Logical address being translated: 44954
+The corresponding physical address is: 13210
+The signed byte value at 13210 is 43
+Logical address being translated: 56657
+The corresponding physical address is: 13393
+The signed byte value at 13393 is 0
+Logical address being translated: 5003
+The corresponding physical address is: 13707
+The signed byte value at 13707 is -30
+Logical address being translated: 50227
+The corresponding physical address is: 13875
+The signed byte value at 13875 is 12
+Logical address being translated: 19358
+The corresponding physical address is: 14238
+The signed byte value at 14238 is 18
+Logical address being translated: 36529
+The corresponding physical address is: 14513
+The signed byte value at 14513 is 0
+Logical address being translated: 10392
+The corresponding physical address is: 14744
+The signed byte value at 14744 is 0
+Logical address being translated: 58882
+The corresponding physical address is: 14850
+The signed byte value at 14850 is 57
+Logical address being translated: 5129
+The corresponding physical address is: 15113
+The signed byte value at 15113 is 0
+Logical address being translated: 58554
+The corresponding physical address is: 15546
+The signed byte value at 15546 is 57
+Logical address being translated: 58584
+The corresponding physical address is: 15576
+The signed byte value at 15576 is 0
+Logical address being translated: 27444
+The corresponding physical address is: 15668
+The signed byte value at 15668 is 0
+Logical address being translated: 58982
+The corresponding physical address is: 14950
+The signed byte value at 14950 is 57
+Logical address being translated: 51476
+The corresponding physical address is: 15892
+The signed byte value at 15892 is 0
+Logical address being translated: 6796
+The corresponding physical address is: 6796
+The signed byte value at 6796 is 0
+Logical address being translated: 21311
+The corresponding physical address is: 9023
+The signed byte value at 9023 is -49
+Logical address being translated: 30705
+The corresponding physical address is: 16369
+The signed byte value at 16369 is 0
+Logical address being translated: 28964
+The corresponding physical address is: 16420
+The signed byte value at 16420 is 0
+Logical address being translated: 41003
+The corresponding physical address is: 8747
+The signed byte value at 8747 is 10
+Logical address being translated: 20259
+The corresponding physical address is: 16675
+The signed byte value at 16675 is -56
+Logical address being translated: 57857
+The corresponding physical address is: 3073
+The signed byte value at 3073 is 0
+Logical address being translated: 63258
+The corresponding physical address is: 16922
+The signed byte value at 16922 is 61
+Logical address being translated: 36374
+The corresponding physical address is: 14358
+The signed byte value at 14358 is 35
+Logical address being translated: 692
+The corresponding physical address is: 17332
+The signed byte value at 17332 is 0
+Logical address being translated: 43121
+The corresponding physical address is: 17521
+The signed byte value at 17521 is 0
+Logical address being translated: 48128
+The corresponding physical address is: 17664
+The signed byte value at 17664 is 0
+Logical address being translated: 34561
+The corresponding physical address is: 17921
+The signed byte value at 17921 is 0
+Logical address being translated: 49213
+The corresponding physical address is: 8509
+The signed byte value at 8509 is 0
+Logical address being translated: 36922
+The corresponding physical address is: 18234
+The signed byte value at 18234 is 36
+Logical address being translated: 59162
+The corresponding physical address is: 10266
+The signed byte value at 10266 is 57
+Logical address being translated: 50552
+The corresponding physical address is: 18552
+The signed byte value at 18552 is 0
+Logical address being translated: 17866
+The corresponding physical address is: 9930
+The signed byte value at 9930 is 17
+Logical address being translated: 18145
+The corresponding physical address is: 18913
+The signed byte value at 18913 is 0
+Logical address being translated: 3884
+The corresponding physical address is: 18988
+The signed byte value at 18988 is 0
+Logical address being translated: 54388
+The corresponding physical address is: 19316
+The signed byte value at 19316 is 0
+Logical address being translated: 42932
+The corresponding physical address is: 19636
+The signed byte value at 19636 is 0
+Logical address being translated: 46919
+The corresponding physical address is: 19783
+The signed byte value at 19783 is -47
+Logical address being translated: 58892
+The corresponding physical address is: 14860
+The signed byte value at 14860 is 0
+Logical address being translated: 8620
+The corresponding physical address is: 20140
+The signed byte value at 20140 is 0
+Logical address being translated: 38336
+The corresponding physical address is: 20416
+The signed byte value at 20416 is 0
+Logical address being translated: 64357
+The corresponding physical address is: 4965
+The signed byte value at 4965 is 0
+Logical address being translated: 23387
+The corresponding physical address is: 20571
+The signed byte value at 20571 is -42
+Logical address being translated: 42632
+The corresponding physical address is: 20872
+The signed byte value at 20872 is 0
+Logical address being translated: 15913
+The corresponding physical address is: 21033
+The signed byte value at 21033 is 0
+Logical address being translated: 15679
+The corresponding physical address is: 11839
+The signed byte value at 11839 is 79
+Logical address being translated: 22501
+The corresponding physical address is: 11493
+The signed byte value at 11493 is 0
+Logical address being translated: 37540
+The corresponding physical address is: 21412
+The signed byte value at 21412 is 0
+Logical address being translated: 5527
+The corresponding physical address is: 21655
+The signed byte value at 21655 is 101
+Logical address being translated: 63921
+The corresponding physical address is: 21937
+The signed byte value at 21937 is 0
+Logical address being translated: 62716
+The corresponding physical address is: 508
+The signed byte value at 508 is 0
+Logical address being translated: 32874
+The corresponding physical address is: 4202
+The signed byte value at 4202 is 32
+Logical address being translated: 64390
+The corresponding physical address is: 4998
+The signed byte value at 4998 is 62
+Logical address being translated: 63101
+The corresponding physical address is: 22141
+The signed byte value at 22141 is 0
+Logical address being translated: 61802
+The corresponding physical address is: 22378
+The signed byte value at 22378 is 60
+Logical address being translated: 19648
+The corresponding physical address is: 22720
+The signed byte value at 22720 is 0
+Logical address being translated: 29031
+The corresponding physical address is: 16487
+The signed byte value at 16487 is 89
+Logical address being translated: 44981
+The corresponding physical address is: 13237
+The signed byte value at 13237 is 0
+Logical address being translated: 28092
+The corresponding physical address is: 3516
+The signed byte value at 3516 is 0
+Logical address being translated: 9448
+The corresponding physical address is: 23016
+The signed byte value at 23016 is 0
+Logical address being translated: 44744
+The corresponding physical address is: 11208
+The signed byte value at 11208 is 0
+Logical address being translated: 61496
+The corresponding physical address is: 23096
+The signed byte value at 23096 is 0
+Logical address being translated: 31453
+The corresponding physical address is: 23517
+The signed byte value at 23517 is 0
+Logical address being translated: 60746
+The corresponding physical address is: 23626
+The signed byte value at 23626 is 59
+Logical address being translated: 12199
+The corresponding physical address is: 2727
+The signed byte value at 2727 is -23
+Logical address being translated: 62255
+The corresponding physical address is: 23855
+The signed byte value at 23855 is -53
+Logical address being translated: 21793
+The corresponding physical address is: 24097
+The signed byte value at 24097 is 0
+Logical address being translated: 26544
+The corresponding physical address is: 24496
+The signed byte value at 24496 is 0
+Logical address being translated: 14964
+The corresponding physical address is: 24692
+The signed byte value at 24692 is 0
+Logical address being translated: 41462
+The corresponding physical address is: 25078
+The signed byte value at 25078 is 40
+Logical address being translated: 56089
+The corresponding physical address is: 25113
+The signed byte value at 25113 is 0
+Logical address being translated: 52038
+The corresponding physical address is: 25414
+The signed byte value at 25414 is 50
+Logical address being translated: 47982
+The corresponding physical address is: 25710
+The signed byte value at 25710 is 46
+Logical address being translated: 59484
+The corresponding physical address is: 25948
+The signed byte value at 25948 is 0
+Logical address being translated: 50924
+The corresponding physical address is: 26348
+The signed byte value at 26348 is 0
+Logical address being translated: 6942
+The corresponding physical address is: 26398
+The signed byte value at 26398 is 6
+Logical address being translated: 34998
+The corresponding physical address is: 26806
+The signed byte value at 26806 is 34
+Logical address being translated: 27069
+The corresponding physical address is: 27069
+The signed byte value at 27069 is 0
+Logical address being translated: 51926
+The corresponding physical address is: 27350
+The signed byte value at 27350 is 50
+Logical address being translated: 60645
+The corresponding physical address is: 7397
+The signed byte value at 7397 is 0
+Logical address being translated: 43181
+The corresponding physical address is: 17581
+The signed byte value at 17581 is 0
+Logical address being translated: 10559
+The corresponding physical address is: 27455
+The signed byte value at 27455 is 79
+Logical address being translated: 4664
+The corresponding physical address is: 27704
+The signed byte value at 27704 is 0
+Logical address being translated: 28578
+The corresponding physical address is: 28066
+The signed byte value at 28066 is 27
+Logical address being translated: 59516
+The corresponding physical address is: 25980
+The signed byte value at 25980 is 0
+Logical address being translated: 38912
+The corresponding physical address is: 3840
+The signed byte value at 3840 is 0
+Logical address being translated: 63562
+The corresponding physical address is: 28234
+The signed byte value at 28234 is 62
+Logical address being translated: 64846
+The corresponding physical address is: 2126
+The signed byte value at 2126 is 63
+Logical address being translated: 62938
+The corresponding physical address is: 28634
+The signed byte value at 28634 is 61
+Logical address being translated: 27194
+The corresponding physical address is: 28730
+The signed byte value at 28730 is 26
+Logical address being translated: 28804
+The corresponding physical address is: 1412
+The signed byte value at 1412 is 0
+Logical address being translated: 61703
+The corresponding physical address is: 22279
+The signed byte value at 22279 is 65
+Logical address being translated: 10998
+The corresponding physical address is: 12534
+The signed byte value at 12534 is 10
+Logical address being translated: 6596
+The corresponding physical address is: 29124
+The signed byte value at 29124 is 0
+Logical address being translated: 37721
+The corresponding physical address is: 29273
+The signed byte value at 29273 is 0
+Logical address being translated: 43430
+The corresponding physical address is: 29606
+The signed byte value at 29606 is 42
+Logical address being translated: 22692
+The corresponding physical address is: 2980
+The signed byte value at 2980 is 0
+Logical address being translated: 62971
+The corresponding physical address is: 28667
+The signed byte value at 28667 is 126
+Logical address being translated: 47125
+The corresponding physical address is: 29717
+The signed byte value at 29717 is 0
+Logical address being translated: 52521
+The corresponding physical address is: 29993
+The signed byte value at 29993 is 0
+Logical address being translated: 34646
+The corresponding physical address is: 18006
+The signed byte value at 18006 is 33
+Logical address being translated: 32889
+The corresponding physical address is: 4217
+The signed byte value at 4217 is 0
+Logical address being translated: 13055
+The corresponding physical address is: 30463
+The signed byte value at 30463 is -65
+Logical address being translated: 65416
+The corresponding physical address is: 30600
+The signed byte value at 30600 is 0
+Logical address being translated: 62869
+The corresponding physical address is: 28565
+The signed byte value at 28565 is 0
+Logical address being translated: 57314
+The corresponding physical address is: 30946
+The signed byte value at 30946 is 55
+Logical address being translated: 12659
+The corresponding physical address is: 31091
+The signed byte value at 31091 is 92
+Logical address being translated: 14052
+The corresponding physical address is: 31460
+The signed byte value at 31460 is 0
+Logical address being translated: 32956
+The corresponding physical address is: 4284
+The signed byte value at 4284 is 0
+Logical address being translated: 49273
+The corresponding physical address is: 8569
+The signed byte value at 8569 is 0
+Logical address being translated: 50352
+The corresponding physical address is: 14000
+The signed byte value at 14000 is 0
+Logical address being translated: 49737
+The corresponding physical address is: 31561
+The signed byte value at 31561 is 0
+Logical address being translated: 15555
+The corresponding physical address is: 31939
+The signed byte value at 31939 is 48
+Logical address being translated: 47475
+The corresponding physical address is: 32115
+The signed byte value at 32115 is 92
+Logical address being translated: 15328
+The corresponding physical address is: 32480
+The signed byte value at 32480 is 0
+Logical address being translated: 34621
+The corresponding physical address is: 17981
+The signed byte value at 17981 is 0
+Logical address being translated: 51365
+The corresponding physical address is: 32677
+The signed byte value at 32677 is 0
+Logical address being translated: 32820
+The corresponding physical address is: 4148
+The signed byte value at 4148 is 0
+Logical address being translated: 48855
+The corresponding physical address is: 215
+The signed byte value at 215 is -75
+Logical address being translated: 12224
+The corresponding physical address is: 2752
+The signed byte value at 2752 is 0
+Logical address being translated: 2035
+The corresponding physical address is: 499
+The signed byte value at 499 is -4
+Logical address being translated: 60539
+The corresponding physical address is: 7291
+The signed byte value at 7291 is 30
+Logical address being translated: 14595
+The corresponding physical address is: 515
+The signed byte value at 515 is 64
+Logical address being translated: 13853
+The corresponding physical address is: 31261
+The signed byte value at 31261 is 0
+Logical address being translated: 24143
+The corresponding physical address is: 847
+The signed byte value at 847 is -109
+Logical address being translated: 15216
+The corresponding physical address is: 32368
+The signed byte value at 32368 is 0
+Logical address being translated: 8113
+The corresponding physical address is: 1201
+The signed byte value at 1201 is 0
+Logical address being translated: 22640
+The corresponding physical address is: 2928
+The signed byte value at 2928 is 0
+Logical address being translated: 32978
+The corresponding physical address is: 4306
+The signed byte value at 4306 is 32
+Logical address being translated: 39151
+The corresponding physical address is: 4079
+The signed byte value at 4079 is 59
+Logical address being translated: 19520
+The corresponding physical address is: 22592
+The signed byte value at 22592 is 0
+Logical address being translated: 58141
+The corresponding physical address is: 1309
+The signed byte value at 1309 is 0
+Logical address being translated: 63959
+The corresponding physical address is: 21975
+The signed byte value at 21975 is 117
+Logical address being translated: 53040
+The corresponding physical address is: 1584
+The signed byte value at 1584 is 0
+Logical address being translated: 55842
+The corresponding physical address is: 1826
+The signed byte value at 1826 is 54
+Logical address being translated: 585
+The corresponding physical address is: 17225
+The signed byte value at 17225 is 0
+Logical address being translated: 51229
+The corresponding physical address is: 32541
+The signed byte value at 32541 is 0
+Logical address being translated: 64181
+The corresponding physical address is: 4533
+The signed byte value at 4533 is 0
+Logical address being translated: 54879
+The corresponding physical address is: 3679
+The signed byte value at 3679 is -105
+Logical address being translated: 28210
+The corresponding physical address is: 2098
+The signed byte value at 2098 is 27
+Logical address being translated: 10268
+The corresponding physical address is: 14620
+The signed byte value at 14620 is 0
+Logical address being translated: 15395
+The corresponding physical address is: 31779
+The signed byte value at 31779 is 8
+Logical address being translated: 12884
+The corresponding physical address is: 30292
+The signed byte value at 30292 is 0
+Logical address being translated: 2149
+The corresponding physical address is: 2405
+The signed byte value at 2405 is 0
+Logical address being translated: 53483
+The corresponding physical address is: 2795
+The signed byte value at 2795 is 58
+Logical address being translated: 59606
+The corresponding physical address is: 26070
+The signed byte value at 26070 is 58
+Logical address being translated: 14981
+The corresponding physical address is: 24709
+The signed byte value at 24709 is 0
+Logical address being translated: 36672
+The corresponding physical address is: 2880
+The signed byte value at 2880 is 0
+Logical address being translated: 23197
+The corresponding physical address is: 3229
+The signed byte value at 3229 is 0
+Logical address being translated: 36518
+The corresponding physical address is: 14502
+The signed byte value at 14502 is 35
+Logical address being translated: 13361
+The corresponding physical address is: 3377
+The signed byte value at 3377 is 0
+Logical address being translated: 19810
+The corresponding physical address is: 3682
+The signed byte value at 3682 is 19
+Logical address being translated: 25955
+The corresponding physical address is: 3939
+The signed byte value at 3939 is 88
+Logical address being translated: 62678
+The corresponding physical address is: 4310
+The signed byte value at 4310 is 61
+Logical address being translated: 26021
+The corresponding physical address is: 4005
+The signed byte value at 4005 is 0
+Logical address being translated: 29409
+The corresponding physical address is: 4577
+The signed byte value at 4577 is 0
+Logical address being translated: 38111
+The corresponding physical address is: 4831
+The signed byte value at 4831 is 55
+Logical address being translated: 58573
+The corresponding physical address is: 15565
+The signed byte value at 15565 is 0
+Logical address being translated: 56840
+The corresponding physical address is: 4872
+The signed byte value at 4872 is 0
+Logical address being translated: 41306
+The corresponding physical address is: 24922
+The signed byte value at 24922 is 40
+Logical address being translated: 54426
+The corresponding physical address is: 19354
+The signed byte value at 19354 is 53
+Logical address being translated: 3617
+The corresponding physical address is: 10017
+The signed byte value at 10017 is 0
+Logical address being translated: 50652
+The corresponding physical address is: 18652
+The signed byte value at 18652 is 0
+Logical address being translated: 41452
+The corresponding physical address is: 25068
+The signed byte value at 25068 is 0
+Logical address being translated: 20241
+The corresponding physical address is: 16657
+The signed byte value at 16657 is 0
+Logical address being translated: 31723
+The corresponding physical address is: 12267
+The signed byte value at 12267 is -6
+Logical address being translated: 53747
+The corresponding physical address is: 5363
+The signed byte value at 5363 is 124
+Logical address being translated: 28550
+The corresponding physical address is: 28038
+The signed byte value at 28038 is 27
+Logical address being translated: 23402
+The corresponding physical address is: 20586
+The signed byte value at 20586 is 22
+Logical address being translated: 21205
+The corresponding physical address is: 5589
+The signed byte value at 5589 is 0
+Logical address being translated: 56181
+The corresponding physical address is: 25205
+The signed byte value at 25205 is 0
+Logical address being translated: 57470
+The corresponding physical address is: 5758
+The signed byte value at 5758 is 56
+Logical address being translated: 39933
+The corresponding physical address is: 6141
+The signed byte value at 6141 is 0
+Logical address being translated: 34964
+The corresponding physical address is: 26772
+The signed byte value at 26772 is 0
+Logical address being translated: 24781
+The corresponding physical address is: 6349
+The signed byte value at 6349 is 0
+Logical address being translated: 41747
+The corresponding physical address is: 6419
+The signed byte value at 6419 is -60
+Logical address being translated: 62564
+The corresponding physical address is: 4196
+The signed byte value at 4196 is 0
+Logical address being translated: 58461
+The corresponding physical address is: 15453
+The signed byte value at 15453 is 0
+Logical address being translated: 20858
+The corresponding physical address is: 6778
+The signed byte value at 6778 is 20
+Logical address being translated: 49301
+The corresponding physical address is: 8597
+The signed byte value at 8597 is 0
+Logical address being translated: 40572
+The corresponding physical address is: 7036
+The signed byte value at 7036 is 0
+Logical address being translated: 23840
+The corresponding physical address is: 7200
+The signed byte value at 7200 is 0
+Logical address being translated: 35278
+The corresponding physical address is: 7630
+The signed byte value at 7630 is 34
+Logical address being translated: 62905
+The corresponding physical address is: 28601
+The signed byte value at 28601 is 0
+Logical address being translated: 56650
+The corresponding physical address is: 13386
+The signed byte value at 13386 is 55
+Logical address being translated: 11149
+The corresponding physical address is: 7821
+The signed byte value at 7821 is 0
+Logical address being translated: 38920
+The corresponding physical address is: 7944
+The signed byte value at 7944 is 0
+Logical address being translated: 23430
+The corresponding physical address is: 20614
+The signed byte value at 20614 is 22
+Logical address being translated: 57592
+The corresponding physical address is: 5880
+The signed byte value at 5880 is 0
+Logical address being translated: 3080
+The corresponding physical address is: 8200
+The signed byte value at 8200 is 0
+Logical address being translated: 6677
+The corresponding physical address is: 8469
+The signed byte value at 8469 is 0
+Logical address being translated: 50704
+The corresponding physical address is: 26128
+The signed byte value at 26128 is 0
+Logical address being translated: 51883
+The corresponding physical address is: 27307
+The signed byte value at 27307 is -86
+Logical address being translated: 62799
+The corresponding physical address is: 28495
+The signed byte value at 28495 is 83
+Logical address being translated: 20188
+The corresponding physical address is: 8924
+The signed byte value at 8924 is 0
+Logical address being translated: 1245
+The corresponding physical address is: 9181
+The signed byte value at 9181 is 0
+Logical address being translated: 12220
+The corresponding physical address is: 9404
+The signed byte value at 9404 is 0
+Logical address being translated: 17602
+The corresponding physical address is: 9666
+The signed byte value at 9666 is 17
+Logical address being translated: 28609
+The corresponding physical address is: 28097
+The signed byte value at 28097 is 0
+Logical address being translated: 42694
+The corresponding physical address is: 20934
+The signed byte value at 20934 is 41
+Logical address being translated: 29826
+The corresponding physical address is: 9858
+The signed byte value at 9858 is 29
+Logical address being translated: 13827
+The corresponding physical address is: 31235
+The signed byte value at 31235 is -128
+Logical address being translated: 27336
+The corresponding physical address is: 28872
+The signed byte value at 28872 is 0
+Logical address being translated: 53343
+The corresponding physical address is: 2655
+The signed byte value at 2655 is 23
+Logical address being translated: 11533
+The corresponding physical address is: 9997
+The signed byte value at 9997 is 0
+Logical address being translated: 41713
+The corresponding physical address is: 10481
+The signed byte value at 10481 is 0
+Logical address being translated: 33890
+The corresponding physical address is: 10594
+The signed byte value at 10594 is 33
+Logical address being translated: 4894
+The corresponding physical address is: 13598
+The signed byte value at 13598 is 4
+Logical address being translated: 57599
+The corresponding physical address is: 5887
+The signed byte value at 5887 is 63
+Logical address being translated: 3870
+The corresponding physical address is: 18974
+The signed byte value at 18974 is 3
+Logical address being translated: 58622
+The corresponding physical address is: 15614
+The signed byte value at 15614 is 57
+Logical address being translated: 29780
+The corresponding physical address is: 9812
+The signed byte value at 9812 is 0
+Logical address being translated: 62553
+The corresponding physical address is: 4185
+The signed byte value at 4185 is 0
+Logical address being translated: 2303
+The corresponding physical address is: 2559
+The signed byte value at 2559 is 63
+Logical address being translated: 51915
+The corresponding physical address is: 27339
+The signed byte value at 27339 is -78
+Logical address being translated: 6251
+The corresponding physical address is: 10859
+The signed byte value at 10859 is 26
+Logical address being translated: 38107
+The corresponding physical address is: 4827
+The signed byte value at 4827 is 54
+Logical address being translated: 59325
+The corresponding physical address is: 11197
+The signed byte value at 11197 is 0
+Logical address being translated: 61295
+The corresponding physical address is: 11375
+The signed byte value at 11375 is -37
+Logical address being translated: 26699
+The corresponding physical address is: 11595
+The signed byte value at 11595 is 18
+Logical address being translated: 51188
+The corresponding physical address is: 12020
+The signed byte value at 12020 is 0
+Logical address being translated: 59519
+The corresponding physical address is: 25983
+The signed byte value at 25983 is 31
+Logical address being translated: 7345
+The corresponding physical address is: 12209
+The signed byte value at 12209 is 0
+Logical address being translated: 20325
+The corresponding physical address is: 16741
+The signed byte value at 16741 is 0
+Logical address being translated: 39633
+The corresponding physical address is: 12497
+The signed byte value at 12497 is 0
+Logical address being translated: 1562
+The corresponding physical address is: 12570
+The signed byte value at 12570 is 1
+Logical address being translated: 7580
+The corresponding physical address is: 12956
+The signed byte value at 12956 is 0
+Logical address being translated: 8170
+The corresponding physical address is: 1258
+The signed byte value at 1258 is 7
+Logical address being translated: 62256
+The corresponding physical address is: 23856
+The signed byte value at 23856 is 0
+Logical address being translated: 35823
+The corresponding physical address is: 13295
+The signed byte value at 13295 is -5
+Logical address being translated: 27790
+The corresponding physical address is: 13454
+The signed byte value at 13454 is 27
+Logical address being translated: 13191
+The corresponding physical address is: 13703
+The signed byte value at 13703 is -31
+Logical address being translated: 9772
+The corresponding physical address is: 13868
+The signed byte value at 13868 is 0
+Logical address being translated: 7477
+The corresponding physical address is: 12853
+The signed byte value at 12853 is 0
+Logical address being translated: 44455
+The corresponding physical address is: 14247
+The signed byte value at 14247 is 105
+Logical address being translated: 59546
+The corresponding physical address is: 26010
+The signed byte value at 26010 is 58
+Logical address being translated: 49347
+The corresponding physical address is: 14531
+The signed byte value at 14531 is 48
+Logical address being translated: 36539
+The corresponding physical address is: 14779
+The signed byte value at 14779 is -82
+Logical address being translated: 12453
+The corresponding physical address is: 15013
+The signed byte value at 15013 is 0
+Logical address being translated: 49640
+The corresponding physical address is: 15336
+The signed byte value at 15336 is 0
+Logical address being translated: 28290
+The corresponding physical address is: 2178
+The signed byte value at 2178 is 27
+Logical address being translated: 44817
+The corresponding physical address is: 15377
+The signed byte value at 15377 is 0
+Logical address being translated: 8565
+The corresponding physical address is: 20085
+The signed byte value at 20085 is 0
+Logical address being translated: 16399
+The corresponding physical address is: 15631
+The signed byte value at 15631 is 3
+Logical address being translated: 41934
+The corresponding physical address is: 6606
+The signed byte value at 6606 is 40
+Logical address being translated: 45457
+The corresponding physical address is: 16017
+The signed byte value at 16017 is 0
+Logical address being translated: 33856
+The corresponding physical address is: 10560
+The signed byte value at 10560 is 0
+Logical address being translated: 19498
+The corresponding physical address is: 22570
+The signed byte value at 22570 is 19
+Logical address being translated: 17661
+The corresponding physical address is: 9725
+The signed byte value at 9725 is 0
+Logical address being translated: 63829
+The corresponding physical address is: 21845
+The signed byte value at 21845 is 0
+Logical address being translated: 42034
+The corresponding physical address is: 16178
+The signed byte value at 16178 is 41
+Logical address being translated: 28928
+The corresponding physical address is: 16384
+The signed byte value at 16384 is 0
+Logical address being translated: 30711
+The corresponding physical address is: 16631
+The signed byte value at 16631 is -3
+Logical address being translated: 8800
+The corresponding physical address is: 16736
+The signed byte value at 16736 is 0
+Logical address being translated: 52335
+The corresponding physical address is: 17007
+The signed byte value at 17007 is 27
+Logical address being translated: 38775
+The corresponding physical address is: 17271
+The signed byte value at 17271 is -35
+Logical address being translated: 52704
+The corresponding physical address is: 30176
+The signed byte value at 30176 is 0
+Logical address being translated: 24380
+The corresponding physical address is: 17468
+The signed byte value at 17468 is 0
+Logical address being translated: 19602
+The corresponding physical address is: 22674
+The signed byte value at 22674 is 19
+Logical address being translated: 57998
+The corresponding physical address is: 17806
+The signed byte value at 17806 is 56
+Logical address being translated: 2919
+The corresponding physical address is: 18023
+The signed byte value at 18023 is -39
+Logical address being translated: 8362
+The corresponding physical address is: 18346
+The signed byte value at 18346 is 8
+Logical address being translated: 17884
+The corresponding physical address is: 18652
+The signed byte value at 18652 is 0
+Logical address being translated: 45737
+The corresponding physical address is: 18857
+The signed byte value at 18857 is 0
+Logical address being translated: 47894
+The corresponding physical address is: 25622
+The signed byte value at 25622 is 46
+Logical address being translated: 59667
+The corresponding physical address is: 18963
+The signed byte value at 18963 is 68
+Logical address being translated: 10385
+The corresponding physical address is: 19345
+The signed byte value at 19345 is 0
+Logical address being translated: 52782
+The corresponding physical address is: 19502
+The signed byte value at 19502 is 51
+Logical address being translated: 64416
+The corresponding physical address is: 19872
+The signed byte value at 19872 is 0
+Logical address being translated: 40946
+The corresponding physical address is: 20210
+The signed byte value at 20210 is 39
+Logical address being translated: 16778
+The corresponding physical address is: 20362
+The signed byte value at 20362 is 16
+Logical address being translated: 27159
+The corresponding physical address is: 28695
+The signed byte value at 28695 is -123
+Logical address being translated: 24324
+The corresponding physical address is: 17412
+The signed byte value at 17412 is 0
+Logical address being translated: 32450
+The corresponding physical address is: 20674
+The signed byte value at 20674 is 31
+Logical address being translated: 9108
+The corresponding physical address is: 20884
+The signed byte value at 20884 is 0
+Logical address being translated: 65305
+The corresponding physical address is: 30489
+The signed byte value at 30489 is 0
+Logical address being translated: 19575
+The corresponding physical address is: 22647
+The signed byte value at 22647 is 29
+Logical address being translated: 11117
+The corresponding physical address is: 7789
+The signed byte value at 7789 is 0
+Logical address being translated: 65170
+The corresponding physical address is: 21138
+The signed byte value at 21138 is 63
+Logical address being translated: 58013
+The corresponding physical address is: 17821
+The signed byte value at 17821 is 0
+Logical address being translated: 61676
+The corresponding physical address is: 23276
+The signed byte value at 23276 is 0
+Logical address being translated: 63510
+The corresponding physical address is: 28182
+The signed byte value at 28182 is 62
+Logical address being translated: 17458
+The corresponding physical address is: 9522
+The signed byte value at 9522 is 17
+Logical address being translated: 54675
+The corresponding physical address is: 21395
+The signed byte value at 21395 is 100
+Logical address being translated: 1713
+The corresponding physical address is: 12721
+The signed byte value at 12721 is 0
+Logical address being translated: 55105
+The corresponding physical address is: 21569
+The signed byte value at 21569 is 0
+Logical address being translated: 65321
+The corresponding physical address is: 30505
+The signed byte value at 30505 is 0
+Logical address being translated: 45278
+The corresponding physical address is: 21982
+The signed byte value at 21982 is 44
+Logical address being translated: 26256
+The corresponding physical address is: 22160
+The signed byte value at 22160 is 0
+Logical address being translated: 64198
+The corresponding physical address is: 22470
+The signed byte value at 22470 is 62
+Logical address being translated: 29441
+The corresponding physical address is: 22529
+The signed byte value at 22529 is 0
+Logical address being translated: 1928
+The corresponding physical address is: 392
+The signed byte value at 392 is 0
+Logical address being translated: 39425
+The corresponding physical address is: 12289
+The signed byte value at 12289 is 0
+Logical address being translated: 32000
+The corresponding physical address is: 22784
+The signed byte value at 22784 is 0
+Logical address being translated: 28549
+The corresponding physical address is: 28037
+The signed byte value at 28037 is 0
+Logical address being translated: 46295
+The corresponding physical address is: 23255
+The signed byte value at 23255 is 53
+Logical address being translated: 22772
+The corresponding physical address is: 23540
+The signed byte value at 23540 is 0
+Logical address being translated: 58228
+The corresponding physical address is: 1396
+The signed byte value at 1396 is 0
+Logical address being translated: 63525
+The corresponding physical address is: 28197
+The signed byte value at 28197 is 0
+Logical address being translated: 32602
+The corresponding physical address is: 23642
+The signed byte value at 23642 is 31
+Logical address being translated: 46195
+The corresponding physical address is: 23155
+The signed byte value at 23155 is 28
+Logical address being translated: 55849
+The corresponding physical address is: 1833
+The signed byte value at 1833 is 0
+Logical address being translated: 46454
+The corresponding physical address is: 23926
+The signed byte value at 23926 is 45
+Logical address being translated: 7487
+The corresponding physical address is: 12863
+The signed byte value at 12863 is 79
+Logical address being translated: 33879
+The corresponding physical address is: 10583
+The signed byte value at 10583 is 21
+Logical address being translated: 42004
+The corresponding physical address is: 16148
+The signed byte value at 16148 is 0
+Logical address being translated: 8599
+The corresponding physical address is: 24215
+The signed byte value at 24215 is 101
+Logical address being translated: 18641
+The corresponding physical address is: 24529
+The signed byte value at 24529 is 0
+Logical address being translated: 49015
+The corresponding physical address is: 24695
+The signed byte value at 24695 is -35
+Logical address being translated: 26830
+The corresponding physical address is: 11726
+The signed byte value at 11726 is 26
+Logical address being translated: 34754
+The corresponding physical address is: 25026
+The signed byte value at 25026 is 33
+Logical address being translated: 14668
+The corresponding physical address is: 588
+The signed byte value at 588 is 0
+Logical address being translated: 38362
+The corresponding physical address is: 25306
+The signed byte value at 25306 is 37
+Logical address being translated: 38791
+The corresponding physical address is: 17287
+The signed byte value at 17287 is -31
+Logical address being translated: 4171
+The corresponding physical address is: 25419
+The signed byte value at 25419 is 18
+Logical address being translated: 45975
+The corresponding physical address is: 25751
+The signed byte value at 25751 is -27
+Logical address being translated: 14623
+The corresponding physical address is: 543
+The signed byte value at 543 is 71
+Logical address being translated: 62393
+The corresponding physical address is: 26041
+The signed byte value at 26041 is 0
+Logical address being translated: 64658
+The corresponding physical address is: 26258
+The signed byte value at 26258 is 63
+Logical address being translated: 10963
+The corresponding physical address is: 26579
+The signed byte value at 26579 is -76
+Logical address being translated: 9058
+The corresponding physical address is: 20834
+The signed byte value at 20834 is 8
+Logical address being translated: 51031
+The corresponding physical address is: 11863
+The signed byte value at 11863 is -43
+Logical address being translated: 32425
+The corresponding physical address is: 20649
+The signed byte value at 20649 is 0
+Logical address being translated: 45483
+The corresponding physical address is: 16043
+The signed byte value at 16043 is 106
+Logical address being translated: 44611
+The corresponding physical address is: 26691
+The signed byte value at 26691 is -112
+Logical address being translated: 63664
+The corresponding physical address is: 28336
+The signed byte value at 28336 is 0
+Logical address being translated: 54920
+The corresponding physical address is: 27016
+The signed byte value at 27016 is 0
+Logical address being translated: 7663
+The corresponding physical address is: 13039
+The signed byte value at 13039 is 123
+Logical address being translated: 56480
+The corresponding physical address is: 27296
+The signed byte value at 27296 is 0
+Logical address being translated: 1489
+The corresponding physical address is: 27601
+The signed byte value at 27601 is 0
+Logical address being translated: 28438
+The corresponding physical address is: 27926
+The signed byte value at 27926 is 27
+Logical address being translated: 65449
+The corresponding physical address is: 30633
+The signed byte value at 30633 is 0
+Logical address being translated: 12441
+The corresponding physical address is: 15001
+The signed byte value at 15001 is 0
+Logical address being translated: 58530
+The corresponding physical address is: 27810
+The signed byte value at 27810 is 57
+Logical address being translated: 63570
+The corresponding physical address is: 28242
+The signed byte value at 28242 is 62
+Logical address being translated: 26251
+The corresponding physical address is: 22155
+The signed byte value at 22155 is -94
+Logical address being translated: 15972
+The corresponding physical address is: 28004
+The signed byte value at 28004 is 0
+Logical address being translated: 35826
+The corresponding physical address is: 13298
+The signed byte value at 13298 is 34
+Logical address being translated: 5491
+The corresponding physical address is: 28275
+The signed byte value at 28275 is 92
+Logical address being translated: 54253
+The corresponding physical address is: 28653
+The signed byte value at 28653 is 0
+Logical address being translated: 49655
+The corresponding physical address is: 15351
+The signed byte value at 15351 is 125
+Logical address being translated: 5868
+The corresponding physical address is: 28908
+The signed byte value at 28908 is 0
+Logical address being translated: 20163
+The corresponding physical address is: 8899
+The signed byte value at 8899 is -80
+Logical address being translated: 51079
+The corresponding physical address is: 11911
+The signed byte value at 11911 is -31
+Logical address being translated: 21398
+The corresponding physical address is: 29078
+The signed byte value at 29078 is 20
+Logical address being translated: 32756
+The corresponding physical address is: 23796
+The signed byte value at 23796 is 0
+Logical address being translated: 64196
+The corresponding physical address is: 22468
+The signed byte value at 22468 is 0
+Logical address being translated: 43218
+The corresponding physical address is: 29394
+The signed byte value at 29394 is 42
+Logical address being translated: 21583
+The corresponding physical address is: 29519
+The signed byte value at 29519 is 19
+Logical address being translated: 25086
+The corresponding physical address is: 29950
+The signed byte value at 29950 is 24
+Logical address being translated: 45515
+The corresponding physical address is: 16075
+The signed byte value at 16075 is 114
+Logical address being translated: 12893
+The corresponding physical address is: 30301
+The signed byte value at 30301 is 0
+Logical address being translated: 22914
+The corresponding physical address is: 30082
+The signed byte value at 30082 is 22
+Logical address being translated: 58969
+The corresponding physical address is: 30297
+The signed byte value at 30297 is 0
+Logical address being translated: 20094
+The corresponding physical address is: 8830
+The signed byte value at 8830 is 19
+Logical address being translated: 13730
+The corresponding physical address is: 30626
+The signed byte value at 30626 is 13
+Logical address being translated: 44059
+The corresponding physical address is: 30747
+The signed byte value at 30747 is 6
+Logical address being translated: 28931
+The corresponding physical address is: 30979
+The signed byte value at 30979 is 64
+Logical address being translated: 13533
+The corresponding physical address is: 3549
+The signed byte value at 3549 is 0
+Logical address being translated: 33134
+The corresponding physical address is: 31342
+The signed byte value at 31342 is 32
+Logical address being translated: 28483
+The corresponding physical address is: 31555
+The signed byte value at 31555 is -48
+Logical address being translated: 1220
+The corresponding physical address is: 9156
+The signed byte value at 9156 is 0
+Logical address being translated: 38174
+The corresponding physical address is: 25118
+The signed byte value at 25118 is 37
+Logical address being translated: 53502
+The corresponding physical address is: 2814
+The signed byte value at 2814 is 52
+Logical address being translated: 43328
+The corresponding physical address is: 31808
+The signed byte value at 31808 is 0
+Logical address being translated: 4970
+The corresponding physical address is: 32106
+The signed byte value at 32106 is 4
+Logical address being translated: 8090
+The corresponding physical address is: 1178
+The signed byte value at 1178 is 7
+Logical address being translated: 2661
+The corresponding physical address is: 32357
+The signed byte value at 32357 is 0
+Logical address being translated: 53903
+The corresponding physical address is: 32655
+The signed byte value at 32655 is -93
+Logical address being translated: 11025
+The corresponding physical address is: 7697
+The signed byte value at 7697 is 0
+Logical address being translated: 26627
+The corresponding physical address is: 11523
+The signed byte value at 11523 is 0
+Logical address being translated: 18117
+The corresponding physical address is: 197
+The signed byte value at 197 is 0
+Logical address being translated: 14505
+The corresponding physical address is: 425
+The signed byte value at 425 is 0
+Logical address being translated: 61528
+The corresponding physical address is: 600
+The signed byte value at 600 is 0
+Logical address being translated: 20423
+The corresponding physical address is: 967
+The signed byte value at 967 is -15
+Logical address being translated: 26962
+The corresponding physical address is: 1106
+The signed byte value at 1106 is 26
+Logical address being translated: 36392
+The corresponding physical address is: 14632
+The signed byte value at 14632 is 0
+Logical address being translated: 11365
+The corresponding physical address is: 1381
+The signed byte value at 1381 is 0
+Logical address being translated: 50882
+The corresponding physical address is: 1730
+The signed byte value at 1730 is 49
+Logical address being translated: 41668
+The corresponding physical address is: 10436
+The signed byte value at 10436 is 0
+Logical address being translated: 30497
+The corresponding physical address is: 16417
+The signed byte value at 16417 is 0
+Logical address being translated: 36216
+The corresponding physical address is: 1912
+The signed byte value at 1912 is 0
+Logical address being translated: 5619
+The corresponding physical address is: 28403
+The signed byte value at 28403 is 124
+Logical address being translated: 36983
+The corresponding physical address is: 2167
+The signed byte value at 2167 is 29
+Logical address being translated: 59557
+The corresponding physical address is: 2469
+The signed byte value at 2469 is 0
+Logical address being translated: 36663
+The corresponding physical address is: 2871
+The signed byte value at 2871 is -51
+Logical address being translated: 36436
+The corresponding physical address is: 14676
+The signed byte value at 14676 is 0
+Logical address being translated: 37057
+The corresponding physical address is: 2241
+The signed byte value at 2241 is 0
+Logical address being translated: 23585
+The corresponding physical address is: 2593
+The signed byte value at 2593 is 0
+Logical address being translated: 58791
+The corresponding physical address is: 2983
+The signed byte value at 2983 is 105
+Logical address being translated: 46666
+The corresponding physical address is: 3146
+The signed byte value at 3146 is 45
+Logical address being translated: 64475
+The corresponding physical address is: 19931
+The signed byte value at 19931 is -10
+Logical address being translated: 21615
+The corresponding physical address is: 29551
+The signed byte value at 29551 is 27
+Logical address being translated: 41090
+The corresponding physical address is: 3458
+The signed byte value at 3458 is 40
+Logical address being translated: 1771
+The corresponding physical address is: 12779
+The signed byte value at 12779 is -70
+Logical address being translated: 47513
+The corresponding physical address is: 3737
+The signed byte value at 3737 is 0
+Logical address being translated: 39338
+The corresponding physical address is: 4010
+The signed byte value at 4010 is 38
+Logical address being translated: 1390
+The corresponding physical address is: 27502
+The signed byte value at 27502 is 1
+Logical address being translated: 38772
+The corresponding physical address is: 17268
+The signed byte value at 17268 is 0
+Logical address being translated: 58149
+The corresponding physical address is: 4133
+The signed byte value at 4133 is 0
+Logical address being translated: 7196
+The corresponding physical address is: 12060
+The signed byte value at 12060 is 0
+Logical address being translated: 9123
+The corresponding physical address is: 20899
+The signed byte value at 20899 is -24
+Logical address being translated: 7491
+The corresponding physical address is: 12867
+The signed byte value at 12867 is 80
+Logical address being translated: 62616
+The corresponding physical address is: 4504
+The signed byte value at 4504 is 0
+Logical address being translated: 15436
+The corresponding physical address is: 4684
+The signed byte value at 4684 is 0
+Logical address being translated: 17491
+The corresponding physical address is: 9555
+The signed byte value at 9555 is 20
+Logical address being translated: 53656
+The corresponding physical address is: 5272
+The signed byte value at 5272 is 0
+Logical address being translated: 26449
+The corresponding physical address is: 4945
+The signed byte value at 4945 is 0
+Logical address being translated: 34935
+The corresponding physical address is: 5239
+The signed byte value at 5239 is 29
+Logical address being translated: 19864
+The corresponding physical address is: 5528
+The signed byte value at 5528 is 0
+Logical address being translated: 51388
+The corresponding physical address is: 5820
+The signed byte value at 5820 is 0
+Logical address being translated: 15155
+The corresponding physical address is: 5939
+The signed byte value at 5939 is -52
+Logical address being translated: 64775
+The corresponding physical address is: 6151
+The signed byte value at 6151 is 65
+Logical address being translated: 47969
+The corresponding physical address is: 6497
+The signed byte value at 6497 is 0
+Logical address being translated: 16315
+The corresponding physical address is: 6843
+The signed byte value at 6843 is -18
+Logical address being translated: 1342
+The corresponding physical address is: 27454
+The signed byte value at 27454 is 1
+Logical address being translated: 51185
+The corresponding physical address is: 12017
+The signed byte value at 12017 is 0
+Logical address being translated: 6043
+The corresponding physical address is: 7067
+The signed byte value at 7067 is -26
+Logical address being translated: 21398
+The corresponding physical address is: 29078
+The signed byte value at 29078 is 20
+Logical address being translated: 3273
+The corresponding physical address is: 8393
+The signed byte value at 8393 is 0
+Logical address being translated: 9370
+The corresponding physical address is: 7322
+The signed byte value at 7322 is 9
+Logical address being translated: 35463
+The corresponding physical address is: 7559
+The signed byte value at 7559 is -95
+Logical address being translated: 28205
+The corresponding physical address is: 7725
+The signed byte value at 7725 is 0
+Logical address being translated: 2351
+The corresponding physical address is: 7983
+The signed byte value at 7983 is 75
+Logical address being translated: 28999
+The corresponding physical address is: 31047
+The signed byte value at 31047 is 81
+Logical address being translated: 47699
+The corresponding physical address is: 8275
+The signed byte value at 8275 is -108
+Logical address being translated: 46870
+The corresponding physical address is: 8470
+The signed byte value at 8470 is 45
+Logical address being translated: 22311
+The corresponding physical address is: 8743
+The signed byte value at 8743 is -55
+Logical address being translated: 22124
+The corresponding physical address is: 9068
+The signed byte value at 9068 is 0
+Logical address being translated: 22427
+The corresponding physical address is: 8859
+The signed byte value at 8859 is -26
+Logical address being translated: 49344
+The corresponding physical address is: 14528
+The signed byte value at 14528 is 0
+Logical address being translated: 23224
+The corresponding physical address is: 9400
+The signed byte value at 9400 is 0
+Logical address being translated: 5514
+The corresponding physical address is: 28298
+The signed byte value at 28298 is 5
+Logical address being translated: 20504
+The corresponding physical address is: 9496
+The signed byte value at 9496 is 0
+Logical address being translated: 376
+The corresponding physical address is: 9848
+The signed byte value at 9848 is 0
+Logical address being translated: 2014
+The corresponding physical address is: 10206
+The signed byte value at 10206 is 1
+Logical address being translated: 38700
+The corresponding physical address is: 17196
+The signed byte value at 17196 is 0
+Logical address being translated: 13098
+The corresponding physical address is: 13610
+The signed byte value at 13610 is 12
+Logical address being translated: 62435
+The corresponding physical address is: 26083
+The signed byte value at 26083 is -8
+Logical address being translated: 48046
+The corresponding physical address is: 6574
+The signed byte value at 6574 is 46
+Logical address being translated: 63464
+The corresponding physical address is: 10472
+The signed byte value at 10472 is 0
+Logical address being translated: 12798
+The corresponding physical address is: 10750
+The signed byte value at 10750 is 12
+Logical address being translated: 51178
+The corresponding physical address is: 12010
+The signed byte value at 12010 is 49
+Logical address being translated: 8627
+The corresponding physical address is: 24243
+The signed byte value at 24243 is 108
+Logical address being translated: 27083
+The corresponding physical address is: 1227
+The signed byte value at 1227 is 114
+Logical address being translated: 47198
+The corresponding physical address is: 10846
+The signed byte value at 10846 is 46
+Logical address being translated: 44021
+The corresponding physical address is: 11253
+The signed byte value at 11253 is 0
+Logical address being translated: 32792
+The corresponding physical address is: 11288
+The signed byte value at 11288 is 0
+Logical address being translated: 43996
+The corresponding physical address is: 11228
+The signed byte value at 11228 is 0
+Logical address being translated: 41126
+The corresponding physical address is: 3494
+The signed byte value at 3494 is 40
+Logical address being translated: 64244
+The corresponding physical address is: 22516
+The signed byte value at 22516 is 0
+Logical address being translated: 37047
+The corresponding physical address is: 2231
+The signed byte value at 2231 is 45
+Logical address being translated: 60281
+The corresponding physical address is: 11641
+The signed byte value at 11641 is 0
+Logical address being translated: 52904
+The corresponding physical address is: 19624
+The signed byte value at 19624 is 0
+Logical address being translated: 7768
+The corresponding physical address is: 11864
+The signed byte value at 11864 is 0
+Logical address being translated: 55359
+The corresponding physical address is: 12095
+The signed byte value at 12095 is 15
+Logical address being translated: 3230
+The corresponding physical address is: 12446
+The signed byte value at 12446 is 3
+Logical address being translated: 44813
+The corresponding physical address is: 15373
+The signed byte value at 15373 is 0
+Logical address being translated: 4116
+The corresponding physical address is: 25364
+The signed byte value at 25364 is 0
+Logical address being translated: 65222
+The corresponding physical address is: 21190
+The signed byte value at 21190 is 63
+Logical address being translated: 28083
+The corresponding physical address is: 12723
+The signed byte value at 12723 is 108
+Logical address being translated: 60660
+The corresponding physical address is: 13044
+The signed byte value at 13044 is 0
+Logical address being translated: 39
+The corresponding physical address is: 13095
+The signed byte value at 13095 is 9
+Logical address being translated: 328
+The corresponding physical address is: 9800
+The signed byte value at 9800 is 0
+Logical address being translated: 47868
+The corresponding physical address is: 8444
+The signed byte value at 8444 is 0
+Logical address being translated: 13009
+The corresponding physical address is: 13521
+The signed byte value at 13521 is 0
+Logical address being translated: 22378
+The corresponding physical address is: 8810
+The signed byte value at 8810 is 21
+Logical address being translated: 39304
+The corresponding physical address is: 3976
+The signed byte value at 3976 is 0
+Logical address being translated: 11171
+The corresponding physical address is: 13731
+The signed byte value at 13731 is -24
+Logical address being translated: 8079
+The corresponding physical address is: 13967
+The signed byte value at 13967 is -29
+Logical address being translated: 52879
+The corresponding physical address is: 19599
+The signed byte value at 19599 is -93
+Logical address being translated: 5123
+The corresponding physical address is: 14083
+The signed byte value at 14083 is 0
+Logical address being translated: 4356
+The corresponding physical address is: 14340
+The signed byte value at 14340 is 0
+Logical address being translated: 45745
+The corresponding physical address is: 18865
+The signed byte value at 18865 is 0
+Logical address being translated: 32952
+The corresponding physical address is: 11448
+The signed byte value at 11448 is 0
+Logical address being translated: 4657
+The corresponding physical address is: 14641
+The signed byte value at 14641 is 0
+Logical address being translated: 24142
+The corresponding physical address is: 14926
+The signed byte value at 14926 is 23
+Logical address being translated: 23319
+The corresponding physical address is: 15127
+The signed byte value at 15127 is -59
+Logical address being translated: 13607
+The corresponding physical address is: 30503
+The signed byte value at 30503 is 73
+Logical address being translated: 46304
+The corresponding physical address is: 23264
+The signed byte value at 23264 is 0
+Logical address being translated: 17677
+The corresponding physical address is: 18445
+The signed byte value at 18445 is 0
+Logical address being translated: 59691
+The corresponding physical address is: 18987
+The signed byte value at 18987 is 74
+Logical address being translated: 50967
+The corresponding physical address is: 15383
+The signed byte value at 15383 is -59
+Logical address being translated: 7817
+The corresponding physical address is: 11913
+The signed byte value at 11913 is 0
+Logical address being translated: 8545
+The corresponding physical address is: 24161
+The signed byte value at 24161 is 0
+Logical address being translated: 55297
+The corresponding physical address is: 12033
+The signed byte value at 12033 is 0
+Logical address being translated: 52954
+The corresponding physical address is: 19674
+The signed byte value at 19674 is 51
+Logical address being translated: 39720
+The corresponding physical address is: 15656
+The signed byte value at 15656 is 0
+Logical address being translated: 18455
+The corresponding physical address is: 24343
+The signed byte value at 24343 is 5
+Logical address being translated: 30349
+The corresponding physical address is: 16013
+The signed byte value at 16013 is 0
+Logical address being translated: 63270
+The corresponding physical address is: 10278
+The signed byte value at 10278 is 61
+Logical address being translated: 27156
+The corresponding physical address is: 16148
+The signed byte value at 16148 is 0
+Logical address being translated: 20614
+The corresponding physical address is: 9606
+The signed byte value at 9606 is 20
+Logical address being translated: 19372
+The corresponding physical address is: 16556
+The signed byte value at 16556 is 0
+Logical address being translated: 48689
+The corresponding physical address is: 16689
+The signed byte value at 16689 is 0
+Logical address being translated: 49386
+The corresponding physical address is: 17130
+The signed byte value at 17130 is 48
+Logical address being translated: 50584
+The corresponding physical address is: 17304
+The signed byte value at 17304 is 0
+Logical address being translated: 51936
+The corresponding physical address is: 17632
+The signed byte value at 17632 is 0
+Logical address being translated: 34705
+The corresponding physical address is: 24977
+The signed byte value at 24977 is 0
+Logical address being translated: 13653
+The corresponding physical address is: 30549
+The signed byte value at 30549 is 0
+Logical address being translated: 50077
+The corresponding physical address is: 17821
+The signed byte value at 17821 is 0
+Logical address being translated: 54518
+The corresponding physical address is: 18166
+The signed byte value at 18166 is 53
+Logical address being translated: 41482
+The corresponding physical address is: 18186
+The signed byte value at 18186 is 40
+Logical address being translated: 4169
+The corresponding physical address is: 25417
+The signed byte value at 25417 is 0
+Logical address being translated: 36118
+The corresponding physical address is: 1814
+The signed byte value at 1814 is 35
+Logical address being translated: 9584
+The corresponding physical address is: 18544
+The signed byte value at 18544 is 0
+Logical address being translated: 18490
+The corresponding physical address is: 24378
+The signed byte value at 24378 is 18
+Logical address being translated: 55420
+The corresponding physical address is: 12156
+The signed byte value at 12156 is 0
+Logical address being translated: 5708
+The corresponding physical address is: 28748
+The signed byte value at 28748 is 0
+Logical address being translated: 23506
+The corresponding physical address is: 15314
+The signed byte value at 15314 is 22
+Logical address being translated: 15391
+The corresponding physical address is: 4639
+The signed byte value at 4639 is 7
+Logical address being translated: 36368
+The corresponding physical address is: 18704
+The signed byte value at 18704 is 0
+Logical address being translated: 38976
+The corresponding physical address is: 19008
+The signed byte value at 19008 is 0
+Logical address being translated: 50406
+The corresponding physical address is: 19430
+The signed byte value at 19430 is 49
+Logical address being translated: 49236
+The corresponding physical address is: 16980
+The signed byte value at 16980 is 0
+Logical address being translated: 65035
+The corresponding physical address is: 21003
+The signed byte value at 21003 is -126
+Logical address being translated: 30120
+The corresponding physical address is: 19624
+The signed byte value at 19624 is 0
+Logical address being translated: 62551
+The corresponding physical address is: 4439
+The signed byte value at 4439 is 21
+Logical address being translated: 46809
+The corresponding physical address is: 3289
+The signed byte value at 3289 is 0
+Logical address being translated: 21687
+The corresponding physical address is: 29623
+The signed byte value at 29623 is 45
+Logical address being translated: 53839
+The corresponding physical address is: 32591
+The signed byte value at 32591 is -109
+Logical address being translated: 2098
+The corresponding physical address is: 19762
+The signed byte value at 19762 is 2
+Logical address being translated: 12364
+The corresponding physical address is: 20044
+The signed byte value at 20044 is 0
+Logical address being translated: 45366
+The corresponding physical address is: 20278
+The signed byte value at 20278 is 44
+Logical address being translated: 50437
+The corresponding physical address is: 17157
+The signed byte value at 17157 is 0
+Logical address being translated: 36675
+The corresponding physical address is: 20547
+The signed byte value at 20547 is -48
+Logical address being translated: 55382
+The corresponding physical address is: 12118
+The signed byte value at 12118 is 54
+Logical address being translated: 11846
+The corresponding physical address is: 20806
+The signed byte value at 20806 is 11
+Logical address being translated: 49127
+The corresponding physical address is: 24807
+The signed byte value at 24807 is -7
+Logical address being translated: 19900
+The corresponding physical address is: 5564
+The signed byte value at 5564 is 0
+Logical address being translated: 20554
+The corresponding physical address is: 9546
+The signed byte value at 9546 is 20
+Logical address being translated: 19219
+The corresponding physical address is: 16403
+The signed byte value at 16403 is -60
+Logical address being translated: 51483
+The corresponding physical address is: 21019
+The signed byte value at 21019 is 70
+Logical address being translated: 58090
+The corresponding physical address is: 21482
+The signed byte value at 21482 is 56
+Logical address being translated: 39074
+The corresponding physical address is: 19106
+The signed byte value at 19106 is 38
+Logical address being translated: 16060
+The corresponding physical address is: 28092
+The signed byte value at 28092 is 0
+Logical address being translated: 10447
+The corresponding physical address is: 21711
+The signed byte value at 21711 is 51
+Logical address being translated: 54169
+The corresponding physical address is: 28569
+The signed byte value at 28569 is 0
+Logical address being translated: 20634
+The corresponding physical address is: 9626
+The signed byte value at 9626 is 20
+Logical address being translated: 57555
+The corresponding physical address is: 21971
+The signed byte value at 21971 is 52
+Logical address being translated: 61210
+The corresponding physical address is: 22042
+The signed byte value at 22042 is 59
+Logical address being translated: 269
+The corresponding physical address is: 9741
+The signed byte value at 9741 is 0
+Logical address being translated: 33154
+The corresponding physical address is: 31362
+The signed byte value at 31362 is 32
+Logical address being translated: 64487
+The corresponding physical address is: 22503
+The signed byte value at 22503 is -7
+Logical address being translated: 61223
+The corresponding physical address is: 22055
+The signed byte value at 22055 is -55
+Logical address being translated: 47292
+The corresponding physical address is: 10940
+The signed byte value at 10940 is 0
+Logical address being translated: 21852
+The corresponding physical address is: 22620
+The signed byte value at 22620 is 0
+Logical address being translated: 5281
+The corresponding physical address is: 14241
+The signed byte value at 14241 is 0
+Logical address being translated: 45912
+The corresponding physical address is: 25688
+The signed byte value at 25688 is 0
+Logical address being translated: 32532
+The corresponding physical address is: 23572
+The signed byte value at 23572 is 0
+Logical address being translated: 63067
+The corresponding physical address is: 22875
+The signed byte value at 22875 is -106
+Logical address being translated: 41683
+The corresponding physical address is: 18387
+The signed byte value at 18387 is -76
+Logical address being translated: 20981
+The corresponding physical address is: 23285
+The signed byte value at 23285 is 0
+Logical address being translated: 33881
+The corresponding physical address is: 23385
+The signed byte value at 23385 is 0
+Logical address being translated: 41785
+The corresponding physical address is: 23609
+The signed byte value at 23609 is 0
+Logical address being translated: 4580
+The corresponding physical address is: 14564
+The signed byte value at 14564 is 0
+Logical address being translated: 41389
+The corresponding physical address is: 23981
+The signed byte value at 23981 is 0
+Logical address being translated: 28572
+The corresponding physical address is: 31644
+The signed byte value at 31644 is 0
+Logical address being translated: 782
+The corresponding physical address is: 24078
+The signed byte value at 24078 is 0
+Logical address being translated: 30273
+The corresponding physical address is: 15937
+The signed byte value at 15937 is 0
+Logical address being translated: 62267
+The corresponding physical address is: 25915
+The signed byte value at 25915 is -50
+Logical address being translated: 17922
+The corresponding physical address is: 2
+The signed byte value at 2 is 17
+Logical address being translated: 63238
+The corresponding physical address is: 10246
+The signed byte value at 10246 is 61
+Logical address being translated: 3308
+The corresponding physical address is: 12524
+The signed byte value at 12524 is 0
+Logical address being translated: 26545
+The corresponding physical address is: 5041
+The signed byte value at 5041 is 0
+Logical address being translated: 44395
+The corresponding physical address is: 24427
+The signed byte value at 24427 is 90
+Logical address being translated: 39120
+The corresponding physical address is: 19152
+The signed byte value at 19152 is 0
+Logical address being translated: 21706
+The corresponding physical address is: 29642
+The signed byte value at 29642 is 21
+Logical address being translated: 7144
+The corresponding physical address is: 24808
+The signed byte value at 24808 is 0
+Logical address being translated: 30244
+The corresponding physical address is: 15908
+The signed byte value at 15908 is 0
+Logical address being translated: 3725
+The corresponding physical address is: 24973
+The signed byte value at 24973 is 0
+Logical address being translated: 54632
+The corresponding physical address is: 25192
+The signed byte value at 25192 is 0
+Logical address being translated: 30574
+The corresponding physical address is: 25454
+The signed byte value at 25454 is 29
+Logical address being translated: 8473
+The corresponding physical address is: 25625
+The signed byte value at 25625 is 0
+Logical address being translated: 12386
+The corresponding physical address is: 20066
+The signed byte value at 20066 is 12
+Logical address being translated: 41114
+The corresponding physical address is: 3482
+The signed byte value at 3482 is 40
+Logical address being translated: 57930
+The corresponding physical address is: 21322
+The signed byte value at 21322 is 56
+Logical address being translated: 15341
+The corresponding physical address is: 6125
+The signed byte value at 6125 is 0
+Logical address being translated: 15598
+The corresponding physical address is: 4846
+The signed byte value at 4846 is 15
+Logical address being translated: 59922
+The corresponding physical address is: 25874
+The signed byte value at 25874 is 58
+Logical address being translated: 18226
+The corresponding physical address is: 26162
+The signed byte value at 26162 is 17
+Logical address being translated: 48162
+The corresponding physical address is: 26402
+The signed byte value at 26402 is 47
+Logical address being translated: 41250
+The corresponding physical address is: 23842
+The signed byte value at 23842 is 40
+Logical address being translated: 1512
+The corresponding physical address is: 27624
+The signed byte value at 27624 is 0
+Logical address being translated: 2546
+The corresponding physical address is: 8178
+The signed byte value at 8178 is 2
+Logical address being translated: 41682
+The corresponding physical address is: 18386
+The signed byte value at 18386 is 40
+Logical address being translated: 322
+The corresponding physical address is: 9794
+The signed byte value at 9794 is 0
+Logical address being translated: 880
+The corresponding physical address is: 24176
+The signed byte value at 24176 is 0
+Logical address being translated: 20891
+The corresponding physical address is: 23195
+The signed byte value at 23195 is 102
+Logical address being translated: 56604
+The corresponding physical address is: 26652
+The signed byte value at 26652 is 0
+Logical address being translated: 40166
+The corresponding physical address is: 27110
+The signed byte value at 27110 is 39
+Logical address being translated: 26791
+The corresponding physical address is: 27303
+The signed byte value at 27303 is 41
+Logical address being translated: 44560
+The corresponding physical address is: 27408
+The signed byte value at 27408 is 0
+Logical address being translated: 38698
+The corresponding physical address is: 27690
+The signed byte value at 27690 is 37
+Logical address being translated: 64127
+The corresponding physical address is: 28031
+The signed byte value at 28031 is -97
+Logical address being translated: 15028
+The corresponding physical address is: 28340
+The signed byte value at 28340 is 0
+Logical address being translated: 38669
+The corresponding physical address is: 27661
+The signed byte value at 27661 is 0
+Logical address being translated: 45637
+The corresponding physical address is: 28485
+The signed byte value at 28485 is 0
+Logical address being translated: 43151
+The corresponding physical address is: 29327
+The signed byte value at 29327 is 35
+Logical address being translated: 9465
+The corresponding physical address is: 7417
+The signed byte value at 7417 is 0
+Logical address being translated: 2498
+The corresponding physical address is: 8130
+The signed byte value at 8130 is 2
+Logical address being translated: 13978
+The corresponding physical address is: 28826
+The signed byte value at 28826 is 13
+Logical address being translated: 16326
+The corresponding physical address is: 6854
+The signed byte value at 6854 is 15
+Logical address being translated: 51442
+The corresponding physical address is: 5874
+The signed byte value at 5874 is 50
+Logical address being translated: 34845
+The corresponding physical address is: 5149
+The signed byte value at 5149 is 0
+Logical address being translated: 63667
+The corresponding physical address is: 29107
+The signed byte value at 29107 is 44
+Logical address being translated: 39370
+The corresponding physical address is: 4042
+The signed byte value at 4042 is 38
+Logical address being translated: 55671
+The corresponding physical address is: 29303
+The signed byte value at 29303 is 93
+Logical address being translated: 64496
+The corresponding physical address is: 22512
+The signed byte value at 22512 is 0
+Logical address being translated: 7767
+The corresponding physical address is: 11863
+The signed byte value at 11863 is -107
+Logical address being translated: 6283
+The corresponding physical address is: 29579
+The signed byte value at 29579 is 34
+Logical address being translated: 55884
+The corresponding physical address is: 29772
+The signed byte value at 29772 is 0
+Logical address being translated: 61103
+The corresponding physical address is: 30127
+The signed byte value at 30127 is -85
+Logical address being translated: 10184
+The corresponding physical address is: 30408
+The signed byte value at 30408 is 0
+Logical address being translated: 39543
+The corresponding physical address is: 30583
+The signed byte value at 30583 is -99
+Logical address being translated: 9555
+The corresponding physical address is: 18515
+The signed byte value at 18515 is 84
+Logical address being translated: 13963
+The corresponding physical address is: 28811
+The signed byte value at 28811 is -94
+Logical address being translated: 58975
+The corresponding physical address is: 30815
+The signed byte value at 30815 is -105
+Logical address being translated: 19537
+The corresponding physical address is: 31057
+The signed byte value at 31057 is 0
+Logical address being translated: 6101
+The corresponding physical address is: 7125
+The signed byte value at 7125 is 0
+Logical address being translated: 41421
+The corresponding physical address is: 24013
+The signed byte value at 24013 is 0
+Logical address being translated: 45502
+The corresponding physical address is: 20414
+The signed byte value at 20414 is 44
+Logical address being translated: 29328
+The corresponding physical address is: 31376
+The signed byte value at 31376 is 0
+Logical address being translated: 8149
+The corresponding physical address is: 14037
+The signed byte value at 14037 is 0
+Logical address being translated: 25450
+The corresponding physical address is: 31594
+The signed byte value at 31594 is 24
+Logical address being translated: 58944
+The corresponding physical address is: 30784
+The signed byte value at 30784 is 0
+Logical address being translated: 50666
+The corresponding physical address is: 17386
+The signed byte value at 17386 is 49
+Logical address being translated: 23084
+The corresponding physical address is: 9260
+The signed byte value at 9260 is 0
+Logical address being translated: 36468
+The corresponding physical address is: 18804
+The signed byte value at 18804 is 0
+Logical address being translated: 33645
+The corresponding physical address is: 31853
+The signed byte value at 31853 is 0
+Logical address being translated: 25002
+The corresponding physical address is: 32170
+The signed byte value at 32170 is 24
+Logical address being translated: 53715
+The corresponding physical address is: 32467
+The signed byte value at 32467 is 116
+Logical address being translated: 60173
+The corresponding physical address is: 11533
+The signed byte value at 11533 is 0
+Logical address being translated: 46354
+The corresponding physical address is: 32530
+The signed byte value at 32530 is 45
+Logical address being translated: 4708
+The corresponding physical address is: 14692
+The signed byte value at 14692 is 0
+Logical address being translated: 28208
+The corresponding physical address is: 7728
+The signed byte value at 7728 is 0
+Logical address being translated: 58844
+The corresponding physical address is: 3036
+The signed byte value at 3036 is 0
+Logical address being translated: 22173
+The corresponding physical address is: 9117
+The signed byte value at 9117 is 0
+Logical address being translated: 8535
+The corresponding physical address is: 25687
+The signed byte value at 25687 is 85
+Logical address being translated: 42261
+The corresponding physical address is: 21
+The signed byte value at 21 is 0
+Logical address being translated: 29687
+The corresponding physical address is: 503
+The signed byte value at 503 is -3
+Logical address being translated: 37799
+The corresponding physical address is: 679
+The signed byte value at 679 is -23
+Logical address being translated: 22566
+The corresponding physical address is: 806
+The signed byte value at 806 is 22
+Logical address being translated: 62520
+The corresponding physical address is: 4408
+The signed byte value at 4408 is 0
+Logical address being translated: 4098
+The corresponding physical address is: 1026
+The signed byte value at 1026 is 4
+Logical address being translated: 47999
+The corresponding physical address is: 6527
+The signed byte value at 6527 is -33
+Logical address being translated: 49660
+The corresponding physical address is: 1532
+The signed byte value at 1532 is 0
+Logical address being translated: 37063
+The corresponding physical address is: 2247
+The signed byte value at 2247 is 49
+Logical address being translated: 41856
+The corresponding physical address is: 23680
+The signed byte value at 23680 is 0
+Logical address being translated: 5417
+The corresponding physical address is: 1577
+The signed byte value at 1577 is 0
+Logical address being translated: 48856
+The corresponding physical address is: 16856
+The signed byte value at 16856 is 0
+Logical address being translated: 10682
+The corresponding physical address is: 1978
+The signed byte value at 1978 is 10
+Logical address being translated: 22370
+The corresponding physical address is: 8802
+The signed byte value at 8802 is 21
+Logical address being translated: 63281
+The corresponding physical address is: 10289
+The signed byte value at 10289 is 0
+Logical address being translated: 62452
+The corresponding physical address is: 2292
+The signed byte value at 2292 is 0
+Logical address being translated: 50532
+The corresponding physical address is: 17252
+The signed byte value at 17252 is 0
+Logical address being translated: 9022
+The corresponding physical address is: 2366
+The signed byte value at 2366 is 8
+Logical address being translated: 59300
+The corresponding physical address is: 2724
+The signed byte value at 2724 is 0
+Logical address being translated: 58660
+The corresponding physical address is: 2852
+The signed byte value at 2852 is 0
+Logical address being translated: 56401
+The corresponding physical address is: 2897
+The signed byte value at 2897 is 0
+Logical address being translated: 8518
+The corresponding physical address is: 25670
+The signed byte value at 25670 is 8
+Logical address being translated: 63066
+The corresponding physical address is: 22874
+The signed byte value at 22874 is 61
+Logical address being translated: 63250
+The corresponding physical address is: 10258
+The signed byte value at 10258 is 61
+Logical address being translated: 48592
+The corresponding physical address is: 3280
+The signed byte value at 3280 is 0
+Logical address being translated: 28771
+The corresponding physical address is: 3427
+The signed byte value at 3427 is 24
+Logical address being translated: 37673
+The corresponding physical address is: 553
+The signed byte value at 553 is 0
+Logical address being translated: 60776
+The corresponding physical address is: 3688
+The signed byte value at 3688 is 0
+Logical address being translated: 56438
+The corresponding physical address is: 2934
+The signed byte value at 2934 is 55
+Logical address being translated: 60424
+The corresponding physical address is: 12808
+The signed byte value at 12808 is 0
+Logical address being translated: 39993
+The corresponding physical address is: 26937
+The signed byte value at 26937 is 0
+Logical address being translated: 56004
+The corresponding physical address is: 29892
+The signed byte value at 29892 is 0
+Logical address being translated: 59002
+The corresponding physical address is: 30842
+The signed byte value at 30842 is 57
+Logical address being translated: 33982
+The corresponding physical address is: 23486
+The signed byte value at 23486 is 33
+Logical address being translated: 25498
+The corresponding physical address is: 31642
+The signed byte value at 31642 is 24
+Logical address being translated: 57047
+The corresponding physical address is: 4055
+The signed byte value at 4055 is -75
+Logical address being translated: 1401
+The corresponding physical address is: 4217
+The signed byte value at 4217 is 0
+Logical address being translated: 15130
+The corresponding physical address is: 5914
+The signed byte value at 5914 is 14
+Logical address being translated: 42960
+The corresponding physical address is: 4560
+The signed byte value at 4560 is 0
+Logical address being translated: 61827
+The corresponding physical address is: 4739
+The signed byte value at 4739 is 96
+Logical address being translated: 32442
+The corresponding physical address is: 5050
+The signed byte value at 5050 is 31
+Logical address being translated: 64304
+The corresponding physical address is: 22320
+The signed byte value at 22320 is 0
+Logical address being translated: 30273
+The corresponding physical address is: 15937
+The signed byte value at 15937 is 0
+Logical address being translated: 38082
+The corresponding physical address is: 5314
+The signed byte value at 5314 is 37
+Logical address being translated: 22404
+The corresponding physical address is: 8836
+The signed byte value at 8836 is 0
+Logical address being translated: 3808
+The corresponding physical address is: 25056
+The signed byte value at 25056 is 0
+Logical address being translated: 16883
+The corresponding physical address is: 5619
+The signed byte value at 5619 is 124
+Logical address being translated: 23111
+The corresponding physical address is: 9287
+The signed byte value at 9287 is -111
+Logical address being translated: 62417
+The corresponding physical address is: 2257
+The signed byte value at 2257 is 0
+Logical address being translated: 60364
+The corresponding physical address is: 11724
+The signed byte value at 11724 is 0
+Logical address being translated: 4542
+The corresponding physical address is: 14526
+The signed byte value at 14526 is 4
+Logical address being translated: 14829
+The corresponding physical address is: 5869
+The signed byte value at 5869 is 0
+Logical address being translated: 44964
+The corresponding physical address is: 6052
+The signed byte value at 6052 is 0
+Logical address being translated: 33924
+The corresponding physical address is: 23428
+The signed byte value at 23428 is 0
+Logical address being translated: 2141
+The corresponding physical address is: 19805
+The signed byte value at 19805 is 0
+Logical address being translated: 19245
+The corresponding physical address is: 16429
+The signed byte value at 16429 is 0
+Logical address being translated: 47168
+The corresponding physical address is: 10816
+The signed byte value at 10816 is 0
+Logical address being translated: 24048
+The corresponding physical address is: 6384
+The signed byte value at 6384 is 0
+Logical address being translated: 1022
+The corresponding physical address is: 24318
+The signed byte value at 24318 is 0
+Logical address being translated: 23075
+The corresponding physical address is: 9251
+The signed byte value at 9251 is -120
+Logical address being translated: 24888
+The corresponding physical address is: 32056
+The signed byte value at 32056 is 0
+Logical address being translated: 49247
+The corresponding physical address is: 16991
+The signed byte value at 16991 is 23
+Logical address being translated: 4900
+The corresponding physical address is: 6436
+The signed byte value at 6436 is 0
+Logical address being translated: 22656
+The corresponding physical address is: 896
+The signed byte value at 896 is 0
+Logical address being translated: 34117
+The corresponding physical address is: 6725
+The signed byte value at 6725 is 0
+Logical address being translated: 55555
+The corresponding physical address is: 29187
+The signed byte value at 29187 is 64
+Logical address being translated: 48947
+The corresponding physical address is: 6963
+The signed byte value at 6963 is -52
+Logical address being translated: 59533
+The corresponding physical address is: 7309
+The signed byte value at 7309 is 0
+Logical address being translated: 21312
+The corresponding physical address is: 7488
+The signed byte value at 7488 is 0
+Logical address being translated: 21415
+The corresponding physical address is: 7591
+The signed byte value at 7591 is -23
+Logical address being translated: 813
+The corresponding physical address is: 24109
+The signed byte value at 24109 is 0
+Logical address being translated: 19419
+The corresponding physical address is: 16603
+The signed byte value at 16603 is -10
+Logical address being translated: 1999
+The corresponding physical address is: 10191
+The signed byte value at 10191 is -13
+Logical address being translated: 20155
+The corresponding physical address is: 7867
+The signed byte value at 7867 is -82
+Logical address being translated: 21521
+The corresponding physical address is: 7953
+The signed byte value at 7953 is 0
+Logical address being translated: 13670
+The corresponding physical address is: 8294
+The signed byte value at 8294 is 13
+Logical address being translated: 19289
+The corresponding physical address is: 16473
+The signed byte value at 16473 is 0
+Logical address being translated: 58483
+The corresponding physical address is: 8563
+The signed byte value at 8563 is 28
+Logical address being translated: 41318
+The corresponding physical address is: 23910
+The signed byte value at 23910 is 40
+Logical address being translated: 16151
+The corresponding physical address is: 8727
+The signed byte value at 8727 is -59
+Logical address being translated: 13611
+The corresponding physical address is: 8235
+The signed byte value at 8235 is 74
+Logical address being translated: 21514
+The corresponding physical address is: 7946
+The signed byte value at 7946 is 21
+Logical address being translated: 13499
+The corresponding physical address is: 9147
+The signed byte value at 9147 is 46
+Logical address being translated: 45583
+The corresponding physical address is: 28431
+The signed byte value at 28431 is -125
+Logical address being translated: 49013
+The corresponding physical address is: 7029
+The signed byte value at 7029 is 0
+Logical address being translated: 64843
+The corresponding physical address is: 9291
+The signed byte value at 9291 is 82
+Logical address being translated: 63485
+The corresponding physical address is: 10493
+The signed byte value at 10493 is 0
+Logical address being translated: 38697
+The corresponding physical address is: 27689
+The signed byte value at 27689 is 0
+Logical address being translated: 59188
+The corresponding physical address is: 2612
+The signed byte value at 2612 is 0
+Logical address being translated: 24593
+The corresponding physical address is: 9489
+The signed byte value at 9489 is 0
+Logical address being translated: 57641
+The corresponding physical address is: 9769
+The signed byte value at 9769 is 0
+Logical address being translated: 36524
+The corresponding physical address is: 18860
+The signed byte value at 18860 is 0
+Logical address being translated: 56980
+The corresponding physical address is: 3988
+The signed byte value at 3988 is 0
+Logical address being translated: 36810
+The corresponding physical address is: 20682
+The signed byte value at 20682 is 35
+Logical address being translated: 6096
+The corresponding physical address is: 10192
+The signed byte value at 10192 is 0
+Logical address being translated: 11070
+The corresponding physical address is: 13630
+The signed byte value at 13630 is 10
+Logical address being translated: 60124
+The corresponding physical address is: 26076
+The signed byte value at 26076 is 0
+Logical address being translated: 37576
+The corresponding physical address is: 10440
+The signed byte value at 10440 is 0
+Logical address being translated: 15096
+The corresponding physical address is: 28408
+The signed byte value at 28408 is 0
+Logical address being translated: 45247
+The corresponding physical address is: 10687
+The signed byte value at 10687 is 47
+Logical address being translated: 32783
+The corresponding physical address is: 11279
+The signed byte value at 11279 is 3
+Logical address being translated: 58390
+The corresponding physical address is: 8470
+The signed byte value at 8470 is 57
+Logical address being translated: 60873
+The corresponding physical address is: 3785
+The signed byte value at 3785 is 0
+Logical address being translated: 23719
+The corresponding physical address is: 10919
+The signed byte value at 10919 is 41
+Logical address being translated: 24385
+The corresponding physical address is: 11073
+The signed byte value at 11073 is 0
+Logical address being translated: 22307
+The corresponding physical address is: 11299
+The signed byte value at 11299 is -56
+Logical address being translated: 17375
+The corresponding physical address is: 11743
+The signed byte value at 11743 is -9
+Logical address being translated: 15990
+The corresponding physical address is: 11894
+The signed byte value at 11894 is 15
+Logical address being translated: 20526
+The corresponding physical address is: 12078
+The signed byte value at 12078 is 20
+Logical address being translated: 25904
+The corresponding physical address is: 12336
+The signed byte value at 12336 is 0
+Logical address being translated: 42224
+The corresponding physical address is: 12784
+The signed byte value at 12784 is 0
+Logical address being translated: 9311
+The corresponding physical address is: 12895
+The signed byte value at 12895 is 23
+Logical address being translated: 7862
+The corresponding physical address is: 13238
+The signed byte value at 13238 is 7
+Logical address being translated: 3835
+The corresponding physical address is: 25083
+The signed byte value at 25083 is -66
+Logical address being translated: 30535
+The corresponding physical address is: 25415
+The signed byte value at 25415 is -47
+Logical address being translated: 65179
+The corresponding physical address is: 13467
+The signed byte value at 13467 is -90
+Logical address being translated: 57387
+The corresponding physical address is: 21803
+The signed byte value at 21803 is 10
+Logical address being translated: 63579
+The corresponding physical address is: 29019
+The signed byte value at 29019 is 22
+Logical address being translated: 4946
+The corresponding physical address is: 6482
+The signed byte value at 6482 is 4
+Logical address being translated: 9037
+The corresponding physical address is: 2381
+The signed byte value at 2381 is 0
+Logical address being translated: 61033
+The corresponding physical address is: 30057
+The signed byte value at 30057 is 0
+Logical address being translated: 55543
+The corresponding physical address is: 13815
+The signed byte value at 13815 is 61
+Logical address being translated: 50361
+The corresponding physical address is: 19385
+The signed byte value at 19385 is 0
+Logical address being translated: 6480
+The corresponding physical address is: 13904
+The signed byte value at 13904 is 0
+Logical address being translated: 14042
+The corresponding physical address is: 28890
+The signed byte value at 28890 is 13
+Logical address being translated: 21531
+The corresponding physical address is: 7963
+The signed byte value at 7963 is 6
+Logical address being translated: 39195
+The corresponding physical address is: 14107
+The signed byte value at 14107 is 70
+Logical address being translated: 37511
+The corresponding physical address is: 10375
+The signed byte value at 10375 is -95
+Logical address being translated: 23696
+The corresponding physical address is: 10896
+The signed byte value at 10896 is 0
+Logical address being translated: 27440
+The corresponding physical address is: 14384
+The signed byte value at 14384 is 0
+Logical address being translated: 28201
+The corresponding physical address is: 14633
+The signed byte value at 14633 is 0
+Logical address being translated: 23072
+The corresponding physical address is: 14880
+The signed byte value at 14880 is 0
+Logical address being translated: 7814
+The corresponding physical address is: 13190
+The signed byte value at 13190 is 7
+Logical address being translated: 6552
+The corresponding physical address is: 13976
+The signed byte value at 13976 is 0
+Logical address being translated: 43637
+The corresponding physical address is: 15221
+The signed byte value at 15221 is 0
+Logical address being translated: 35113
+The corresponding physical address is: 15401
+The signed byte value at 15401 is 0
+Logical address being translated: 34890
+The corresponding physical address is: 15690
+The signed byte value at 15690 is 34
+Logical address being translated: 61297
+The corresponding physical address is: 22129
+The signed byte value at 22129 is 0
+Logical address being translated: 45633
+The corresponding physical address is: 28481
+The signed byte value at 28481 is 0
+Logical address being translated: 61431
+The corresponding physical address is: 22263
+The signed byte value at 22263 is -3
+Logical address being translated: 46032
+The corresponding physical address is: 16080
+The signed byte value at 16080 is 0
+Logical address being translated: 18774
+The corresponding physical address is: 16214
+The signed byte value at 16214 is 18
+Logical address being translated: 62991
+The corresponding physical address is: 22799
+The signed byte value at 22799 is -125
+Logical address being translated: 28059
+The corresponding physical address is: 16539
+The signed byte value at 16539 is 102
+Logical address being translated: 35229
+The corresponding physical address is: 15517
+The signed byte value at 15517 is 0
+Logical address being translated: 51230
+The corresponding physical address is: 16670
+The signed byte value at 16670 is 50
+Logical address being translated: 14405
+The corresponding physical address is: 16965
+The signed byte value at 16965 is 0
+Logical address being translated: 52242
+The corresponding physical address is: 17170
+The signed byte value at 17170 is 51
+Logical address being translated: 43153
+The corresponding physical address is: 17553
+The signed byte value at 17553 is 0
+Logical address being translated: 2709
+The corresponding physical address is: 17813
+The signed byte value at 17813 is 0
+Logical address being translated: 47963
+The corresponding physical address is: 18011
+The signed byte value at 18011 is -42
+Logical address being translated: 36943
+The corresponding physical address is: 18255
+The signed byte value at 18255 is 19
+Logical address being translated: 54066
+The corresponding physical address is: 18482
+The signed byte value at 18482 is 52
+Logical address being translated: 10054
+The corresponding physical address is: 30278
+The signed byte value at 30278 is 9
+Logical address being translated: 43051
+The corresponding physical address is: 17451
+The signed byte value at 17451 is 10
+Logical address being translated: 11525
+The corresponding physical address is: 18693
+The signed byte value at 18693 is 0
+Logical address being translated: 17684
+The corresponding physical address is: 18964
+The signed byte value at 18964 is 0
+Logical address being translated: 41681
+The corresponding physical address is: 19409
+The signed byte value at 19409 is 0
+Logical address being translated: 27883
+The corresponding physical address is: 19691
+The signed byte value at 19691 is 58
+Logical address being translated: 56909
+The corresponding physical address is: 3917
+The signed byte value at 3917 is 0
+Logical address being translated: 45772
+The corresponding physical address is: 28620
+The signed byte value at 28620 is 0
+Logical address being translated: 27496
+The corresponding physical address is: 14440
+The signed byte value at 14440 is 0
+Logical address being translated: 46842
+The corresponding physical address is: 19962
+The signed byte value at 19962 is 45
+Logical address being translated: 38734
+The corresponding physical address is: 27726
+The signed byte value at 27726 is 37
+Logical address being translated: 28972
+The corresponding physical address is: 20012
+The signed byte value at 20012 is 0
+Logical address being translated: 59684
+The corresponding physical address is: 20260
+The signed byte value at 20260 is 0
+Logical address being translated: 11384
+The corresponding physical address is: 20600
+The signed byte value at 20600 is 0
+Logical address being translated: 21018
+The corresponding physical address is: 20762
+The signed byte value at 20762 is 20
+Logical address being translated: 2192
+The corresponding physical address is: 21136
+The signed byte value at 21136 is 0
+Logical address being translated: 18384
+The corresponding physical address is: 26320
+The signed byte value at 26320 is 0
+Logical address being translated: 13464
+The corresponding physical address is: 9112
+The signed byte value at 9112 is 0
+Logical address being translated: 31018
+The corresponding physical address is: 21290
+The signed byte value at 21290 is 30
+Logical address being translated: 62958
+The corresponding physical address is: 21742
+The signed byte value at 21742 is 61
+Logical address being translated: 30611
+The corresponding physical address is: 25491
+The signed byte value at 25491 is -28
+Logical address being translated: 1913
+The corresponding physical address is: 21881
+The signed byte value at 21881 is 0
+Logical address being translated: 18904
+The corresponding physical address is: 16344
+The signed byte value at 16344 is 0
+Logical address being translated: 26773
+The corresponding physical address is: 27285
+The signed byte value at 27285 is 0
+Logical address being translated: 55491
+The corresponding physical address is: 13763
+The signed byte value at 13763 is 48
+Logical address being translated: 21899
+The corresponding physical address is: 22667
+The signed byte value at 22667 is 98
+Logical address being translated: 64413
+The corresponding physical address is: 22429
+The signed byte value at 22429 is 0
+Logical address being translated: 47134
+The corresponding physical address is: 22046
+The signed byte value at 22046 is 46
+Logical address being translated: 23172
+The corresponding physical address is: 14980
+The signed byte value at 14980 is 0
+Logical address being translated: 7262
+The corresponding physical address is: 22366
+The signed byte value at 22366 is 7
+Logical address being translated: 12705
+The corresponding physical address is: 22689
+The signed byte value at 22689 is 0
+Logical address being translated: 7522
+The corresponding physical address is: 22882
+The signed byte value at 22882 is 7
+Logical address being translated: 58815
+The corresponding physical address is: 23231
+The signed byte value at 23231 is 111
+Logical address being translated: 34916
+The corresponding physical address is: 15716
+The signed byte value at 15716 is 0
+Logical address being translated: 3802
+The corresponding physical address is: 25050
+The signed byte value at 25050 is 3
+Logical address being translated: 58008
+The corresponding physical address is: 23448
+The signed byte value at 23448 is 0
+Logical address being translated: 1239
+The corresponding physical address is: 23767
+The signed byte value at 23767 is 53
+Logical address being translated: 63947
+The corresponding physical address is: 24011
+The signed byte value at 24011 is 114
+Logical address being translated: 381
+The corresponding physical address is: 24189
+The signed byte value at 24189 is 0
+Logical address being translated: 60734
+The corresponding physical address is: 3646
+The signed byte value at 3646 is 59
+Logical address being translated: 48769
+The corresponding physical address is: 24449
+The signed byte value at 24449 is 0
+Logical address being translated: 41938
+The corresponding physical address is: 24786
+The signed byte value at 24786 is 40
+Logical address being translated: 38025
+The corresponding physical address is: 5257
+The signed byte value at 5257 is 0
+Logical address being translated: 55099
+The corresponding physical address is: 24891
+The signed byte value at 24891 is -50
+Logical address being translated: 56691
+The corresponding physical address is: 26739
+The signed byte value at 26739 is 92
+Logical address being translated: 39530
+The corresponding physical address is: 30570
+The signed byte value at 30570 is 38
+Logical address being translated: 59003
+The corresponding physical address is: 30843
+The signed byte value at 30843 is -98
+Logical address being translated: 6029
+The corresponding physical address is: 10125
+The signed byte value at 10125 is 0
+Logical address being translated: 20920
+The corresponding physical address is: 25272
+The signed byte value at 25272 is 0
+Logical address being translated: 8077
+The corresponding physical address is: 25485
+The signed byte value at 25485 is 0
+Logical address being translated: 42633
+The corresponding physical address is: 25737
+The signed byte value at 25737 is 0
+Logical address being translated: 17443
+The corresponding physical address is: 25891
+The signed byte value at 25891 is 8
+Logical address being translated: 53570
+The corresponding physical address is: 32322
+The signed byte value at 32322 is 52
+Logical address being translated: 22833
+The corresponding physical address is: 26161
+The signed byte value at 26161 is 0
+Logical address being translated: 3782
+The corresponding physical address is: 26566
+The signed byte value at 26566 is 3
+Logical address being translated: 47758
+The corresponding physical address is: 26766
+The signed byte value at 26766 is 46
+Logical address being translated: 22136
+The corresponding physical address is: 27000
+The signed byte value at 27000 is 0
+Logical address being translated: 22427
+The corresponding physical address is: 11419
+The signed byte value at 11419 is -26
+Logical address being translated: 23867
+The corresponding physical address is: 6203
+The signed byte value at 6203 is 78
+Logical address being translated: 59968
+The corresponding physical address is: 27200
+The signed byte value at 27200 is 0
+Logical address being translated: 62166
+The corresponding physical address is: 27606
+The signed byte value at 27606 is 60
+Logical address being translated: 6972
+The corresponding physical address is: 27708
+The signed byte value at 27708 is 0
+Logical address being translated: 63684
+The corresponding physical address is: 29124
+The signed byte value at 29124 is 0
+Logical address being translated: 46388
+The corresponding physical address is: 32564
+The signed byte value at 32564 is 0
+Logical address being translated: 41942
+The corresponding physical address is: 24790
+The signed byte value at 24790 is 40
+Logical address being translated: 36524
+The corresponding physical address is: 28076
+The signed byte value at 28076 is 0
+Logical address being translated: 9323
+The corresponding physical address is: 12907
+The signed byte value at 12907 is 26
+Logical address being translated: 31114
+The corresponding physical address is: 21386
+The signed byte value at 21386 is 30
+Logical address being translated: 22345
+The corresponding physical address is: 11337
+The signed byte value at 11337 is 0
+Logical address being translated: 46463
+The corresponding physical address is: 32639
+The signed byte value at 32639 is 95
+Logical address being translated: 54671
+The corresponding physical address is: 28303
+The signed byte value at 28303 is 99
+Logical address being translated: 9214
+The corresponding physical address is: 2558
+The signed byte value at 2558 is 8
+Logical address being translated: 7257
+The corresponding physical address is: 22361
+The signed byte value at 22361 is 0
+Logical address being translated: 33150
+The corresponding physical address is: 28542
+The signed byte value at 28542 is 32
+Logical address being translated: 41565
+The corresponding physical address is: 19293
+The signed byte value at 19293 is 0
+Logical address being translated: 26214
+The corresponding physical address is: 28774
+The signed byte value at 28774 is 25
+Logical address being translated: 3595
+The corresponding physical address is: 26379
+The signed byte value at 26379 is -126
+Logical address being translated: 17932
+The corresponding physical address is: 28940
+The signed byte value at 28940 is 0
+Logical address being translated: 34660
+The corresponding physical address is: 29284
+The signed byte value at 29284 is 0
+Logical address being translated: 51961
+The corresponding physical address is: 29689
+The signed byte value at 29689 is 0
+Logical address being translated: 58634
+The corresponding physical address is: 23050
+The signed byte value at 23050 is 57
+Logical address being translated: 57990
+The corresponding physical address is: 23430
+The signed byte value at 23430 is 56
+Logical address being translated: 28848
+The corresponding physical address is: 3504
+The signed byte value at 3504 is 0
+Logical address being translated: 49920
+The corresponding physical address is: 29696
+The signed byte value at 29696 is 0
+Logical address being translated: 18351
+The corresponding physical address is: 30127
+The signed byte value at 30127 is -21
+Logical address being translated: 53669
+The corresponding physical address is: 32421
+The signed byte value at 32421 is 0
+Logical address being translated: 33996
+The corresponding physical address is: 30412
+The signed byte value at 30412 is 0
+Logical address being translated: 6741
+The corresponding physical address is: 30549
+The signed byte value at 30549 is 0
+Logical address being translated: 64098
+The corresponding physical address is: 30818
+The signed byte value at 30818 is 62
+Logical address being translated: 606
+The corresponding physical address is: 31070
+The signed byte value at 31070 is 0
+Logical address being translated: 27383
+The corresponding physical address is: 31479
+The signed byte value at 31479 is -67
+Logical address being translated: 63140
+The corresponding physical address is: 31652
+The signed byte value at 31652 is 0
+Logical address being translated: 32228
+The corresponding physical address is: 31972
+The signed byte value at 31972 is 0
+Logical address being translated: 63437
+The corresponding physical address is: 32205
+The signed byte value at 32205 is 0
+Logical address being translated: 29085
+The corresponding physical address is: 20125
+The signed byte value at 20125 is 0
+Logical address being translated: 65080
+The corresponding physical address is: 13368
+The signed byte value at 13368 is 0
+Logical address being translated: 38753
+The corresponding physical address is: 32353
+The signed byte value at 32353 is 0
+Logical address being translated: 16041
+The corresponding physical address is: 11945
+The signed byte value at 11945 is 0
+Logical address being translated: 9041
+The corresponding physical address is: 2385
+The signed byte value at 2385 is 0
+Logical address being translated: 42090
+The corresponding physical address is: 12650
+The signed byte value at 12650 is 41
+Logical address being translated: 46388
+The corresponding physical address is: 32564
+The signed byte value at 32564 is 0
+Logical address being translated: 63650
+The corresponding physical address is: 32674
+The signed byte value at 32674 is 62
+Logical address being translated: 36636
+The corresponding physical address is: 28
+The signed byte value at 28 is 0
+Logical address being translated: 21947
+The corresponding physical address is: 443
+The signed byte value at 443 is 110
+Logical address being translated: 19833
+The corresponding physical address is: 633
+The signed byte value at 633 is 0
+Logical address being translated: 36464
+The corresponding physical address is: 28016
+The signed byte value at 28016 is 0
+Logical address being translated: 8541
+The corresponding physical address is: 861
+The signed byte value at 861 is 0
+Logical address being translated: 12712
+The corresponding physical address is: 22696
+The signed byte value at 22696 is 0
+Logical address being translated: 48955
+The corresponding physical address is: 6971
+The signed byte value at 6971 is -50
+Logical address being translated: 39206
+The corresponding physical address is: 14118
+The signed byte value at 14118 is 38
+Logical address being translated: 15578
+The corresponding physical address is: 1242
+The signed byte value at 1242 is 15
+Logical address being translated: 49205
+The corresponding physical address is: 1333
+The signed byte value at 1333 is 0
+Logical address being translated: 7731
+The corresponding physical address is: 13107
+The signed byte value at 13107 is -116
+Logical address being translated: 43046
+The corresponding physical address is: 17446
+The signed byte value at 17446 is 42
+Logical address being translated: 60498
+The corresponding physical address is: 1618
+The signed byte value at 1618 is 59
+Logical address being translated: 9237
+The corresponding physical address is: 12821
+The signed byte value at 12821 is 0
+Logical address being translated: 47706
+The corresponding physical address is: 26714
+The signed byte value at 26714 is 46
+Logical address being translated: 43973
+The corresponding physical address is: 1989
+The signed byte value at 1989 is 0
+Logical address being translated: 42008
+The corresponding physical address is: 12568
+The signed byte value at 12568 is 0
+Logical address being translated: 27460
+The corresponding physical address is: 14404
+The signed byte value at 14404 is 0
+Logical address being translated: 24999
+The corresponding physical address is: 2215
+The signed byte value at 2215 is 105
+Logical address being translated: 51933
+The corresponding physical address is: 29661
+The signed byte value at 29661 is 0
+Logical address being translated: 34070
+The corresponding physical address is: 6678
+The signed byte value at 6678 is 33
+Logical address being translated: 65155
+The corresponding physical address is: 13443
+The signed byte value at 13443 is -96
+Logical address being translated: 59955
+The corresponding physical address is: 27187
+The signed byte value at 27187 is -116
+Logical address being translated: 9277
+The corresponding physical address is: 12861
+The signed byte value at 12861 is 0
+Logical address being translated: 20420
+The corresponding physical address is: 2500
+The signed byte value at 2500 is 0
+Logical address being translated: 44860
+The corresponding physical address is: 5948
+The signed byte value at 5948 is 0
+Logical address being translated: 50992
+The corresponding physical address is: 2608
+The signed byte value at 2608 is 0
+Logical address being translated: 10583
+The corresponding physical address is: 2903
+The signed byte value at 2903 is 85
+Logical address being translated: 57751
+The corresponding physical address is: 9879
+The signed byte value at 9879 is 101
+Logical address being translated: 23195
+The corresponding physical address is: 15003
+The signed byte value at 15003 is -90
+Logical address being translated: 27227
+The corresponding physical address is: 31323
+The signed byte value at 31323 is -106
+Logical address being translated: 42816
+The corresponding physical address is: 4416
+The signed byte value at 4416 is 0
+Logical address being translated: 58219
+The corresponding physical address is: 3179
+The signed byte value at 3179 is -38
+Logical address being translated: 37606
+The corresponding physical address is: 10470
+The signed byte value at 10470 is 36
+Logical address being translated: 18426
+The corresponding physical address is: 30202
+The signed byte value at 30202 is 17
+Logical address being translated: 21238
+The corresponding physical address is: 20982
+The signed byte value at 20982 is 20
+Logical address being translated: 11983
+The corresponding physical address is: 3535
+The signed byte value at 3535 is -77
+Logical address being translated: 48394
+The corresponding physical address is: 3594
+The signed byte value at 3594 is 47
+Logical address being translated: 11036
+The corresponding physical address is: 3868
+The signed byte value at 3868 is 0
+Logical address being translated: 30557
+The corresponding physical address is: 4189
+The signed byte value at 4189 is 0
+Logical address being translated: 23453
+The corresponding physical address is: 4509
+The signed byte value at 4509 is 0
+Logical address being translated: 49847
+The corresponding physical address is: 4791
+The signed byte value at 4791 is -83
+Logical address being translated: 30032
+The corresponding physical address is: 4944
+The signed byte value at 4944 is 0
+Logical address being translated: 48065
+The corresponding physical address is: 18113
+The signed byte value at 18113 is 0
+Logical address being translated: 6957
+The corresponding physical address is: 27693
+The signed byte value at 27693 is 0
+Logical address being translated: 2301
+The corresponding physical address is: 21245
+The signed byte value at 21245 is 0
+Logical address being translated: 7736
+The corresponding physical address is: 13112
+The signed byte value at 13112 is 0
+Logical address being translated: 31260
+The corresponding physical address is: 5148
+The signed byte value at 5148 is 0
+Logical address being translated: 17071
+The corresponding physical address is: 5551
+The signed byte value at 5551 is -85
+Logical address being translated: 8940
+The corresponding physical address is: 5868
+The signed byte value at 5868 is 0
+Logical address being translated: 9929
+The corresponding physical address is: 6089
+The signed byte value at 6089 is 0
+Logical address being translated: 45563
+The corresponding physical address is: 6395
+The signed byte value at 6395 is 126
+Logical address being translated: 12107
+The corresponding physical address is: 6475
+The signed byte value at 6475 is -46
+Total Addresses = 1000
+Page Faults = 538
+TLB Hits = 54
