@@ -111,7 +111,7 @@ int main()
     }
     else
     {
-      // TLB miss
+      // TLB missed the value 
       if (page_table[page_number] != -1) // If it exists in physical memory
       {
         frame_number = page_table[page_number]; // We get the frame number from the page_table
@@ -138,6 +138,7 @@ int main()
   }
 
   // Print additional statistics as per the assignment requirements
+  printf("Total Addresses = %d\n", total_addresses);
   printf("Page Faults = %d\n", page_faults);
   printf("TLB Hits = %d\n", TLB_hits);
 
@@ -198,7 +199,7 @@ int search_TLB(int page_number)
       return TLB[i].frame_number;
     }
   }
-  return -1; // Not found
+  return -1; 
 }
 
 // Adds a page and frame number to the TLB
