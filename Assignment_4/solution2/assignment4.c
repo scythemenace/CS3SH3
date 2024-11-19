@@ -29,6 +29,7 @@ int page_table[PAGES];
 signed char physical_memory[FRAME_COUNT][PAGE_SIZE];
 
 int current_frame_index = 0; // Using it as a pointer to mark the next available index in our physical memory since it's implemented as a circular array
+int frame_page[FRAME_COUNT]; // For inverse mapping to update page_table
 signed char *mmapfptr;
 
 // TLB variables
@@ -55,6 +56,10 @@ int main()
   {
     TLB[i].page_number = -1;
     TLB[i].frame_number = -1;
+  }
+  for (int i = 0; i < FRAME_COUNT; i++)
+  {
+    frame_page[i] = -1;
   }
 
   // Memory mapping the BACKING_STORE.bin file
@@ -111,7 +116,7 @@ int main()
     }
     else
     {
-      // TLB missed the value 
+      // TLB missed the value
       if (page_table[page_number] != -1) // If it exists in physical memory
       {
         frame_number = page_table[page_number]; // We get the frame number from the page_table
@@ -180,6 +185,15 @@ void write_frame(int page_number, int frame_index)
 // Replaces a page in physical memory using FIFO policy
 void replace_page(int page_number)
 {
+  int old_page = frame_page[current_frame_index];
+  if (old_page != -1)
+  {
+    // Invalidate the old page's entry in the page table
+    page_table[old_page] = -1;
+  }
+
+  frame_page[current_frame_index] = page_number;
+
   write_frame(page_number, current_frame_index);
   page_table[page_number] = current_frame_index; // Update the page_table as well
 
@@ -199,7 +213,7 @@ int search_TLB(int page_number)
       return TLB[i].frame_number;
     }
   }
-  return -1; 
+  return -1;
 }
 
 // Adds a page and frame number to the TLB
