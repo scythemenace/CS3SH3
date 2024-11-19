@@ -12,26 +12,31 @@
 #define OFFSET_MASK 0xFF // Masks lower 8 bits
 #define PAGES 256        // 2^8
 #define FRAME_COUNT 128
-#define TLB_SIZE 16 // Typical small size for TLB
+#define TLB_SIZE 16 // As given in the TLB
 
+// Creating a custom type for storing page_number and frame_number
 typedef struct
 {
   int page_number;
   int frame_number;
 } TLBentry;
 
-// Global variables
 int page_table[PAGES];
+/*Creating a 2-D array to simulate a physical memory, normally a physical memory has
+ * pages which have contiguous locations as its part, which is true here as well but
+ * instead of initializing an array of size 2^15, constructing it in the form of a 2-D
+ * gives us simplicity in working with the array*/
 signed char physical_memory[FRAME_COUNT][PAGE_SIZE];
-int current_frame_index = 0;
+
+int current_frame_index = 0; // Using it as a pointer to mark the next available index in our physical memory since it's implemented as a circular array
 signed char *mmapfptr;
 
 // TLB variables
 TLBentry TLB[TLB_SIZE];
-int TLBindex = 0; // Points to the next position to insert in TLB (FIFO)
+int TLBindex = 0; // Points to the next position to insert in TLB (similar to the physical memory logic)
 int TLBcount = 0; // Number of entries currently in TLB
 
-// Function declarations
+// Function prototypes 
 signed char read_frames(int frame_index, int offset);
 void write_frame(int page_number, int frame_index);
 void replace_page(int page_number);
@@ -133,7 +138,7 @@ int main()
     printf("The signed byte value at %u is %d\n", physical_address, value);
   }
 
-  // Print statistics
+  // Print additional statistics as per the assignment requirements
   printf("Page Faults = %d\n", page_faults);
   printf("TLB Hits = %d\n", TLB_hits);
 
@@ -151,9 +156,10 @@ signed char read_frames(int frame_index, int offset)
   return physical_memory[frame_index][offset];
 }
 
-// Writes a page from backing store to a frame in physical memory
+// Writes a page from the memory mapping of BACKING_STORE to a frame in physical memory
 void write_frame(int page_number, int frame_index)
 {
+  /**/
   memcpy(physical_memory[frame_index], mmapfptr + page_number * PAGE_SIZE, PAGE_SIZE);
 }
 
