@@ -239,3 +239,78 @@ We will initialize our array:
 ```c
 TLBentry tlb[TLB_SIZE]
 ```
+
+For searching the TLB for a value, as described in the lectures, we just manually search every entry to check if our page_number is there or not.
+
+```c
+int search_TLB(int page_number)
+{
+  for (int i = 0; i < TLB_SIZE; i++)
+  {
+    if (TLB[i].page_number == page_number)
+    {
+      return TLB[i].frame_number;
+    }
+  }
+  return -1; // Not found
+}
+
+```
+
+For adding a page and a frame number, we just map the values of page number and frame number to the corresponding members of the struct type. In order to make sure that this is in accordance with the circular array principles (so that we overwrite the oldest entry with the new one in case of an overflow), we get the remainder after division with the max TLB size (remainder cannot be greater than the divisor => new values will always be appended to the circular buffer and will overwrite the oldest values).
+
+```c
+void add_TLB(int page_number, int frame_number)
+{
+  TLB[TLBindex].page_number = page_number;
+  TLB[TLBindex].frame_number = frame_number;
+  TLBindex = (TLBindex + 1) % TLB_SIZE;
+
+  if (TLBcount < TLB_SIZE)
+    TLBcount++;
+}
+```
+
+We will also update the TLB in case some page is replaced in the physical memory. This is done to avoid faulty hits. If our physical memory got overwritten and that page doesn't exist in it, then we have to overwrite it in our TLB as well otherwise it will return a wrong frame number which has been overwritten.
+
+```c
+void update_TLB(int page_number, int frame_number)
+{
+  for (int i = 0; i < TLB_SIZE; i++)
+  {
+    if (TLB[i].page_number == page_number)
+    {
+      // We update the frame number at the same index
+      TLB[i].frame_number = frame_number;
+      return;
+    }
+  }
+}
+```
+
+## Incorporating TLB logic in our original code
+
+Alongside page_table, we would be initializing the frame number with -1 as well (if a page doesn't exist, it will be denoted by -1).
+
+```c
+for (int i = 0; i < TLB_SIZE; i++)
+{
+  TLB[i].page_number = -1;
+  TLB[i].frame_number = -1;
+}
+```
+
+We initialize an `int TLB_hits` variable so that we can keep track of total TLB hits. We will update it's value whenever search_TLB(page_number) doesn't return -1.
+
+Additionally, in the case neither TLB nor the page_table has the frame_number, we will update an `int page_fault` variable.
+
+In the case that the TLB missed the frame_number and it's not in the memory as well, we would be manually adding the page to the physical_memory using the replace_page function. At the same time we would add it to the TLB as well for future cache hits in order to optimize performance.
+
+Also while replacing the page, we update our TLB. If the page_number hasn't been replaced by some new frame, the tlb_update occurs, but doesn't change anything. In the case that our physical memory was full and in order to add a new page from logical address, it replaced the oldest address, the update_tlb will make sure that our tlb data structure avoids faulty hits.
+
+## Prerequisite Knowledge
+
+- Reading a file in C (Refer to lab 4 part 1)
+- Converting logical addresses to physical addresses (refer to lab 4 part 1)
+- Usage of mmap() and memcpy() to map a file in the local storage to memory so that it can be used as some sort of a virtual memory (refer to lab 4 part 2).
+- Understanding of paging and TLB's (refer to chapter 9 lec notes).

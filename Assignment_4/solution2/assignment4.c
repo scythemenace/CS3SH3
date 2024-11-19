@@ -41,8 +41,8 @@ signed char read_frames(int frame_index, int offset);
 void write_frame(int page_number, int frame_index);
 void replace_page(int page_number);
 int search_TLB(int page_number);
-void TLB_Add(int page_number, int frame_number);
-void TLB_Update(int page_number, int frame_number);
+void add_TLB(int page_number, int frame_number);
+void update_TLB(int page_number, int frame_number);
 
 int main()
 {
@@ -122,7 +122,7 @@ int main()
         page_faults++;
       }
       // Add the new page and frame number to the TLB
-      TLB_Add(page_number, frame_number);
+      add_TLB(page_number, frame_number);
     }
 
     /* Opposite of getting the page number from the address
@@ -181,7 +181,7 @@ void replace_page(int page_number)
   page_table[page_number] = current_frame_index; // Update the page_table as well
 
   // Update TLB if necessary (if the old page exists and hasn't been replaced in the physical memory, nothing will happen, otherwise new frame will take the position of the existing page number)
-  TLB_Update(page_number, current_frame_index);
+  update_TLB(page_number, current_frame_index);
 
   current_frame_index = (current_frame_index + 1) % FRAME_COUNT;
 }
@@ -200,7 +200,7 @@ int search_TLB(int page_number)
 }
 
 // Adds a page and frame number to the TLB
-void TLB_Add(int page_number, int frame_number)
+void add_TLB(int page_number, int frame_number)
 {
   TLB[TLBindex].page_number = page_number;
   TLB[TLBindex].frame_number = frame_number;
@@ -211,7 +211,7 @@ void TLB_Add(int page_number, int frame_number)
 }
 
 // Updates the TLB when a page is replaced in physical memory
-void TLB_Update(int page_number, int frame_number)
+void update_TLB(int page_number, int frame_number)
 {
   for (int i = 0; i < TLB_SIZE; i++)
   {
@@ -222,5 +222,4 @@ void TLB_Update(int page_number, int frame_number)
       return;
     }
   }
-  // If not found, we don't do anything
 }
