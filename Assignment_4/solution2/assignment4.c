@@ -80,10 +80,10 @@ int main()
     return -1;
   }
 
-  char buff[BUFFER_SIZE]; // To store the opened file's values which will later be casted as unsigned ints
-
-  int TLB_hits = 0;    // Variable to keep track of the number of TLB hits that have occurred
-  int page_faults = 0; // Variable to keep track of the number of page faults that have occurred
+  char buff[BUFFER_SIZE];  // To store the opened file's values which will later be casted as unsigned ints
+  int total_addresses = 0; // To check for total addresses in the file
+  int TLB_hits = 0;        // Variable to keep track of the number of TLB hits that have occurred
+  int page_faults = 0;     // Variable to keep track of the number of page faults that have occurred
 
   // Loops through the whole addresses.txt file which simulates behaviour of someone requesting memory addresses
   while (fgets(buff, BUFFER_SIZE, fptr) != NULL)
@@ -100,6 +100,8 @@ int main()
       fprintf(stderr, "Invalid page number: %u\n", page_number);
       continue;
     }
+
+    total_addresses++;
 
     int frame_number = search_TLB(page_number); // We first look in the TLB
     if (frame_number != -1)
