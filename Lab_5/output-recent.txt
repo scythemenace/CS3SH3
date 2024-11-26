@@ -1,0 +1,35 @@
+﻿File attributes for the File: 'Lab 5.pdf'
+-------------------------------------------------
+Inode: 67070441
+Size (in bytes): 115672
+Blocks: 232
+File Permissions: -rw-r--r--
+Uid: 501
+Time of last access: Wed Nov 13 13:41:19 2024
+Time of last data modification: Wed Nov 13 12:33:41 2024
+Last Status Change time: Wed Nov 13 13:41:19 2024
+
+File attributes for the File: '../bin'
+-------------------------------------------------
+Inode: 1684
+Size (in bytes): 36864
+Blocks: 72
+File Permissions: drwxr-xr-x
+Uid: 0
+Time of last access: Wed Nov 13 20:00:56 2024
+Time of last data modification: Wed Nov 13 20:02:11 2024
+Last Status Change time: Wed Nov 13 20:02:11 2024
+
+File attributes for the File: 'lab5.c'
+-------------------------------------------------
+Inode: 4643
+Size (in bytes): 1948
+Blocks: 8
+File Permissions: -rw-r--r--
+Uid: 0
+Time of last access: Wed Nov 13 20:02:26 2024
+Time of last data modification: Wed Nov 13 20:01:54 2024
+Last Status Change time: Wed Nov 13 20:01:54 2024
+
+
+
