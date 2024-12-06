@@ -1,487 +1,433 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdbool.h>
-#include <limits.h>
 #include <string.h>
+#include <limits.h>
+#include <math.h>
 
-#define MAX_REQUESTS 20
-#define DISK_SIZE 300
+#define MAX 1000
 
-void FCFS(int arr[], int head, int size);
-int findMinSeekTimeIndex(int arr[], bool visited[], int numRequests, int currentHead);
-void SSTF(int arr[], int head, int size);
-int compare(const void *a, const void *b);
-void SCAN(int *arr, int n, int head, bool direction);
-void CSCAN(int *arr, int n, int head, int disk_size, char direction[]);
-void LOOK(int *arr, int head, int size);
-void CLOOK(int arr[], int head, int size);
-
-// Function to read requests from binary file
-int readRequestsFromBinary(int *requests, const char *filename)
-{
-  FILE *file = fopen("request.bin", "rb");
-  if (!file)
-  {
-    perror("Error opening file");
-    exit(1);
-  }
-
-  int num_requests = fread(requests, sizeof(int), MAX_REQUESTS, file);
-  fclose(file);
-
-  return num_requests;
-}
-
-int main(int argc, char *argv[])
-{
-  // Check command line arguments
-  if (argc != 3)
-  {
-    fprintf(stderr, "Usage: %s <initial_head_position> <direction>\n", argv[0]);
-    fprintf(stderr, "Direction should be LEFT or RIGHT\n");
-    return 1;
-  }
-
-  printf("Total requests = %d\n", MAX_REQUESTS);
-
-  // Parse initial head position
-  int initial_head = atoi(argv[1]);
-  if (initial_head < 0 || initial_head >= DISK_SIZE)
-  {
-    fprintf(stderr, "Initial head position must be between 0 and %d\n", DISK_SIZE - 1);
-    return 1;
-  }
-
-  // Parse direction
-  bool direction;
-  if (strcmp(argv[2], "RIGHT") == 0)
-  {
-    direction = true; // right
-  }
-  else if (strcmp(argv[2], "LEFT") == 0)
-  {
-    direction = false; // left
-  }
-  else
-  {
-    fprintf(stderr, "Direction must be LEFT or RIGHT\n");
-    return 1;
-  }
-
-  // Array to store requests
-  int requests[MAX_REQUESTS];
-
-  // Read requests from binary file
-  int num_requests = readRequestsFromBinary(requests, "requests.bin");
-
-  printf("Initial Head Position: %d\n", initial_head);
-  printf("Direction: %s\n\n", direction ? "RIGHT" : "LEFT");
-
-  // Execute different disk scheduling algorithms
-  printf("FCFS DISK SCHEDULING ALGORITHM:\n\n");
-  FCFS(requests, initial_head, num_requests);
-
-  printf("\nSSTF DISK SCHEDULING ALGORITHM:\n\n");
-  SSTF(requests, initial_head, num_requests);
-
-  printf("\nSCAN DISK SCHEDULING ALGORITHM:\n\n");
-  SCAN(requests, num_requests, initial_head, direction);
-
-  printf("\nC-SCAN DISK SCHEDULING ALGORITHM:\n\n");
-  CSCAN(requests, num_requests, initial_head, DISK_SIZE, argv[2]);
-
-  printf("\nLOOK DISK SCHEDULING ALGORITHM:\n\n");
-  LOOK(requests, initial_head, num_requests);
-
-  printf("\nC-LOOK DISK SCHEDULING ALGORITHM:\n\n");
-  CLOOK(requests, initial_head, num_requests);
-
-  return 0;
-}
-
-void FCFS(int arr[], int head, int size)
-{
-
-  int head_movements = 0;
-  int cur_req, distance;
-
-  for (int i = 0; i < size; i++)
-  {
-    cur_req = arr[i];
-
-    // calculate absolute distance
-    distance = abs(head - cur_req);
-
-    head_movements += distance;
-
-    // accessed track is now new head
-    head = cur_req;
-  }
-
-  // Req sequence
-  for (int i = 0; i < size; i++)
-  {
-    if (i == size - 1)
-    {
-      printf("%d\n", arr[i]);
-    }
-    else
-    {
-      printf("%d, ", arr[i]);
-    }
-  }
-
-  printf("\nFCFS - Total head movements: %d\n", head_movements);
-}
-
-// Function to find the index of request with minimum seek time
-int findMinSeekTimeIndex(int arr[], bool visited[], int numRequests, int currentHead)
-{
-  int minSeekTime = INT_MAX;
-  int minIndex = -1;
-
-  for (int i = 0; i < numRequests; i++)
-  {
-    // If request not already serviced
-    if (!visited[i])
-    {
-      // Calculate absolute seek distance
-      int seekTime = abs(arr[i] - currentHead);
-
-      // Update minimum if this seek time is smaller
-      if (seekTime < minSeekTime)
-      {
-        minSeekTime = seekTime;
-        minIndex = i;
-      }
-    }
-  }
-
-  return minIndex;
-}
-
-// SSTF Disk Scheduling Algorithm
-void SSTF(int arr[], int head, int size)
-{
-  // Array to track visitedarr
-  bool *visited = (bool *)calloc(size, sizeof(bool));
-
-  // Total seek operations
-  int head_movements = 0;
-
-  // Current head position
-  int currentHead = head;
-
-  // Request sequence array to store order of serviced requests
-  int *requestSequence = (int *)malloc(size * sizeof(int));
-  int sequenceIndex = 0;
-
-  // Service allarr
-  for (int count = 0; count < size; count++)
-  {
-    // Find request with minimum seek time
-    int nextRequest = findMinSeekTimeIndex(arr, visited, size, currentHead);
-
-    if (nextRequest == -1)
-    {
-      break; // No more unservicedarr
-    }
-
-    // Calculate and add seek operations
-    head_movements += abs(arr[nextRequest] - currentHead);
-
-    // Store the current request in sequence
-    requestSequence[sequenceIndex++] = arr[nextRequest];
-
-    // Update current head position
-    currentHead = arr[nextRequest];
-
-    // Mark request as visited
-    visited[nextRequest] = true;
-  }
-
-  // Print request sequence
-  for (int i = 0; i < sequenceIndex; i++)
-  {
-    if (i == sequenceIndex - 1)
-    {
-      printf("%d\n", requestSequence[i]);
-    }
-    else
-    {
-      printf("%d, ", requestSequence[i]);
-    }
-  }
-
-  // Free dynamically allocated memory
-  free(visited);
-  free(requestSequence);
-
-  printf("\nSSTF - Total head movements: %d\n", head_movements);
-}
-
+// Utility function to compare two integers for qsort
 int compare(const void *a, const void *b)
 {
   return (*(int *)a - *(int *)b);
 }
 
-void SCAN(int *arr, int n, int head, bool direction)
+// Read requests from binary file
+int read_requests(const char *filename, int requests[])
 {
-  // If no arr, return 0
-  if (n == 0)
-    return;
-
-  // Sort the request array
-  qsort(arr, n, sizeof(int), compare);
-
-  int head_movements = 0;
-  int curr_req = head;
-
-  printf("%d", curr_req);
-
-  // Find the position where head is located in the sorted array
-  int index = 0;
-  for (index = 0; index < n; index++)
+  FILE *file = fopen(filename, "rb");
+  if (!file)
   {
-    if (arr[index] >= head)
-      break;
+    perror("Error opening file");
+    return -1;
+  }
+  int count = fread(requests, sizeof(int), MAX, file);
+  fclose(file);
+  return count;
+}
+
+// FCFS Algorithm
+void FCFS(int arr[], int size, int head)
+{
+  int seek_count = 0;
+  int cur_track, distance;
+
+  for (int i = 0; i < size; i++)
+  {
+    cur_track = arr[i];
+    distance = abs(head - cur_track);
+    seek_count += distance;
+    head = cur_track;
+    printf("%d ", cur_track);
+  }
+  printf("\n\nTotal head movements: %d\n", seek_count);
+}
+
+// SSTF Algorithm
+void SSTF(int request[], int size, int head)
+{
+  if (size == 0)
+  {
+    printf("No requests to process.\n");
+    return;
   }
 
-  // If direction is true, move right (increasing)
-  // If direction is false, move left (decreasing)
-  if (direction)
+  int diff[size][2];
+  int seek_count = 0;
+  int seek_sequence[size];
+  int processed[size];
+
+  memset(processed, 0, sizeof(processed));
+
+  for (int i = 0; i < size; i++)
   {
-    // First, service arr on the right side
-    for (int i = index; i < n; i++)
+    for (int j = 0; j < size; j++)
     {
-      head_movements += abs(curr_req - arr[i]);
-      curr_req = arr[i];
-      printf(", %d", curr_req);
+      if (!processed[j])
+      {
+        diff[j][0] = abs(head - request[j]);
+        diff[j][1] = j;
+      }
+      else
+      {
+        diff[j][0] = INT_MAX;
+      }
     }
-
-    // If there were arr on the right, go to the last track
-    if (n > index)
+    int min_index = -1;
+    int min_distance = INT_MAX;
+    for (int j = 0; j < size; j++)
     {
-      head_movements += abs(curr_req - (n * 200 - 1)); // Assuming track range is 0-199
-      curr_req = n * 200 - 1;
-      printf(", %d", curr_req);
+      if (diff[j][0] < min_distance)
+      {
+        min_distance = diff[j][0];
+        min_index = diff[j][1];
+      }
     }
+    processed[min_index] = 1;
+    seek_count += min_distance;
+    head = request[min_index];
+    seek_sequence[i] = head;
+    printf("%d ", head);
+  }
+  printf("\n\nTotal head movements: %d\n", seek_count);
+}
 
-    // Then service arr on the left side
-    for (int i = index - 1; i >= 0; i--)
+// SCAN Algorithm
+void SCAN(int arr[], int size, int head, char direction[], int disk_size)
+{
+  int seek_count = 0;
+  int left[MAX], right[MAX], seek_sequence[MAX];
+  int left_size = 0, right_size = 0, seek_seq_size = 0;
+
+  if (strcmp(direction, "LEFT") == 0)
+    left[left_size++] = 0;
+  else if (strcmp(direction, "RIGHT") == 0)
+    right[right_size++] = disk_size - 1;
+
+  for (int i = 0; i < size; i++)
+  {
+    if (arr[i] < head)
+      left[left_size++] = arr[i];
+    else
+      right[right_size++] = arr[i];
+  }
+
+  qsort(left, left_size, sizeof(int), compare);
+  qsort(right, right_size, sizeof(int), compare);
+
+  if (strcmp(direction, "LEFT") == 0)
+  {
+    printf("%d ", head);
+    for (int i = left_size - 1; i >= 0; i--)
     {
-      head_movements += abs(curr_req - arr[i]);
-      curr_req = arr[i];
-      printf(", %d", curr_req);
+      seek_sequence[seek_seq_size++] = left[i];
+      seek_count += abs(head - left[i]);
+      head = left[i];
+    }
+    for (int i = 0; i < right_size; i++)
+    {
+      seek_sequence[seek_seq_size++] = right[i];
+      seek_count += abs(head - right[i]);
+      head = right[i];
     }
   }
   else
   {
-    // First, service arr on the left side
-    for (int i = index - 1; i >= 0; i--)
+    for (int i = 0; i < right_size; i++)
     {
-      head_movements += abs(curr_req - arr[i]);
-      curr_req = arr[i];
-      printf(", %d", curr_req);
+      seek_sequence[seek_seq_size++] = right[i];
+      seek_count += abs(head - right[i]);
+      head = right[i];
     }
-
-    // If there were arr on the left, go to track 0
-    if (index > 0)
+    for (int i = left_size - 1; i >= 0; i--)
     {
-      head_movements += abs(curr_req - 0);
-      curr_req = 0;
-      printf(", %d", curr_req);
-    }
-
-    // Then service arr on the right side
-    for (int i = index; i < n; i++)
-    {
-      head_movements += abs(curr_req - arr[i]);
-      curr_req = arr[i];
-      printf(", %d", curr_req);
+      seek_sequence[seek_seq_size++] = left[i];
+      seek_count += abs(head - left[i]);
+      head = left[i];
     }
   }
 
-  printf("\n\nSCAN - Total head movements: %d\n", head_movements);
+  for (int i = 0; i < seek_seq_size; i++)
+  {
+    printf("%d ", seek_sequence[i]);
+  }
+  printf("\n\nSCAN - Total head movements: %d\n", seek_count);
 }
 
-void CSCAN(int *arr, int n, int head, int disk_size, char direction[])
+void CSCAN(int arr[], int size, int head, int disk_size, char direction[])
 {
-  // Sort the requests
-  qsort(arr, n, sizeof(int), compare);
+  int seek_count = 0;
+  int left[MAX], right[MAX];
+  int left_size = 0, right_size = 0;
 
-  int head_movements = 0;
-  int curr_head = head;
+  printf("%d ", head);
 
-  // Find the position where the head fits in the sorted array
-  int head_index = 0;
-  while (head_index < n && arr[head_index] <= head)
+  // Add boundaries
+  left[left_size++] = 0;
+  right[right_size++] = disk_size - 1;
+
+  // Split requests into left and right
+  for (int i = 0; i < size; i++)
   {
-    head_index++;
+    if (arr[i] < head)
+      left[left_size++] = arr[i];
+    if (arr[i] > head)
+      right[right_size++] = arr[i];
   }
 
-  // Print initial head position
-  printf("%d", head);
+  // Sort the arrays
+  qsort(left, left_size, sizeof(int), compare);
+  qsort(right, right_size, sizeof(int), compare);
 
   if (strcmp(direction, "RIGHT") == 0)
-  { // Moving RIGHT
-    // First, scan to the right of the head
-    for (int i = head_index; i < n; i++)
+  {
+    // Process the right side of the head first
+    for (int i = 0; i < right_size; i++)
     {
-      head_movements += abs(curr_head - arr[i]);
-      curr_head = arr[i];
-      printf(", %d", curr_head);
+      printf("%d ", right[i]);
+      seek_count += abs(head - right[i]);
+      head = right[i];
     }
 
-    // If we haven't reached the end of the disk, go to the end
-    if (curr_head != disk_size - 1)
+    // Jump from the end of the disk to the start
+    seek_count += abs(disk_size - 1 - 0);
+    head = 0;
+
+    // Process the left side
+    for (int i = 0; i < left_size; i++)
     {
-      head_movements += abs(curr_head - (disk_size - 1));
-      curr_head = disk_size - 1;
-      printf(", %d", curr_head);
+      printf("%d ", left[i]);
+      seek_count += abs(head - left[i]);
+      head = left[i];
+    }
+  }
+  else if (strcmp(direction, "LEFT") == 0)
+  {
+    // Process the left side of the head first
+    for (int i = left_size - 1; i >= 0; i--)
+    {
+      printf("%d ", left[i]);
+      seek_count += abs(head - left[i]);
+      head = left[i];
     }
 
-    // Go to the start of the disk
-    head_movements += (disk_size - 1);
-    curr_head = 0;
-    printf(", %d", curr_head);
+    // Jump from the start of the disk to the end
+    seek_count += abs(disk_size - 1);
+    head = disk_size - 1;
 
-    // Scan from the beginning to the point just before the head
-    for (int i = 0; i < head_index; i++)
+    // Process the right side
+    for (int i = right_size - 1; i >= 0; i--)
     {
-      head_movements += abs(curr_head - arr[i]);
-      curr_head = arr[i];
-      printf(", %d", curr_head);
+      printf("%d ", right[i]);
+      seek_count += abs(head - right[i]);
+      head = right[i];
+    }
+  }
+
+  printf("\n\nC-SCAN - Total head movements: %d\n", seek_count);
+}
+
+// LOOK Algorithm
+void LOOK(int arr[], int size, int head, char direction[])
+{
+  int seek_count = 0;
+  int left[MAX], right[MAX], seek_sequence[MAX];
+  int left_size = 0, right_size = 0, seek_seq_size = 0;
+
+  for (int i = 0; i < size; i++)
+  {
+    if (arr[i] < head)
+      left[left_size++] = arr[i];
+    else
+      right[right_size++] = arr[i];
+  }
+
+  qsort(left, left_size, sizeof(int), compare);
+  qsort(right, right_size, sizeof(int), compare);
+
+  if (strcmp(direction, "LEFT") == 0)
+  {
+    printf("%d ", head);
+    for (int i = left_size - 1; i >= 0; i--)
+    {
+      seek_sequence[seek_seq_size++] = left[i];
+      seek_count += abs(head - left[i]);
+      head = left[i];
+    }
+    for (int i = 0; i < right_size; i++)
+    {
+      seek_sequence[seek_seq_size++] = right[i];
+      seek_count += abs(head - right[i]);
+      head = right[i];
     }
   }
   else
-  { // Moving LEFT
-    // Process requests to the left of head
-    for (int i = head_index - 1; i >= 0; i--)
+  {
+    for (int i = 0; i < right_size; i++)
     {
-      head_movements += abs(curr_head - arr[i]);
-      curr_head = arr[i];
-      printf(", %d", curr_head);
+      seek_sequence[seek_seq_size++] = right[i];
+      seek_count += abs(head - right[i]);
+      head = right[i];
     }
-
-    // Move to the beginning if necessary
-    if (curr_head > 0)
+    for (int i = left_size - 1; i >= 0; i--)
     {
-      head_movements += abs(curr_head - 0);
-      curr_head = 0;
-      printf(", %d", curr_head);
-    }
-
-    // Wrap around to the end
-    head_movements += disk_size - 1; // Move from start to end
-    curr_head = disk_size - 1;
-    printf(", %d", curr_head);
-
-    // Process requests to the right of the initial head position
-    for (int i = n - 1; i >= head_index; i--)
-    {
-      head_movements += abs(curr_head - arr[i]);
-      curr_head = arr[i];
-      printf(", %d", curr_head);
+      seek_sequence[seek_seq_size++] = left[i];
+      seek_count += abs(head - left[i]);
+      head = left[i];
     }
   }
 
-  printf("\n\nC-SCAN - Total head movements: %d\n", head_movements);
+  for (int i = 0; i < seek_seq_size; i++)
+  {
+    printf("%d ", seek_sequence[i]);
+  }
+  printf("\n\nLOOK - Total head movements: %d\n", seek_count);
 }
 
-// LOOK Disk Scheduling Algorithm
-void LOOK(int *arr, int head, int size)
+// CLOOK Algorithm
+void CLOOK(int arr[], int size, int head, char direction[])
 {
-  // If no arr, return 0
-  if (size == 0)
-    return;
+  int seek_count = 0;
+  int distance, cur_track;
+  int left[MAX], right[MAX];
+  int left_size = 0, right_size = 0;
+  int seek_sequence[MAX];
+  int seq_index = 0;
 
-  // Create a copy of the arr array to sort
-  int *sorted_requests = malloc(size * sizeof(int));
+  printf("%d ", head);
+
+  // Split requests into left and right of the head
   for (int i = 0; i < size; i++)
   {
-    sorted_requests[i] = arr[i];
+    if (arr[i] < head)
+      left[left_size++] = arr[i];
+    else if (arr[i] > head)
+      right[right_size++] = arr[i];
   }
 
-  // Sort the arr in ascending order
-  qsort(sorted_requests, size, sizeof(int), compare);
+  // Sort the left and right arrays
+  qsort(left, left_size, sizeof(int), compare);
+  qsort(right, right_size, sizeof(int), compare);
 
-  // Find the position where head would be inserted in sorted array
-  int head_index = 0;
-  while (head_index < size && sorted_requests[head_index] < head)
+  if (strcmp(direction, "RIGHT") == 0)
   {
-    head_index++;
-  }
-
-  int head_movements = 0;
-  int current_position = head;
-
-  // Move to the right first
-  for (int i = head_index; i < size; i++)
-  {
-    head_movements += abs(current_position - sorted_requests[i]);
-    current_position = sorted_requests[i];
-  }
-
-  // If we reached the end, change direction and move to the left
-  if (head_index > 0)
-  {
-    // Move to the right-most element on right side
-    int right_most = sorted_requests[size - 1];
-
-    // Move to the left
-    for (int i = head_index - 1; i >= 0; i--)
+    // Service the right side of the head first
+    for (int i = 0; i < right_size; i++)
     {
-      head_movements += abs(current_position - sorted_requests[i]);
-      current_position = sorted_requests[i];
+      cur_track = right[i];
+      seek_sequence[seq_index++] = cur_track;
+
+      distance = abs(cur_track - head);
+      seek_count += distance;
+      head = cur_track;
+    }
+
+    // Jump to the leftmost request
+    if (left_size > 0)
+    {
+      seek_count += abs(head - left[0]);
+      head = left[0];
+
+      for (int i = 0; i < left_size; i++)
+      {
+        cur_track = left[i];
+        seek_sequence[seq_index++] = cur_track;
+
+        distance = abs(cur_track - head);
+        seek_count += distance;
+        head = cur_track;
+      }
+    }
+  }
+  else if (strcmp(direction, "LEFT") == 0)
+  {
+    // Service the left side of the head first
+    for (int i = left_size - 1; i >= 0; i--)
+    {
+      cur_track = left[i];
+      seek_sequence[seq_index++] = cur_track;
+
+      distance = abs(cur_track - head);
+      seek_count += distance;
+      head = cur_track;
+    }
+
+    // Jump to the rightmost request
+    if (right_size > 0)
+    {
+      seek_count += abs(head - right[right_size - 1]);
+      head = right[right_size - 1];
+
+      for (int i = right_size - 1; i >= 0; i--)
+      {
+        cur_track = right[i];
+        seek_sequence[seq_index++] = cur_track;
+
+        distance = abs(cur_track - head);
+        seek_count += distance;
+        head = cur_track;
+      }
     }
   }
 
-  // Free the dynamically allocated memory
-  free(sorted_requests);
-
-  printf("LOOK - Total head movements: %d\n", head_movements);
+  for (int i = 0; i < seq_index; i++)
+  {
+    printf("%d ", seek_sequence[i]);
+  }
+  printf("\n\nC-LOOK - Total head movements: %d\n", seek_count);
 }
-
-void CLOOK(int arr[], int head, int size)
+// Main Function
+int main(int argc, char *argv[])
 {
-  // Sort the request array using qsort
-  qsort(arr, size, sizeof(int), compare);
-
-  // Find the index where the head is located
-  int index = 0;
-  for (int i = 0; i < size; i++)
+  if (argc != 3)
   {
-    if (arr[i] >= head)
-    {
-      index = i;
-      break;
-    }
+    printf("Usage: ./assignment5 <initial_head_position> <direction>\n");
+    return 1;
   }
 
-  int head_movements = 0;
-  int curr_track = head;
-
-  // Move to the right (increasing track numbers)
-  for (int i = index; i < size; i++)
+  int head = atoi(argv[1]);
+  if (head < 0 || head > 299)
   {
-    head_movements += abs(curr_track - arr[i]);
-    curr_track = arr[i];
+    printf("Initial head position must be between 0 and 299.\n");
+    return 1;
   }
 
-  // Jump to the smallest track
-  if (size > 0)
+  char direction[10];
+  strcpy(direction, argv[2]);
+  if (strcmp(direction, "LEFT") != 0 && strcmp(direction, "RIGHT") != 0)
   {
-    head_movements += abs(curr_track - arr[0]);
-    curr_track = arr[0];
+    printf("Direction must be either 'LEFT' or 'RIGHT'.\n");
+    return 1;
   }
 
-  // Continue moving to the right up to the index before the head
-  for (int i = 0; i < index; i++)
+  int requests[MAX];
+  int count = read_requests("request.bin", requests);
+  if (count < 0)
   {
-    head_movements += abs(curr_track - arr[i]);
-    curr_track = arr[i];
+    return 1;
   }
 
-  printf("C-LOOK - Total head movements: %d\n", head_movements);
+  printf("Total requests: %d\n", count);
+  printf("Initial head position: %d\n", head);
+  printf("Direction of Head: %s\n", direction);
+
+  printf("\nFCFS DISK SCHEDULING ALGORITHM:\n\n");
+  FCFS(requests, count, head);
+
+  printf("\nSSTF DISK SCHEDULING ALGORITHM:\n\n");
+  SSTF(requests, count, head);
+
+  printf("\nSCAN DISK SCHEDULING ALGORITHM:\n\n");
+  SCAN(requests, count, head, direction, 300);
+
+  printf("\nC-SCAN DISK SCHEDULING ALGORITHM:\n\n");
+  CSCAN(requests, count, head, 300, direction);
+
+  printf("\nLOOK DISK SCHEDULING ALGORITHM:\n\n");
+  LOOK(requests, count, head, direction);
+
+  printf("\nC-LOOK DISK SCHEDULING ALGORITHM:\n\n");
+  CLOOK(requests, count, head, direction);
+
+  return 0;
 }
