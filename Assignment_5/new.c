@@ -32,7 +32,6 @@ void FCFS(int arr[], int size, int head)
   int seek_count = 0;
   int cur_track, distance;
 
-  printf("Seek Sequence: ");
   for (int i = 0; i < size; i++)
   {
     cur_track = arr[i];
@@ -41,7 +40,7 @@ void FCFS(int arr[], int size, int head)
     head = cur_track;
     printf("%d ", cur_track);
   }
-  printf("\nTotal head movements: %d\n", seek_count);
+  printf("\n\nFCFS - Total head movements: %d\n", seek_count);
 }
 
 // SSTF Algorithm
@@ -60,7 +59,6 @@ void SSTF(int request[], int size, int head)
 
   memset(processed, 0, sizeof(processed));
 
-  printf("Seek Sequence: ");
   for (int i = 0; i < size; i++)
   {
     for (int j = 0; j < size; j++)
@@ -91,7 +89,7 @@ void SSTF(int request[], int size, int head)
     seek_sequence[i] = head;
     printf("%d ", head);
   }
-  printf("\nTotal head movements: %d\n", seek_count);
+  printf("\n\nSSTF - Total head movements: %d\n", seek_count);
 }
 
 // SCAN Algorithm
@@ -119,6 +117,7 @@ void SCAN(int arr[], int size, int head, char direction[], int disk_size)
 
   if (strcmp(direction, "LEFT") == 0)
   {
+    printf("%d ", head);
     for (int i = left_size - 1; i >= 0; i--)
     {
       seek_sequence[seek_seq_size++] = left[i];
@@ -148,12 +147,11 @@ void SCAN(int arr[], int size, int head, char direction[], int disk_size)
     }
   }
 
-  printf("Seek Sequence: ");
   for (int i = 0; i < seek_seq_size; i++)
   {
     printf("%d ", seek_sequence[i]);
   }
-  printf("\nTotal head movements: %d\n", seek_count);
+  printf("\n\nSCAN - Total head movements: %d\n", seek_count);
 }
 
 void CSCAN(int arr[], int size, int head, int disk_size, char direction[])
@@ -161,6 +159,8 @@ void CSCAN(int arr[], int size, int head, int disk_size, char direction[])
   int seek_count = 0;
   int left[MAX], right[MAX];
   int left_size = 0, right_size = 0;
+
+  printf("%d ", head);
 
   // Add boundaries
   left[left_size++] = 0;
@@ -178,8 +178,6 @@ void CSCAN(int arr[], int size, int head, int disk_size, char direction[])
   // Sort the arrays
   qsort(left, left_size, sizeof(int), compare);
   qsort(right, right_size, sizeof(int), compare);
-
-  printf("Seek Sequence: ");
 
   if (strcmp(direction, "RIGHT") == 0)
   {
@@ -226,7 +224,7 @@ void CSCAN(int arr[], int size, int head, int disk_size, char direction[])
     }
   }
 
-  printf("\nTotal head movements: %d\n", seek_count);
+  printf("\n\nC-SCAN - Total head movements: %d\n", seek_count);
 }
 
 // LOOK Algorithm
@@ -249,6 +247,7 @@ void LOOK(int arr[], int size, int head, char direction[])
 
   if (strcmp(direction, "LEFT") == 0)
   {
+    printf("%d ", head);
     for (int i = left_size - 1; i >= 0; i--)
     {
       seek_sequence[seek_seq_size++] = left[i];
@@ -278,54 +277,105 @@ void LOOK(int arr[], int size, int head, char direction[])
     }
   }
 
-  printf("Seek Sequence: ");
   for (int i = 0; i < seek_seq_size; i++)
   {
     printf("%d ", seek_sequence[i]);
   }
-  printf("\nTotal head movements: %d\n", seek_count);
+  printf("\n\nLOOK - Total head movements: %d\n", seek_count);
 }
 
 // CLOOK Algorithm
-void CLOOK(int arr[], int size, int head)
+void CLOOK(int arr[], int size, int head, char direction[])
 {
   int seek_count = 0;
-  int left[MAX], right[MAX], seek_sequence[MAX];
-  int left_size = 0, right_size = 0, seek_seq_size = 0;
+  int distance, cur_track;
+  int left[MAX], right[MAX];
+  int left_size = 0, right_size = 0;
+  int seek_sequence[MAX];
+  int seq_index = 0;
 
+  printf("%d ", head);
+
+  // Split requests into left and right of the head
   for (int i = 0; i < size; i++)
   {
     if (arr[i] < head)
       left[left_size++] = arr[i];
-    else
+    else if (arr[i] > head)
       right[right_size++] = arr[i];
   }
 
+  // Sort the left and right arrays
   qsort(left, left_size, sizeof(int), compare);
   qsort(right, right_size, sizeof(int), compare);
 
-  for (int i = 0; i < right_size; i++)
+  if (strcmp(direction, "RIGHT") == 0)
   {
-    seek_sequence[seek_seq_size++] = right[i];
-    seek_count += abs(head - right[i]);
-    head = right[i];
+    // Service the right side of the head first
+    for (int i = 0; i < right_size; i++)
+    {
+      cur_track = right[i];
+      seek_sequence[seq_index++] = cur_track;
+
+      distance = abs(cur_track - head);
+      seek_count += distance;
+      head = cur_track;
+    }
+
+    // Jump to the leftmost request
+    if (left_size > 0)
+    {
+      seek_count += abs(head - left[0]);
+      head = left[0];
+
+      for (int i = 0; i < left_size; i++)
+      {
+        cur_track = left[i];
+        seek_sequence[seq_index++] = cur_track;
+
+        distance = abs(cur_track - head);
+        seek_count += distance;
+        head = cur_track;
+      }
+    }
+  }
+  else if (strcmp(direction, "LEFT") == 0)
+  {
+    // Service the left side of the head first
+    for (int i = left_size - 1; i >= 0; i--)
+    {
+      cur_track = left[i];
+      seek_sequence[seq_index++] = cur_track;
+
+      distance = abs(cur_track - head);
+      seek_count += distance;
+      head = cur_track;
+    }
+
+    // Jump to the rightmost request
+    if (right_size > 0)
+    {
+      seek_count += abs(head - right[right_size - 1]);
+      head = right[right_size - 1];
+
+      for (int i = right_size - 1; i >= 0; i--)
+      {
+        cur_track = right[i];
+        seek_sequence[seq_index++] = cur_track;
+
+        distance = abs(cur_track - head);
+        seek_count += distance;
+        head = cur_track;
+      }
+    }
   }
 
-  for (int i = 0; i < left_size; i++)
-  {
-    seek_sequence[seek_seq_size++] = left[i];
-    seek_count += abs(head - left[i]);
-    head = left[i];
-  }
-
-  printf("Seek Sequence: ");
-  for (int i = 0; i < seek_seq_size; i++)
+  for (int i = 0; i < seq_index; i++)
   {
     printf("%d ", seek_sequence[i]);
   }
-  printf("\nTotal head movements: %d\n", seek_count);
+  printf("\n\nC-LOOK - Total head movements: %d\n", seek_count);
 }
-
 // Main Function
 int main(int argc, char *argv[])
 {
@@ -357,23 +407,27 @@ int main(int argc, char *argv[])
     return 1;
   }
 
-  printf("\nFCFS DISK SCHEDULING ALGORITHM:\n");
+  printf("Total requests: %d\n", count);
+  printf("Initial head position: %d\n", head);
+  printf("Direction of Head: %s\n", direction);
+
+  printf("\nFCFS DISK SCHEDULING ALGORITHM:\n\n");
   FCFS(requests, count, head);
 
-  printf("\nSSTF DISK SCHEDULING ALGORITHM:\n");
+  printf("\nSSTF DISK SCHEDULING ALGORITHM:\n\n");
   SSTF(requests, count, head);
 
-  printf("\nSCAN DISK SCHEDULING ALGORITHM:\n");
+  printf("\nSCAN DISK SCHEDULING ALGORITHM:\n\n");
   SCAN(requests, count, head, direction, 300);
 
-  printf("\nC-SCAN DISK SCHEDULING ALGORITHM:\n");
+  printf("\nC-SCAN DISK SCHEDULING ALGORITHM:\n\n");
   CSCAN(requests, count, head, 300, direction);
 
-  printf("\nLOOK DISK SCHEDULING ALGORITHM:\n");
+  printf("\nLOOK DISK SCHEDULING ALGORITHM:\n\n");
   LOOK(requests, count, head, direction);
 
-  printf("\nC-LOOK DISK SCHEDULING ALGORITHM:\n");
-  CLOOK(requests, count, head);
+  printf("\nC-LOOK DISK SCHEDULING ALGORITHM:\n\n");
+  CLOOK(requests, count, head, direction);
 
   return 0;
 }
