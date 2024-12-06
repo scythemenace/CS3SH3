@@ -12,7 +12,7 @@ int findMinSeekTimeIndex(int arr[], bool visited[], int numRequests, int current
 void SSTF(int arr[], int head, int size);
 int compare(const void *a, const void *b);
 void SCAN(int *arr, int n, int head, bool direction);
-void CSCAN(int *arr, int n, int head, int disk_size);
+void CSCAN(int *arr, int n, int head, int disk_size, char direction[]);
 void LOOK(int *arr, int head, int size);
 void CLOOK(int arr[], int head, int size);
 
@@ -88,7 +88,7 @@ int main(int argc, char *argv[])
   SCAN(requests, num_requests, initial_head, direction);
 
   printf("\nC-SCAN DISK SCHEDULING ALGORITHM:\n\n");
-  CSCAN(requests, num_requests, initial_head, DISK_SIZE);
+  CSCAN(requests, num_requests, initial_head, DISK_SIZE, argv[2]);
 
   printf("\nLOOK DISK SCHEDULING ALGORITHM:\n\n");
   LOOK(requests, initial_head, num_requests);
@@ -305,59 +305,86 @@ void SCAN(int *arr, int n, int head, bool direction)
   printf("\n\nSCAN - Total head movements: %d\n", head_movements);
 }
 
-void CSCAN(int *arr, int n, int head, int disk_size)
+void CSCAN(int *arr, int n, int head, int disk_size, char direction[])
 {
+  // Sort the requests
+  qsort(arr, n, sizeof(int), compare);
+
   int head_movements = 0;
-  int curr_req = head;
+  int curr_head = head;
 
-  // Create a copy of the arr array to avoid modifying the original
-  int *sorted_requests = malloc(n * sizeof(int));
-  memcpy(sorted_requests, arr, n * sizeof(int));
-
-  // Sort the requests in ascending order
-  qsort(sorted_requests, n, sizeof(int), compare);
-
-  // Print the initial head position
-  printf("%d", curr_req);
-
-  // Find the index where the head is located in the sorted array
+  // Find the position where the head fits in the sorted array
   int head_index = 0;
-  while (head_index < n && sorted_requests[head_index] < head)
+  while (head_index < n && arr[head_index] <= head)
   {
     head_index++;
   }
 
-  // First, scan to the right of the head
-  for (int i = head_index; i < n; i++)
-  {
-    head_movements += abs(curr_req - sorted_requests[i]);
-    curr_req = sorted_requests[i];
-    printf(", %d", curr_req);
+  // Print initial head position
+  printf("%d", head);
+
+  if (strcmp(direction, "RIGHT") == 0)
+  { // Moving RIGHT
+    // First, scan to the right of the head
+    for (int i = head_index; i < n; i++)
+    {
+      head_movements += abs(curr_head - arr[i]);
+      curr_head = arr[i];
+      printf(", %d", curr_head);
+    }
+
+    // If we haven't reached the end of the disk, go to the end
+    if (curr_head != disk_size - 1)
+    {
+      head_movements += abs(curr_head - (disk_size - 1));
+      curr_head = disk_size - 1;
+      printf(", %d", curr_head);
+    }
+
+    // Go to the start of the disk
+    head_movements += (disk_size - 1);
+    curr_head = 0;
+    printf(", %d", curr_head);
+
+    // Scan from the beginning to the point just before the head
+    for (int i = 0; i < head_index; i++)
+    {
+      head_movements += abs(curr_head - arr[i]);
+      curr_head = arr[i];
+      printf(", %d", curr_head);
+    }
   }
+  else
+  { // Moving LEFT
+    // Process requests to the left of head
+    for (int i = head_index - 1; i >= 0; i--)
+    {
+      head_movements += abs(curr_head - arr[i]);
+      curr_head = arr[i];
+      printf(", %d", curr_head);
+    }
 
-  // If we haven't reached the end of the disk, go to the end
-  if (curr_req != disk_size - 1)
-  {
-    head_movements += abs(curr_req - (disk_size - 1));
-    curr_req = disk_size - 1;
-    printf(", %d", curr_req);
+    // Move to the beginning if necessary
+    if (curr_head > 0)
+    {
+      head_movements += abs(curr_head - 0);
+      curr_head = 0;
+      printf(", %d", curr_head);
+    }
+
+    // Wrap around to the end
+    head_movements += disk_size - 1; // Move from start to end
+    curr_head = disk_size - 1;
+    printf(", %d", curr_head);
+
+    // Process requests to the right of the initial head position
+    for (int i = n - 1; i >= head_index; i--)
+    {
+      head_movements += abs(curr_head - arr[i]);
+      curr_head = arr[i];
+      printf(", %d", curr_head);
+    }
   }
-
-  // Go to the start of the disk
-  head_movements += (disk_size - 1);
-  curr_req = 0;
-  printf(", %d", curr_req);
-
-  // Scan from the beginning to the point just before the head
-  for (int i = 0; i < head_index; i++)
-  {
-    head_movements += abs(curr_req - sorted_requests[i]);
-    curr_req = sorted_requests[i];
-    printf(", %d", curr_req);
-  }
-
-  // Free the dynamically allocated memory
-  free(sorted_requests);
 
   printf("\n\nC-SCAN - Total head movements: %d\n", head_movements);
 }
