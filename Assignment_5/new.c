@@ -40,7 +40,7 @@ void FCFS(int arr[], int size, int head)
     head = cur_track;
     printf("%d ", cur_track);
   }
-  printf("\n\nFCFS - Total head movements: %d\n", seek_count);
+  printf("\n\nTotal head movements: %d\n", seek_count);
 }
 
 // SSTF Algorithm
@@ -89,7 +89,7 @@ void SSTF(int request[], int size, int head)
     seek_sequence[i] = head;
     printf("%d ", head);
   }
-  printf("\n\nSSTF - Total head movements: %d\n", seek_count);
+  printf("\n\nTotal head movements: %d\n", seek_count);
 }
 
 // SCAN Algorithm
