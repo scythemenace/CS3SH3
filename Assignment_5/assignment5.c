@@ -1,8 +1,12 @@
-// FCFS Scheduling Algorithm
 #include <stdio.h>
 #include <stdlib.h>
-#include <limits.h>
 #include <stdbool.h>
+#include <limits.h>
+#include <string.h>
+
+#define MAX_REQUESTS 20
+#define DISK_SIZE 300
+
 void FCFS(int arr[], int head, int size);
 int findMinSeekTimeIndex(int arr[], bool visited[], int numRequests, int currentHead);
 void SSTF(int arr[], int head, int size);
@@ -12,18 +16,85 @@ void CSCAN(int *arr, int n, int head, int disk_size);
 void LOOK(int *arr, int head, int size);
 void CLOOK(int arr[], int head, int size);
 
-int main()
+// Function to read requests from binary file
+int readRequestsFromBinary(int *requests, const char *filename)
 {
-  int arr[8] = {176, 79, 34, 60, 92, 11, 41, 114};
-  int head = 50;
-  int size = sizeof(arr) / sizeof(arr[0]);
+  FILE *file = fopen("request.bin", "rb");
+  if (!file)
+  {
+    perror("Error opening file");
+    exit(1);
+  }
 
-  FCFS(arr, head, size);
-  SSTF(arr, head, size);
-  SCAN(arr, size, head, false); // Left direction
-  CSCAN(arr, size, head, 200);
-  LOOK(arr, head, size);
-  CLOOK(arr, head, size);
+  int num_requests = fread(requests, sizeof(int), MAX_REQUESTS, file);
+  fclose(file);
+
+  return num_requests;
+}
+
+int main(int argc, char *argv[])
+{
+  // Check command line arguments
+  if (argc != 3)
+  {
+    fprintf(stderr, "Usage: %s <initial_head_position> <direction>\n", argv[0]);
+    fprintf(stderr, "Direction should be LEFT or RIGHT\n");
+    return 1;
+  }
+
+  printf("Total requests = %d\n", MAX_REQUESTS);
+
+  // Parse initial head position
+  int initial_head = atoi(argv[1]);
+  if (initial_head < 0 || initial_head >= DISK_SIZE)
+  {
+    fprintf(stderr, "Initial head position must be between 0 and %d\n", DISK_SIZE - 1);
+    return 1;
+  }
+
+  // Parse direction
+  bool direction;
+  if (strcmp(argv[2], "RIGHT") == 0)
+  {
+    direction = true; // right
+  }
+  else if (strcmp(argv[2], "LEFT") == 0)
+  {
+    direction = false; // left
+  }
+  else
+  {
+    fprintf(stderr, "Direction must be LEFT or RIGHT\n");
+    return 1;
+  }
+
+  // Array to store requests
+  int requests[MAX_REQUESTS];
+
+  // Read requests from binary file
+  int num_requests = readRequestsFromBinary(requests, "requests.bin");
+
+  printf("Initial Head Position: %d\n", initial_head);
+  printf("Direction: %s\n\n", direction ? "RIGHT" : "LEFT");
+
+  // Execute different disk scheduling algorithms
+  printf("FCFS DISK SCHEDULING ALGORITHM:\n\n");
+  FCFS(requests, initial_head, num_requests);
+
+  printf("\nSSTF DISK SCHEDULING ALGORITHM:\n\n");
+  SSTF(requests, initial_head, num_requests);
+
+  printf("\nSCAN DISK SCHEDULING ALGORITHM:\n\n");
+  SCAN(requests, num_requests, initial_head, direction);
+
+  printf("\nC-SCAN DISK SCHEDULING ALGORITHM:\n\n");
+  CSCAN(requests, num_requests, initial_head, DISK_SIZE);
+
+  printf("\nLOOK DISK SCHEDULING ALGORITHM:\n\n");
+  LOOK(requests, initial_head, num_requests);
+
+  printf("\nC-LOOK DISK SCHEDULING ALGORITHM:\n\n");
+  CLOOK(requests, initial_head, num_requests);
 
   return 0;
 }
@@ -47,7 +118,20 @@ void FCFS(int arr[], int head, int size)
     head = cur_req;
   }
 
-  printf("Total number of head movements: %d\n", head_movements);
+  // Req sequence
+  for (int i = 0; i < size; i++)
+  {
+    if (i == size - 1)
+    {
+      printf("%d\n", arr[i]);
+    }
+    else
+    {
+      printf("%d, ", arr[i]);
+    }
+  }
+
+  printf("\nFCFS - Total head movements: %d\n", head_movements);
 }
 
 // Function to find the index of request with minimum seek time
@@ -88,6 +172,10 @@ void SSTF(int arr[], int head, int size)
   // Current head position
   int currentHead = head;
 
+  // Request sequence array to store order of serviced requests
+  int *requestSequence = (int *)malloc(size * sizeof(int));
+  int sequenceIndex = 0;
+
   // Service allarr
   for (int count = 0; count < size; count++)
   {
@@ -102,6 +190,9 @@ void SSTF(int arr[], int head, int size)
     // Calculate and add seek operations
     head_movements += abs(arr[nextRequest] - currentHead);
 
+    // Store the current request in sequence
+    requestSequence[sequenceIndex++] = arr[nextRequest];
+
     // Update current head position
     currentHead = arr[nextRequest];
 
@@ -109,10 +200,24 @@ void SSTF(int arr[], int head, int size)
     visited[nextRequest] = true;
   }
 
+  // Print request sequence
+  for (int i = 0; i < sequenceIndex; i++)
+  {
+    if (i == sequenceIndex - 1)
+    {
+      printf("%d\n", requestSequence[i]);
+    }
+    else
+    {
+      printf("%d, ", requestSequence[i]);
+    }
+  }
+
   // Free dynamically allocated memory
   free(visited);
+  free(requestSequence);
 
-  printf("Total number of head movements: %d\n", head_movements);
+  printf("\nSSTF - Total head movements: %d\n", head_movements);
 }
 
 int compare(const void *a, const void *b)
@@ -132,6 +237,8 @@ void SCAN(int *arr, int n, int head, bool direction)
   int head_movements = 0;
   int curr_req = head;
 
+  printf("%d", curr_req);
+
   // Find the position where head is located in the sorted array
   int index = 0;
   for (index = 0; index < n; index++)
@@ -149,6 +256,7 @@ void SCAN(int *arr, int n, int head, bool direction)
     {
       head_movements += abs(curr_req - arr[i]);
       curr_req = arr[i];
+      printf(", %d", curr_req);
     }
 
     // If there were arr on the right, go to the last track
@@ -156,6 +264,7 @@ void SCAN(int *arr, int n, int head, bool direction)
     {
       head_movements += abs(curr_req - (n * 200 - 1)); // Assuming track range is 0-199
       curr_req = n * 200 - 1;
+      printf(", %d", curr_req);
     }
 
     // Then service arr on the left side
@@ -163,6 +272,7 @@ void SCAN(int *arr, int n, int head, bool direction)
     {
       head_movements += abs(curr_req - arr[i]);
       curr_req = arr[i];
+      printf(", %d", curr_req);
     }
   }
   else
@@ -172,6 +282,7 @@ void SCAN(int *arr, int n, int head, bool direction)
     {
       head_movements += abs(curr_req - arr[i]);
       curr_req = arr[i];
+      printf(", %d", curr_req);
     }
 
     // If there were arr on the left, go to track 0
@@ -179,6 +290,7 @@ void SCAN(int *arr, int n, int head, bool direction)
     {
       head_movements += abs(curr_req - 0);
       curr_req = 0;
+      printf(", %d", curr_req);
     }
 
     // Then service arr on the right side
@@ -186,13 +298,13 @@ void SCAN(int *arr, int n, int head, bool direction)
     {
       head_movements += abs(curr_req - arr[i]);
       curr_req = arr[i];
+      printf(", %d", curr_req);
     }
   }
 
-  printf("Total number of head movements: %d\n", head_movements);
+  printf("\n\nSCAN - Total head movements: %d\n", head_movements);
 }
 
-// C-SCAN (Circular Scan) Disk Scheduling Algorithm
 void CSCAN(int *arr, int n, int head, int disk_size)
 {
   int head_movements = 0;
@@ -200,13 +312,13 @@ void CSCAN(int *arr, int n, int head, int disk_size)
 
   // Create a copy of the arr array to avoid modifying the original
   int *sorted_requests = malloc(n * sizeof(int));
-  for (int i = 0; i < n; i++)
-  {
-    sorted_requests[i] = arr[i];
-  }
+  memcpy(sorted_requests, arr, n * sizeof(int));
 
-  // Sort the arr in ascending order
+  // Sort the requests in ascending order
   qsort(sorted_requests, n, sizeof(int), compare);
+
+  // Print the initial head position
+  printf("%d", curr_req);
 
   // Find the index where the head is located in the sorted array
   int head_index = 0;
@@ -220,31 +332,34 @@ void CSCAN(int *arr, int n, int head, int disk_size)
   {
     head_movements += abs(curr_req - sorted_requests[i]);
     curr_req = sorted_requests[i];
+    printf(", %d", curr_req);
   }
 
-  // If we've reached the end of the disk, move to the beginning
+  // If we haven't reached the end of the disk, go to the end
   if (curr_req != disk_size - 1)
   {
-    // Add seek to the end of the disk
     head_movements += abs(curr_req - (disk_size - 1));
     curr_req = disk_size - 1;
-
-    // Add seek to the beginning of the disk
-    head_movements += (disk_size - 1);
-    curr_req = 0;
+    printf(", %d", curr_req);
   }
+
+  // Go to the start of the disk
+  head_movements += (disk_size - 1);
+  curr_req = 0;
+  printf(", %d", curr_req);
 
   // Scan from the beginning to the point just before the head
   for (int i = 0; i < head_index; i++)
   {
     head_movements += abs(curr_req - sorted_requests[i]);
     curr_req = sorted_requests[i];
+    printf(", %d", curr_req);
   }
 
   // Free the dynamically allocated memory
   free(sorted_requests);
 
-  printf("Total number of head movements: %d\n", head_movements);
+  printf("\n\nC-SCAN - Total head movements: %d\n", head_movements);
 }
 
 // LOOK Disk Scheduling Algorithm
@@ -298,7 +413,7 @@ void LOOK(int *arr, int head, int size)
   // Free the dynamically allocated memory
   free(sorted_requests);
 
-  printf("Total number of head movements: %d\n", head_movements);
+  printf("LOOK - Total head movements: %d\n", head_movements);
 }
 
 void CLOOK(int arr[], int head, int size)
@@ -341,5 +456,5 @@ void CLOOK(int arr[], int head, int size)
     curr_track = arr[i];
   }
 
-  printf("Total number of seek operations = %d\n", head_movements);
+  printf("C-LOOK - Total head movements: %d\n", head_movements);
 }
