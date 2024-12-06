@@ -23,7 +23,7 @@ int read_requests(const char *filename, int requests[])
     perror("Error opening file");
     return -1;
   }
-  
+
   // fread attempts to read up to MAX integers from file into requests array
   int count = fread(requests, sizeof(int), MAX, file);
   fclose(file);
@@ -41,11 +41,11 @@ void FCFS(int arr[], int size, int head)
   // Iterate through each request in order
   for (int i = 0; i < size; i++)
   {
-    cur_track = arr[i];                 // Current request to process
-    distance = abs(head - cur_track);   // Calculate distance from current head position
-    seek_count += distance;             // Add this movement to total
-    head = cur_track;                   // Move head to the current request
-    printf("%d ", cur_track);           // Print the processed track
+    cur_track = arr[i];               // Current request to process
+    distance = abs(head - cur_track); // Calculate distance from current head position
+    seek_count += distance;           // Add this movement to total
+    head = cur_track;                 // Move head to the current request
+    printf("%d ", cur_track);         // Print the processed track
   }
   printf("\n\nTotal head movements: %d\n", seek_count);
 }
@@ -116,10 +116,10 @@ void SSTF(int request[], int size, int head)
 // then reverses direction and continues servicing requests.
 void SCAN(int arr[], int size, int head, char direction[], int disk_size)
 {
-  int seek_count = 0;                  // Total head movements
-  int left[MAX], right[MAX];           // Arrays to hold requests on left and right side of head
-  int seek_sequence[MAX];              // Serviced sequence
-  int left_size = 0, right_size = 0;   // Counts of left and right side requests
+  int seek_count = 0;                // Total head movements
+  int left[MAX], right[MAX];         // Arrays to hold requests on left and right side of head
+  int seek_sequence[MAX];            // Serviced sequence
+  int left_size = 0, right_size = 0; // Counts of left and right side requests
   int seek_seq_size = 0;
 
   // Add boundary endpoints depending on direction
@@ -194,7 +194,7 @@ void SCAN(int arr[], int size, int head, char direction[], int disk_size)
 // treating the disk as circular.
 void CSCAN(int arr[], int size, int head, int disk_size, char direction[])
 {
-  int seek_count = 0;    // Total head movements
+  int seek_count = 0; // Total head movements
   int left[MAX], right[MAX];
   int left_size = 0, right_size = 0;
 
@@ -272,7 +272,7 @@ void CSCAN(int arr[], int size, int head, int disk_size, char direction[])
 // Moves in one direction servicing requests, then reverses direction.
 void LOOK(int arr[], int size, int head, char direction[])
 {
-  int seek_count = 0;                    // Total head movements
+  int seek_count = 0; // Total head movements
   int left[MAX], right[MAX], seek_sequence[MAX];
   int left_size = 0, right_size = 0, seek_seq_size = 0;
 
@@ -336,7 +336,7 @@ void LOOK(int arr[], int size, int head, char direction[])
 // before jumping back to the other end. It doesn't go all the way to the boundaries.
 void CLOOK(int arr[], int size, int head, char direction[])
 {
-  int seek_count = 0;    // Total head movements
+  int seek_count = 0; // Total head movements
   int distance, cur_track;
   int left[MAX], right[MAX];
   int left_size = 0, right_size = 0;
