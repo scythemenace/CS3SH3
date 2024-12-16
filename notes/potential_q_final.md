@@ -1,9 +1,8 @@
-# Potential Questions for CS3SH3 Midterm 1
+# Potential Questions for CS3SH3 Final 1
 
 <!--toc:start-->
 
-- [Potential Questions for CS3SH3 Midterm 1](#potential-questions-for-cs3sh3-midterm-1)
-
+- [Potential Questions for CS3SH3 Final 1](#potential-questions-for-cs3sh3-final-1)
   - [Chapter 6](#chapter-6)
     - [Dining philosopher](#dining-philosopher)
     - [Conditions for a solution to satisfy a CS Problem](#conditions-for-a-solution-to-satisfy-a-cs-problem)
@@ -14,16 +13,19 @@
     - [Memory Barrier Usage](#memory-barrier-usage)
     - [test_and_set(\*target) and compare_and_swap(\*value, expected, new_value)](#testandsettarget-and-compareandswapvalue-expected-newvalue)
   - [Chapter 3](#chapter-3)
+    - [What is Context Switching?](#what-is-context-switching)
+    - [What are the two types of processes?](#what-are-the-two-types-of-processes)
+    - [What is a process control block (PCB)](#what-is-a-process-control-block-pcb)
     - [IPC, Two Models and Where To Use One](#ipc-two-models-and-where-to-use-one)
     - [Draw the process tree](#draw-the-process-tree)
+    - [How to query the process id of the current process and the parent process?](#how-to-query-the-process-id-of-the-current-process-and-the-parent-process)
+    - [What does the exec() call do?](#what-does-the-exec-call-do)
   - [Chapter 4](#chapter-4)
-
     - [Give three examples of data parallelism and task parallelism each](#give-three-examples-of-data-parallelism-and-task-parallelism-each)
     - [Ahmdal's Law](#ahmdals-law)
     - [Performance Implications of different scenarios in a many-to-many Model](#performance-implications-of-different-scenarios-in-a-many-to-many-model)
     - [What is the output of the Line "xyz" - Thread based](#what-is-the-output-of-the-line-xyz-thread-based)
-
-  - [Chapter 5](#chapter-5) - [What is the difference between dispatch latency and context switching](#what-is-the-difference-between-dispatch-latency-and-context-switching) - [What is the difference between IO Bound program and CPU bound program](#what-is-the-difference-between-io-bound-program-and-cpu-bound-program) - [What are the different scheduling queues that an operating system has? Which queue is accessible by the CPU scheduler?](#what-are-the-different-scheduling-queues-that-an-operating-system-has-which-queue-is-accessible-by-the-cpu-scheduler)
+  - [Chapter 5](#chapter-5) - [What is the difference between IO Bound program and CPU bound program](#what-is-the-difference-between-io-bound-program-and-cpu-bound-program) - [What are the different scheduling queues that an operating system has? Which queue is accessible by the CPU scheduler?](#what-are-the-different-scheduling-queues-that-an-operating-system-has-which-queue-is-accessible-by-the-cpu-scheduler) - [What is the use of a CPU scheduler?](#what-is-the-use-of-a-cpu-scheduler) - [What could be a reason to have Preemptive scheduling (stopping a running process)?](#what-could-be-a-reason-to-have-preemptive-scheduling-stopping-a-running-process) - [What's the use of a Dispatcher Module](#whats-the-use-of-a-dispatcher-module) - [What is the difference between dispatch latency and context switching](#what-is-the-difference-between-dispatch-latency-and-context-switching)
   <!--toc:end-->
 
 ## Chapter 6
@@ -243,6 +245,18 @@ void release(lock *mutex) {
 
 ## Chapter 3
 
+### What is Context Switching?
+
+Context Switching is done when the CPU wants to switch to a different process. CPU saves the context of the old process and loads the saved context for the new process.
+
+### What are the two types of processes?
+
+Process are either **IO Bound** or **CPU bound**. **IO Bound** processes have **many short CPU bursts** whereas **CPU Bound** have **few long CPU bursts**.
+
+### What is a process control block (PCB)
+
+A Process Control Block (PCB) stores all the information about a process. It contains information like state, counter, registers, etc.
+
 ### IPC, Two Models and Where To Use One
 
 IPC stands for **Inter-Process Communication**. It refers to the mechanisms used by processes to exchange data and communicate with each other in an operating system. Since processes have separate memory spaces, they need IPC techniques to share information, coordinate their actions, or synchronize their behavior.
@@ -253,6 +267,7 @@ It has two models:-
 - `Message Passing`: Processes communicate by sending and receiving messages, typically through the operating system. Difference between shared memory and message passing is that this model is simpler and safer (no need to worry about synchronization issues), but it may be slower than shared memory due to the overhead of message copying and system calls.
 
 Shared memory is used when data has to be frequently transferred between processes without the overhead required for system calls. Typically in these cases a large amount of data is being transferred which is not very efficient using the message passing model.
+
 Message Passing is useful when processes are loosely-coupled i.e. only need to exchange small messages. Additionally in certain systems where shared-memory isn't applicable (like distributed systems) message passing is the only option.
 
 ### Draw the process tree
@@ -303,6 +318,24 @@ Explanation
     - P3 creates P9.
     - P4 creates P8.
     - Now we have nine processes: P1, P2, P3, P4, P5, P6, P8, and P9.
+
+### How to query the process id of the current process and the parent process?
+
+We can query the process id of the current process using `getpid()` and the parent process id using `getppid()`.
+
+### What does the exec() call do?
+
+The `exec()` call is used after fork() which allows the child process to execute a different program from the parent process. It replaces the current process image with a new one. It is also referred to as an **overlay**.
+
+### What is cascading termination?
+
+In order to avoid a child process to run after its parent has terminated, the OS automatically terminates all children, grandchildren, and so on when the parent process terminates. This is known as cascading termination.
+
+### What is a zombie process and an orphan process?
+
+A **zombie process** is a process which has terminated but has not been reaped (i.e. removed from the process table). This usually happens if the parent process didn't invoke `wait()`.
+
+An **orphan process** is a process which has been terminated but its parent also terminated before reaping it (i.e. didn't invoke `wait()`). Basically a zombie process whose parent also terminated.
 
 ## Chapter 4
 
