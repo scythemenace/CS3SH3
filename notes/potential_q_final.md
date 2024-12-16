@@ -1,12 +1,17 @@
-# Potential Questions for CS3SH3 Final 1
+# Potential Questions for CS3SH3 Final
 
 <!--toc:start-->
 
-- [Potential Questions for CS3SH3 Final 1](#potential-questions-for-cs3sh3-final-1)
+- [Potential Questions for CS3SH3 Final](#potential-questions-for-cs3sh3-final)
   - [Chapter 6](#chapter-6)
+    - [What is a race condition?](#what-is-a-race-condition)
+    - [What is the producer-consumer problem? How can an improper implementation result in a race condition?](#what-is-the-producer-consumer-problem-how-can-an-improper-implementation-result-in-a-race-condition)
+    - [What is the critical section (CS) problem?](#what-is-the-critical-section-cs-problem)
     - [Dining philosopher](#dining-philosopher)
     - [Conditions for a solution to satisfy a CS Problem](#conditions-for-a-solution-to-satisfy-a-cs-problem)
     - [Explain that Peterson's solution is correct](#explain-that-petersons-solution-is-correct)
+    - [What are the drawbacks of Peterson's solution](#what-are-the-drawbacks-of-petersons-solution)
+    - [What is Preemption? Explain the two approaches taken by the kernel to handle CS?](#what-is-preemption-explain-the-two-approaches-taken-by-the-kernel-to-handle-cs)
     - [Conditional Variables](#conditional-variables)
     - [Bounded Buffer Hypothetical Deadlock](#bounded-buffer-hypothetical-deadlock)
     - [Explain why interrupts are not appropriate for implementing synchronization primitives in multiprocessor systems.](#explain-why-interrupts-are-not-appropriate-for-implementing-synchronization-primitives-in-multiprocessor-systems)
@@ -26,12 +31,54 @@
     - [What is the advantage of using threads](#what-is-the-advantage-of-using-threads)
     - [Give three examples of data parallelism and task parallelism each](#give-three-examples-of-data-parallelism-and-task-parallelism-each)
     - [Ahmdal's Law](#ahmdals-law)
+    - [What is many-to-one kernel thread mapping](#what-is-many-to-one-kernel-thread-mapping)
+    - [What is one-to-one kernel thread mapping](#what-is-one-to-one-kernel-thread-mapping)
+    - [What is many-to-many kernel thread mapping](#what-is-many-to-many-kernel-thread-mapping)
+    - [What is two level kernel thread mapping](#what-is-two-level-kernel-thread-mapping)
     - [Performance Implications of different scenarios in a many-to-many Model](#performance-implications-of-different-scenarios-in-a-many-to-many-model)
     - [What is the output of the Line "xyz" - Thread based](#what-is-the-output-of-the-line-xyz-thread-based)
   - [Chapter 5](#chapter-5) - [What is the difference between IO Bound program and CPU bound program](#what-is-the-difference-between-io-bound-program-and-cpu-bound-program) - [What are the different scheduling queues that an operating system has? Which queue is accessible by the CPU scheduler?](#what-are-the-different-scheduling-queues-that-an-operating-system-has-which-queue-is-accessible-by-the-cpu-scheduler) - [What is the use of a CPU scheduler?](#what-is-the-use-of-a-cpu-scheduler) - [What could be a reason to have Preemptive scheduling (stopping a running process)?](#what-could-be-a-reason-to-have-preemptive-scheduling-stopping-a-running-process) - [What's the use of a Dispatcher Module](#whats-the-use-of-a-dispatcher-module) - [What is the difference between dispatch latency and context switching](#what-is-the-difference-between-dispatch-latency-and-context-switching)
   <!--toc:end-->
 
 ## Chapter 6
+
+### What is a race condition?
+
+Race condition refers to a situation where several threads try to access and modify shared data concurrently.
+
+### What is the producer-consumer problem? How can an improper implementation result in a race condition?
+
+A producer-consumer problem is a synchronization problem where there exists a buffer of some size and a producer adds to the buffer and a consumer subtracts from the buffer. There are three things we need to keep in mind:-
+
+- If the buffer is full, then the producer cannot add to it. Therefore, it must wait until the consumer consumes some data and then it starts adding on to it again.
+- If the buffer is empty, then the consumer cannot consume from it. Therefore, it must wait until the producer adds some data to it and then it can start consuming it again.
+- Consumption and Production of data shouldn't happen at the same time as it can lead to data inconsistency.
+
+The last point essentially means that let's say we are keeping track of a variable called counter. The counter represents the buffer and it cannot be greater than the buffer size. Initially the counter is 0, so the consumer waits and then the producer adds on to it. In the case it reaches the buffer's max value, the producer waits until the consumer consumes it. The problem that can happen here is that let's say both the producer and consumer start changing the counter variable's value.
+
+Normally producer adds one to the counter to simulate data being added and the consumer subtracts one from the data to simulate data being consumed. If they both do that at the same time it's very much possible that the counter value might not be what we expect it to be since one change can overwrite the other.
+
+For example, let's say the counter is 5 and the producer added on to it using a register, the value becomes 6 but the register has not overwritten the value of the actual counter yet. Let's say the consumer subtracts one from counter using a register but also has still not overwritten the value. Let's say producer is the first one to overwrite and counter becomes 6, then let's say producer also overwrites it and the counter becomes 4. This is not the intended behaviour since the value of counter should've been 5 due to the fact that producer added 1 to it and consumer subtracted one from it.
+
+### What is the critical section (CS) problem?
+
+Each process has its own CS section. This is created to avoid race conditions by making sure that only one process can access the shared data at a time.
+
+The general structure of a CS section is as follows:
+
+```c
+do {
+
+  // Beginning section
+
+  // Critical Section
+
+  // Exits CS
+
+  // Remainder Section
+
+} while(true);
+```
 
 ### Dining philosopher
 
@@ -74,6 +121,22 @@ There are three potential solutions for solving this problem:-
 - **Mutual Exclusion**: Even if both flags[0] and flags[1] are true at the same time, the turn variable is allocated the value of either 0 or 1 based on the order of execution. Since the while loop condition in the code is dependant on the latest value of turn, only one processes is allowed to enter it's critical section.
 - **Progress**: Both processes have an equal chance of getting into their critical section. Even though both flags can be true at the same time, there is a random chance of turn to be 0 or 1 based on the order of execution. Additionally, the remainder section doesn't interfere with the selection of a process to go into its critical section. The selection of a process to go into its CS is done in finite time.
 - **Bounded Waiting**: We know the variable turn determines which progress will go into its CS first. Let's assume both flags are true, depending on turn any process can go into its CS. Until its done executing, the other processes waits. After the process is done executing it sets its flag as false which allows the other process to go into its CS. Therefore each process waits for the other process to execute at most once.
+
+### What are the drawbacks of Peterson's solution
+
+The drawbacks of Peterson's solution are:-
+
+- Only works for two processes
+- Doesn't work on modern hardware due to vagaries of load and store operations
+
+### What is Preemption? Explain the two approaches taken by the kernel to handle CS?
+
+Preemption means temporarily stopping the execution of a process after it has executed for a specific period of time and bringing another program to execute in its place.
+
+Two approaches taken by the kernel to handle CS are:-
+
+- **Preemptive**: The kernel allows a process in its CS to be preempted while running in kernel mode.
+- **Non Preemptive**: The kernel doesn't allow the process to stop its execution until it exists kernel mode, blocks, or voluntarily gives up access to CPU.
 
 ### Conditional Variables
 
