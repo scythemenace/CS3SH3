@@ -564,3 +564,20 @@ Dispatch latency measures the time it takes for the dispatcher to stop one proce
 ### What is compaction?
 
 Compaction shuffles memory contents to place all free memory spaces together. This is done to avoid external fragmentation.
+
+## Chapter 10
+
+## What is thrashing? Why does it decrease the throughput of a system?
+
+Thrashing is a situation in which a process didn't get enough frames to support its active processes. Therefore it keeps on swapping pages which degrades performance. Basically it gets a page fault and replaces the page in memory, but soon enough gets another page fault. This process happens so frequently that processes wait for pages to get swapped therefore reducing CPU utilization greatly.
+
+The OS thinks this is a problem of lack of multiprogramming, therefore it increases the degree of multiprogramming which in turn increases the number of processes in the system. This leads to more page faults and more swapping which leads to a cycle of thrashing. This decreases the throughput of the system since the CPU is not doing any useful work.
+
+This can be avoided by using:
+
+- **Working Set Model**: In this model we try to use locality of pages. Locality of pages refers to the set of pages actively used together. During execution processes move from locality to locality. Working set model accesses the recently used pages from memory and tries to approximate the locality. After finding that out we can appropriately allocate frames to each process.
+
+- **Frame Frequency**: In this model we make sure each process has a minimum number of page faults and maximum number of page faults. If a process doesn't have enough page faults that means it has too many frames and if a process has too many page faults that means it has very few pages.
+
+  - If page fault rate > upper limit = allocate frames
+  - If page fault rate < lower limit = remove frames
