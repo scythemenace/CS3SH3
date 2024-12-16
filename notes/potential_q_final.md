@@ -20,6 +20,8 @@
     - [Draw the process tree](#draw-the-process-tree)
     - [How to query the process id of the current process and the parent process?](#how-to-query-the-process-id-of-the-current-process-and-the-parent-process)
     - [What does the exec() call do?](#what-does-the-exec-call-do)
+    - [What is cascading termination?](#what-is-cascading-termination)
+    - [What is a zombie process and an orphan process?](#what-is-a-zombie-process-and-an-orphan-process)
   - [Chapter 4](#chapter-4)
     - [Give three examples of data parallelism and task parallelism each](#give-three-examples-of-data-parallelism-and-task-parallelism-each)
     - [Ahmdal's Law](#ahmdals-law)
