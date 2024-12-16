@@ -23,6 +23,7 @@
     - [What is cascading termination?](#what-is-cascading-termination)
     - [What is a zombie process and an orphan process?](#what-is-a-zombie-process-and-an-orphan-process)
   - [Chapter 4](#chapter-4)
+    - [What is the advantage of using threads](#what-is-the-advantage-of-using-threads)
     - [Give three examples of data parallelism and task parallelism each](#give-three-examples-of-data-parallelism-and-task-parallelism-each)
     - [Ahmdal's Law](#ahmdals-law)
     - [Performance Implications of different scenarios in a many-to-many Model](#performance-implications-of-different-scenarios-in-a-many-to-many-model)
@@ -341,24 +342,34 @@ An **orphan process** is a process which has been terminated but its parent also
 
 ## Chapter 4
 
+### What is the advantage of using threads
+
+- Cheaper than process creation
+- Resource sharing happens by default and is much simpler
+- It is much easier to context switch using threads
+- Threads enable concurrency (parallelism in multi core processors)
+
 ### Give three examples of data parallelism and task parallelism each
 
-Data Parallelism:
+Data Parallelism means dividing the data into smaller parts and distributing it across multiple cores where the same operation is performed on different subsets of data
 
-- Matrix Multiplication: When multiplying two matrices, different rows or blocks of the matrices can be multiplied independently, as the operations on different rows do not depend on each other. Each processor handles a chunk of the matrix data.
+- Example:
 
-- Image Processing: Applying a filter (e.g., blur, edge detection) to an image can be divided by splitting the image into smaller regions. Each region is processed independently by different processors.
+  - Matrix Multiplication: When multiplying two matrices, different rows or blocks of the matrices can be multiplied independently, as the operations on different rows do not depend on each other. Each processor handles a chunk of the matrix data.
 
-- Adding values in an Array: In an array of size N, if we have to add all the values inside it, we can distribute them into the number of cores.
+  - Image Processing: Applying a filter (e.g., blur, edge detection) to an image can be divided by splitting the image into smaller regions. Each region is processed independently by different processors.
 
-Task Parallelism:
+  - Adding values in an Array: In an array of size N, if we have to add all the values inside it, we can distribute them into the number of cores.
 
-- Web Server: A web server handling multiple client requests can assign different tasks (such as reading from a database, processing logic, or sending responses) to different threads or processors. Each task operates independently and can be processed in parallel.
+Task Parallelism means distributing threads across different cores where each thread performs an action
 
-- Video Game Rendering: Different aspects of rendering a video game, such as calculating physics, AI decision-making, and rendering the graphics, can be handled by separate threads, as these tasks do not need to be done sequentially.
+- Example:
 
-- Editing word document: Different threads to interpret the keystrokes, display images, spelling and grammar, and perform automatic backups
-  periodically.
+  - Web Server: A web server handling multiple client requests can assign different tasks (such as reading from a database, processing logic, or sending responses) to different threads or processors. Each task operates independently and can be processed in parallel.
+
+  - Video Game Rendering: Different aspects of rendering a video game, such as calculating physics, AI decision-making, and rendering the graphics, can be handled by separate threads, as these tasks do not need to be done sequentially.
+
+  - Editing word document: Different threads to interpret the keystrokes, display images, spelling and grammar, and perform automatic backups periodically.
 
 ### Ahmdal's Law
 
@@ -369,6 +380,26 @@ $\cfrac{1}{S + \cfrac{1 - S}{N}}$
 run this application on a system with 4 processing cores, what is the speed-up?
 
 Answer would be $\cfrac{1}{0.3 + \cfrac{1 - 0.3}{4}}$ = $\cfrac{1 \times 4}{1.9}$ ~ 2.1 times faster
+
+### What is many-to-one kernel thread mapping
+
+- All user-level threads are mapped to one kernel thread.
+- This is problematic because if one user thread blocks (maybe because it has to use an IO operations, etc.) it causes the whole process to be blocked (since all threads are blocked)
+
+### What is one-to-one kernel thread mapping
+
+- Each user-level threads are mapped to one kernel thread.
+- This is overkill since this might have a lot of overhead because creating a user level thread creates a separate kernel level thread to manage it.
+
+### What is many-to-many kernel thread mapping
+
+- Allows many user-level threads to be mapped to an equal or less number of kernel level threads.
+- Blocking kernel system doesn't block the entire process since the other kernel threads allotted to that batch of user-level threads facilitate execution
+
+### What is two level kernel thread mapping
+
+- Variation of the many-to-many kernel model (basically a combination of many-to-many and one-to-one).
+- Allows a single user-level thread to be mapped to a single kernel thread and also facilitates whatever the many-to-many model does.
 
 ### Performance Implications of different scenarios in a many-to-many Model
 
