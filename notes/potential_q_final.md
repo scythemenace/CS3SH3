@@ -558,3 +558,9 @@ Dispatcher module gives control of the CPU to the process selected by the short 
 ### What is the difference between dispatch latency and context switching
 
 Dispatch latency measures the time it takes for the dispatcher to stop one process and start another process whereas context switching is a **process** which saves the state of old process and restores the state of the new process.
+
+## Chapter 8
+
+### What is compaction?
+
+Compaction shuffles memory contents to place all free memory spaces together. This is done to avoid external fragmentation.
