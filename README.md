@@ -4,7 +4,7 @@ This repository contains my complete coursework for the Operating Systems course
 
 ---
 
-## 📚 Course Topics Covered
+## Course Topics Covered
 
 - **Processes and Threads**
 - **Scheduling Algorithms**
@@ -16,7 +16,7 @@ This repository contains my complete coursework for the Operating Systems course
 
 ---
 
-## 🧠 Assignments
+## Assignments
 
 ### `Assignment_1` – Kernel Module & /proc Filesystem
 - Built a Linux kernel module that creates a `/proc/seconds` entry showing uptime since module load.
@@ -94,7 +94,7 @@ Contains solutions to OS tutorial problems discussed throughout the term, useful
 
 ---
 
-## 📖 Reference
+## Reference
 
 - Textbook: *Operating System Concepts* (Silberschatz et al.) – also included in PDF form for reference.
 
