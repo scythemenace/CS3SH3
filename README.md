@@ -1,4 +1,4 @@
-# Operating Systems (COMP SCI 3SH3) – Fall 2024
+# Operating Systems (COMPSCI 3SH3) – Fall 2024
 
 This repository contains my complete coursework for the Operating Systems course (COMPSCI 3SH3) during Fall 2024 at McMaster University. The course covered both theoretical concepts and practical implementation of OS components in C.
 
